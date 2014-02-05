@@ -3,11 +3,47 @@
 </head>
 
 <body>
-  {{> hello}}
+  {{> main}}
 </body>
 
-<template name="hello">
-  <h1>Hello World!</h1>
-  {{greeting}}
-  <input type="button" value="Click" />
+<template name="main">
+  <div class="container">
+  	<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+  		<h1>Auction!</h1>
+  		<p>My name is:</p>
+  		<input class="form-control" placeholder="name"/>
+  		<div class="col-sm-4">
+  			<h2>Item 1</h2>
+  			<p>Some sort of description here!</p>
+  			<p>Current bid:</p>
+  			<p>*Bid*</p>
+  			<input class="form-control" placeholder="bid price"/>
+  			<button class="btn btn-default" type="Submit">Bid</button>
+  		</div>
+  		<div class="col-sm-4">
+  			<h2>Item 2</h2>
+  			<p>Some sort of description here!</p>
+  			<p>Current bid:</p>
+  			<p>*Bid*</p>
+  			<input class="form-control" placeholder="bid price"/>
+  			<button class="btn btn-default" type="Submit">Bid</button>
+  		</div>
+  		<div class="col-sm-4">
+  			<h2>Item 3</h2>
+  			<p>Some sort of description here!</p>
+  			<p>Current bid:</p>
+  			<p>*Bid*</p>
+  			<input class="form-control" placeholder="bid price"/>
+  			<button class="btn btn-default" type="Submit">Bid</button>
+  		</div>
+  		  		<div class="col-sm-4">
+  			<h2>Item 3</h2>
+  			<p>Some sort of description here!</p>
+  			<p>Current bid:</p>
+  			<p>*Bid*</p>
+  			<input class="form-control" placeholder="bid price"/>
+  			<button class="btn btn-default" type="Submit">Bid</button>
+  		</div>
+  	</div>
+  </div>
 </template>
