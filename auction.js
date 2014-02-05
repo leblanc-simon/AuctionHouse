@@ -35,12 +35,14 @@ if (Meteor.isClient) {
       var bid = parseFloat(template.find('.newBid').value);
       var item = this;
 
-      Items.update(
-        {_id: this._id},
-        {$set: {
-          bid: bid,
-          highestBidder: bidderName
-        }});
+      if (bidderName != "" && bid > item.bid) {
+        Items.update(
+          {_id: this._id},
+          {$set: {
+            bid: bid,
+            highestBidder: bidderName
+          }});
+      }
     }
   });
 }
