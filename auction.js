@@ -1,9 +1,23 @@
 Items = new Meteor.Collection("items");
 
 if (Meteor.isClient) {
-  Template.hello.greeting = function () {
-    return "Welcome to auction.";
+  Meteor.subscribe("items");
+
+  Template.item.name = function () {
+    return this.name;
   };
+
+  Template.item.description = function () {
+    return this.description;
+  };
+
+  Template.item.bid = function () {
+    return this.bid;
+  };
+
+  Template.main.items = function () {
+    return Items.find();
+  }
 
   Template.hello.events({
     'click input' : function () {

@@ -12,38 +12,20 @@
   		<h1>Auction!</h1>
   		<p>My name is:</p>
   		<input class="form-control" placeholder="name"/>
-  		<div class="col-sm-4">
-  			<h2>Item 1</h2>
-  			<p>Some sort of description here!</p>
-  			<p>Current bid:</p>
-  			<p>*Bid*</p>
-  			<input class="form-control" placeholder="bid price"/>
-  			<button class="btn btn-default" type="Submit">Bid</button>
-  		</div>
-  		<div class="col-sm-4">
-  			<h2>Item 2</h2>
-  			<p>Some sort of description here!</p>
-  			<p>Current bid:</p>
-  			<p>*Bid*</p>
-  			<input class="form-control" placeholder="bid price"/>
-  			<button class="btn btn-default" type="Submit">Bid</button>
-  		</div>
-  		<div class="col-sm-4">
-  			<h2>Item 3</h2>
-  			<p>Some sort of description here!</p>
-  			<p>Current bid:</p>
-  			<p>*Bid*</p>
-  			<input class="form-control" placeholder="bid price"/>
-  			<button class="btn btn-default" type="Submit">Bid</button>
-  		</div>
-  		  		<div class="col-sm-4">
-  			<h2>Item 3</h2>
-  			<p>Some sort of description here!</p>
-  			<p>Current bid:</p>
-  			<p>*Bid*</p>
-  			<input class="form-control" placeholder="bid price"/>
-  			<button class="btn btn-default" type="Submit">Bid</button>
-  		</div>
+  		{{#each items}}
+  			{{> item}}
+  		{{/each}}
   	</div>
+  </div>
+</template>
+
+<template name="item">
+	<div class="col-sm-4">
+		<h2>{{name}}</h2>
+		<p>{{description}}</p>
+		<p>Current bid:</p>
+		<p>{{bid}}</p>
+		<input class="form-control" placeholder="bid price"/>
+		<button class="btn btn-default" type="Submit">Bid</button>
   </div>
 </template>
