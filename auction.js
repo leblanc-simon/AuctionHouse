@@ -24,7 +24,7 @@ if (Meteor.isClient) {
   }
 
   Template.main.events({
-    'keypress #bidderName' : function (event, template) {
+    'keyup #bidderName' : function (event, template) {
       Session.set('bidderName', template.find('#bidderName').value);
     }
   })
