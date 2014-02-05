@@ -15,15 +15,32 @@ if (Meteor.isClient) {
     return this.bid;
   };
 
+  Template.item.highestBidder = function () {
+    return this.highestBidder;
+  }
+
   Template.main.items = function () {
     return Items.find();
   }
 
-  Template.hello.events({
-    'click input' : function () {
-      // template data, if any, is available in 'this'
-      if (typeof console !== 'undefined')
-        console.log("You pressed the button");
+  Template.main.events({
+    'keypress #bidderName' : function (event, template) {
+      Session.set('bidderName', template.find('#bidderName').value);
+    }
+  })
+
+  Template.item.events({
+    'click #submitBid' : function (event, template) {
+      var bidderName = Session.get('bidderName');
+      var bid = parseFloat(template.find('.newBid').value);
+      var item = this;
+
+      Items.update(
+        {_id: this._id},
+        {$set: {
+          bid: bid,
+          highestBidder: bidderName
+        }});
     }
   });
 }

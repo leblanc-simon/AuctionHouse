@@ -11,7 +11,7 @@
   	<div class="col-xs-12 col-sm-10 col-sm-offset-1">
   		<h1>Auction!</h1>
   		<p>My name is:</p>
-  		<input class="form-control" placeholder="name"/>
+  		<input class="form-control" id="bidderName" placeholder="name"/>
   		{{#each items}}
   			{{> item}}
   		{{/each}}
@@ -25,7 +25,9 @@
 		<p>{{description}}</p>
 		<p>Current bid:</p>
 		<p>{{bid}}</p>
-		<input class="form-control" placeholder="bid price"/>
-		<button class="btn btn-default" type="Submit">Bid</button>
+		<p>Highest bidder:</p>
+		<p>{{highestBidder}}</p>
+		<input class="form-control newBid" placeholder="bid price"/>
+		<button class="btn btn-default" id="submitBid" type="Submit">Bid</button>
   </div>
 </template>
