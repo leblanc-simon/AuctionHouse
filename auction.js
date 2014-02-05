@@ -1,7 +1,9 @@
 Items = new Meteor.Collection("items");
+Bids = new Meteor.Collection("bids");
 
 if (Meteor.isClient) {
   Meteor.subscribe("items");
+  Meteor.subscribe("bids");
 
   Template.item.name = function () {
     return this.name;
@@ -42,6 +44,14 @@ if (Meteor.isClient) {
             bid: bid,
             highestBidder: bidderName
           }});
+
+        Bids.insert({
+          bidder: bidderName,
+          itemName: item.name,
+          itemId: item._id,
+          bid: bid,
+          dateTime: new Date()
+        });
       }
     }
   });
@@ -51,6 +61,10 @@ if (Meteor.isServer) {
   Meteor.publish("items", function () {
     return Items.find();
   });
+
+  Meteor.publish("bids", function () {
+    return Bids.find();
+  })
 
   Meteor.startup(function () {
     if (Items.find().count() === 0) {
