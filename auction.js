@@ -41,6 +41,10 @@ if (Meteor.isClient) {
     return Items.find();
   }
 
+  Template.admin.rendered = function() {
+    $('.datetimepicker').datetimepicker();
+}
+
   Template.main.events({
     'keyup #bidderName' : function (event, template) {
       Session.set('bidderName', template.find('#bidderName').value);

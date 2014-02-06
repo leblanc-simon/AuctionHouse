@@ -3,7 +3,9 @@
   "dependencies": {
     "basePackages": {
       "bootstrap-3": {},
-      "iron-router": {}
+      "iron-router": {},
+      "moment": {},
+      "bootstrap3-datetimepicker": {}
     },
     "packages": {
       "bootstrap-3": {
@@ -15,6 +17,16 @@
         "git": "https://github.com/EventedMind/iron-router.git",
         "tag": "v0.6.2",
         "commit": "ce56e58b45624dce992490f3a1c10f10d3948bae"
+      },
+      "moment": {
+        "git": "https://github.com/acreeger/meteor-moment.git",
+        "tag": "v2.5.1",
+        "commit": "8c9bc5d3fc96705057737cb9743d555417f6e551"
+      },
+      "bootstrap3-datetimepicker": {
+        "git": "https://github.com/tsega/meteor-bootstrap3-datetimepicker.git",
+        "tag": "v0.0.5",
+        "commit": "30b5fa0759f98b75761772ad891876408f7cc8c4"
       }
     }
   }
