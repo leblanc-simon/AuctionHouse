@@ -1,6 +1,22 @@
 Items = new Meteor.Collection("items");
 Bids = new Meteor.Collection("bids");
 
+Router.map(function () {
+  /**
+   * The route's name is "home"
+   * The route's template is also "home"
+   * The default action will render the home template
+   */
+  this.route('main', {
+    path: '/',
+    template: 'main'
+  });
+
+  this.route('admin', {
+    path: '/admin'
+  });
+});
+
 if (Meteor.isClient) {
   Meteor.subscribe("items");
   Meteor.subscribe("bids");
