@@ -1,5 +1,6 @@
 Items = new Meteor.Collection("items");
 Bids = new Meteor.Collection("bids");
+AuctionDetails = new Meteor.Collection("auctionDetails");
 
 Router.map(function () {
   /**
@@ -20,6 +21,7 @@ Router.map(function () {
 if (Meteor.isClient) {
   Meteor.subscribe("items");
   Meteor.subscribe("bids");
+  Meteor.subscribe("auctionDetails");
 
   Template.item.name = function () {
     return this.name;
@@ -84,7 +86,11 @@ if (Meteor.isServer) {
 
   Meteor.publish("bids", function () {
     return Bids.find();
-  })
+  });
+
+  Meteor.publish("auctionDetails", function () {
+    return AuctionDetails.find();
+  });
 
   Meteor.startup(function () {
     if (Items.find().count() === 0) {
@@ -102,6 +108,12 @@ if (Meteor.isServer) {
         name: "Item3",
         description: "Some description further",
         bid: 0
+      });
+    }
+
+    if (AuctionDetails.find().count() === 0) {
+      AuctionDetails.insert({
+        endDateTime: moment().add('days', 7)
       });
     }
   });
