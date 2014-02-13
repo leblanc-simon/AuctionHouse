@@ -16,6 +16,10 @@ Router.map(function () {
   this.route('admin', {
     path: '/admin'
   });
+
+  this.route('logs', {
+    path: '/logs'
+  });
 });
 
 if (Meteor.isClient) {
