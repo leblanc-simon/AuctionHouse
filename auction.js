@@ -84,7 +84,7 @@ if (Meteor.isClient) {
       var bid = parseFloat(template.find('.newBid').value);
       var item = this;
 
-      if (bidderName != "" && bid > item.bid) {
+      if (bidderName != "" && bid > item.bid && !Session.get('auctionHasEnded')) {
         Items.update(
           {_id: this._id},
           {$set: {
