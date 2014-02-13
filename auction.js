@@ -26,7 +26,9 @@ if (Meteor.isClient) {
   calculateAuctionTimeRemaining = function () {
     if (AuctionDetails.findOne()) {
       var auctionEndTime = moment(AuctionDetails.findOne().endDateTime);
-      Session.set('auctionEndTime', auctionEndTime.fromNow());
+      var timeLeft = moment.duration(auctionEndTime.subtract(moment()));
+      var timeRemainingString = timeLeft.hours() + " hours, " + timeLeft.minutes() + " minutes, " + timeLeft.seconds() + " seconds";
+      Session.set('auctionEndTime', timeRemainingString);
     }
   }
 
