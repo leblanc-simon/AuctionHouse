@@ -73,9 +73,17 @@ if (Meteor.isClient) {
     return Session.get('auctionHasEnded');
   }
 
-  Template.admin.rendered = function() {
+  Template.admin.rendered = function () {
     $('.datetimepicker').datetimepicker();
-}
+  }
+
+  Template.logs.logs = function () {
+    return Bids.find({}, {sort: {dateTime: -1}});
+  }
+
+  Template.logRow.bidTime = function () {
+    return moment(this.dateTime).format('MMMM Do YYYY, h:mm:ss a');
+  }
 
   Template.main.events({
     'keyup #bidderName' : function (event, template) {

@@ -55,6 +55,30 @@
 
 <template name="logs">
 	<div class="container">
-		<h1>Logs></h1>
+		<h1>Logs</h1>
+		<table class="table table-striped">
+			<thead>
+				<th>Bidder</th>
+				<th>Item Name</th>
+				<th>Item Id</th>
+				<th>Bid</th>
+				<th>Bid Time</th>
+			</thead>
+			<tbody>
+				{{#each logs}}
+				  {{> logRow}}
+				{{/each}}
+			</tbody>
+		</table>
 	</div>
+</template>
+
+<template name="logRow">
+	<tr>
+		<td>{{bidder}}</td>
+		<td>{{itemName}}</td>
+		<td>{{itemId}}</td>
+		<td>{{bid}}</td>
+		<td>{{bidTime}}</td>
+	</tr>
 </template>
