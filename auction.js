@@ -23,6 +23,15 @@ if (Meteor.isClient) {
   Meteor.subscribe("bids");
   Meteor.subscribe("auctionDetails");
 
+  calculateAuctionTimeRemaining = function () {
+    if (AuctionDetails.findOne()) {
+      var auctionEndTime = moment(AuctionDetails.findOne().endDateTime);
+      Session.set('auctionEndTime', auctionEndTime.fromNow());
+    }
+  }
+
+  Meteor.setInterval(calculateAuctionTimeRemaining, 1000);
+
   Template.item.name = function () {
     return this.name;
   };
@@ -41,6 +50,10 @@ if (Meteor.isClient) {
 
   Template.main.items = function () {
     return Items.find();
+  }
+
+  Template.main.auctionTimeRemaining = function () {
+    return Session.get('auctionEndTime');
   }
 
   Template.admin.rendered = function() {
@@ -113,7 +126,7 @@ if (Meteor.isServer) {
 
     if (AuctionDetails.find().count() === 0) {
       AuctionDetails.insert({
-        endDateTime: moment().add('days', 7)
+        endDateTime: moment().add('days', 7).toDate()
       });
     }
   });
