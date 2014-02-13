@@ -54,11 +54,15 @@ if (Meteor.isClient) {
   };
 
   Template.item.bid = function () {
-    return this.bid;
+    if (Bids.findOne({itemId: this._id}, {sort: {bid: -1}})) {
+      return Bids.findOne({itemId: this._id}, {sort: {bid: -1}}).bid;
+    }
   };
 
   Template.item.highestBidder = function () {
-    return this.highestBidder;
+    if (Bids.findOne({itemId: this._id}, {sort: {bid: -1}})) {
+      return Bids.findOne({itemId: this._id}, {sort: {bid: -1}}).bidder;
+    }
   }
 
   Template.main.items = function () {
@@ -94,22 +98,17 @@ if (Meteor.isClient) {
   Template.item.events({
     'click #submitBid' : function (event, template) {
       var bidderName = Session.get('bidderName');
-      var bid = parseFloat(template.find('.newBid').value);
+      var newBid = parseFloat(template.find('.newBid').value);
       var item = this;
+      var previousBid = Bids.findOne({itemId: item._id}, {sort: {bid: -1}});
 
-      if (bidderName != "" && bid > item.bid && !Session.get('auctionHasEnded')) {
-        Items.update(
-          {_id: this._id},
-          {$set: {
-            bid: bid,
-            highestBidder: bidderName
-          }});
 
+      if (bidderName != "" && (previousBid == null || newBid > previousBid.bid) && !Session.get('auctionHasEnded')) {
         Bids.insert({
           bidder: bidderName,
           itemName: item.name,
           itemId: item._id,
-          bid: bid,
+          bid: newBid,
           dateTime: new Date()
         });
       }
