@@ -89,7 +89,7 @@ if (Meteor.isClient) {
     'keyup #bidderName' : function (event, template) {
       Session.set('bidderName', template.find('#bidderName').value);
     }
-  })
+  });
 
   Template.item.events({
     'click #submitBid' : function (event, template) {
@@ -113,6 +113,13 @@ if (Meteor.isClient) {
           dateTime: new Date()
         });
       }
+    }
+  });
+
+  Template.logRow.events({
+    'click #deleteBid' : function (event, template) {
+      var bid = this;
+      Bids.remove(bid._id);
     }
   });
 }
