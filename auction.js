@@ -23,12 +23,18 @@ if (Meteor.isClient) {
   Meteor.subscribe("bids");
   Meteor.subscribe("auctionDetails");
 
+  Session.setDefault('auctionHasEnded', false);
+
   calculateAuctionTimeRemaining = function () {
     if (AuctionDetails.findOne()) {
       var auctionEndTime = moment(AuctionDetails.findOne().endDateTime);
-      var timeLeft = moment.duration(auctionEndTime.subtract(moment()));
-      var timeRemainingString = timeLeft.hours() + " hours, " + timeLeft.minutes() + " minutes, " + timeLeft.seconds() + " seconds";
-      Session.set('auctionEndTime', timeRemainingString);
+      if (moment().isAfter(auctionEndTime)) {
+        Session.set('auctionHasEnded', true);
+      } else {
+        var timeLeft = moment.duration(auctionEndTime.subtract(moment()));
+        var timeRemainingString = timeLeft.hours() + " hours, " + timeLeft.minutes() + " minutes, " + timeLeft.seconds() + " seconds";
+        Session.set('auctionEndTime', timeRemainingString);
+      }
     }
   }
 
@@ -56,6 +62,10 @@ if (Meteor.isClient) {
 
   Template.main.auctionTimeRemaining = function () {
     return Session.get('auctionEndTime');
+  }
+
+  Template.main.hasAuctionEnded = function () {
+    return Session.get('auctionHasEnded');
   }
 
   Template.admin.rendered = function() {
