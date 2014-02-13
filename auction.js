@@ -24,6 +24,7 @@ if (Meteor.isClient) {
   Meteor.subscribe("auctionDetails");
 
   Session.setDefault('auctionHasEnded', false);
+  Session.setDefault('auctionEndTime', "");
 
   calculateAuctionTimeRemaining = function () {
     if (AuctionDetails.findOne()) {
@@ -60,11 +61,11 @@ if (Meteor.isClient) {
     return Items.find();
   }
 
-  Template.main.auctionTimeRemaining = function () {
+  Template.countdown.auctionTimeRemaining = function () {
     return Session.get('auctionEndTime');
   }
 
-  Template.main.hasAuctionEnded = function () {
+  Template.countdown.hasAuctionEnded = function () {
     return Session.get('auctionHasEnded');
   }
 
