@@ -141,16 +141,19 @@ if (Meteor.isServer) {
       Items.insert({
         name: "Item1",
         description: "Some description",
+        image: "http://placehold.it/276x155/ff6666/ffffff",
         bid: 0
       });
       Items.insert({
         name: "Item2",
         description: "Some description again",
+        image: "http://placehold.it/276x155/ff0000/ffffff",
         bid: 0
       });
       Items.insert({
         name: "Item3",
         description: "Some description further",
+        image: "http://placehold.it/276x155/cc0000/ffffff",
         bid: 0
       });
     }
