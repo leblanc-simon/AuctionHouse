@@ -125,7 +125,7 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
   Meteor.publish("items", function () {
-    return Items.find();
+    return Items.find({}, {sort: {order: 1}});
   });
 
   Meteor.publish("bids", function () {
@@ -142,19 +142,22 @@ if (Meteor.isServer) {
         name: "Item1",
         description: "Some description",
         image: "http://placehold.it/276x155/ff6666/ffffff",
-        bid: 0
+        bid: 0,
+        order: 1
       });
       Items.insert({
         name: "Item2",
         description: "Some description again",
         image: "http://placehold.it/276x155/ff0000/ffffff",
-        bid: 0
+        bid: 0,
+        order: 2
       });
       Items.insert({
         name: "Item3",
         description: "Some description further",
         image: "http://placehold.it/276x155/cc0000/ffffff",
-        bid: 0
+        bid: 0,
+        order: 3
       });
     }
 
