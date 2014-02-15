@@ -29,6 +29,8 @@ if (Meteor.isClient) {
 
   Session.setDefault('auctionHasEnded', false);
   Session.setDefault('auctionEndTime', "");
+  Session.setDefault('bidErrorItem', "");
+  Session.setDefault('bidErrorMessage', "");
 
   calculateAuctionTimeRemaining = function () {
     if (AuctionDetails.findOne()) {
@@ -63,6 +65,14 @@ if (Meteor.isClient) {
     if (Bids.findOne({itemId: this._id}, {sort: {bid: -1}})) {
       return Bids.findOne({itemId: this._id}, {sort: {bid: -1}}).bidder;
     }
+  }
+
+  Template.item.showBidErrorOnItem = function () {
+    return this._id == Session.get('bidErrorItem');
+  }
+
+  Template.item.bidErrorMessage = function () {
+    return Session.get('bidErrorMessage');
   }
 
   Template.main.items = function () {
@@ -102,8 +112,7 @@ if (Meteor.isClient) {
       var item = this;
       var previousBid = Bids.findOne({itemId: item._id}, {sort: {bid: -1}});
 
-
-      if (bidderName != "" && (previousBid == null || newBid > previousBid.bid) && !Session.get('auctionHasEnded')) {
+      if ((bidderName != "" && bidderName != null) && (previousBid == null || newBid > previousBid.bid) && !Session.get('auctionHasEnded')) {
         Bids.insert({
           bidder: bidderName,
           itemName: item.name,
@@ -111,6 +120,17 @@ if (Meteor.isClient) {
           bid: newBid,
           dateTime: new Date()
         });
+        Session.set('bidErrorItem', "");
+        Session.set('bidErrorMessage', "");
+      } else {
+        Session.set('bidErrorItem', item._id);
+        if (bidderName == "" || bidderName == null) {
+          Session.set('bidErrorMessage', "Please set your name at the top of the page.");
+        } else if (newBid <= previousBid.bid) {
+          Session.set('bidErrorMessage', "Your bid is not higher than the current highest bid. Please put in a higher bid.");
+        } else if (Session.get('auctionHasEnded')) {
+          Session.set('bidErrorMessage', "The auction has ended. You can no longer bid on items.");
+        }
       }
     }
   });

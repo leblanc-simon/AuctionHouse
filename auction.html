@@ -29,6 +29,11 @@
 		<h2>{{name}}</h2>
 		<p>{{description}}</p>
     <img src="{{image}}"/>
+    {{#if showBidErrorOnItem}}
+      <div class="alert alert-danger">
+        <p><strong>Uh oh!</strong> We were unable to place your bid. {{bidErrorMessage}}</p>
+      </div>
+    {{/if}}
 		<p>Current bid:</p>
 		<p>£ {{bid}}</p>
 		<p>Highest bidder:</p>
