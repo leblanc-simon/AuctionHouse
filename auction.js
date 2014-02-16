@@ -36,6 +36,7 @@ if (Meteor.isClient) {
 	Session.setDefault('bidErrorItem', "");
 	Session.setDefault('bidErrorMessage', "");
 	Session.setDefault('bidderName', "");
+	Session.setDefault('bigScreenPage', 0);
 
 	// Returns an event map that handles the "escape" and "return" keys and
   // "blur" events on a text input (given by selector) and interprets them
@@ -78,7 +79,20 @@ if (Meteor.isClient) {
 		}
 	}
 
+	var cycleBigScreenItems = function () {
+		if (Items.find()) {
+			var furthestPage = Math.floor(Items.find().count() / 8);
+			var currentPage = Session.get('bigScreenPage');
+			if (currentPage < furthestPage) {
+				Session.set('bigScreenPage', currentPage + 1);
+			} else {
+				Session.set('bigScreenPage', 0);
+			}
+		}
+	}
+
 	Meteor.setInterval(calculateAuctionTimeRemaining, 1000);
+	Meteor.setInterval(cycleBigScreenItems, 20000);
 
 	Meteor.startup(function () {
 		calculateAuctionTimeRemaining();
@@ -121,7 +135,11 @@ if (Meteor.isClient) {
 	};
 
 	Template.bigScreen.items = function () {
-		return Items.find();
+		var numberToSkip = Session.get('bigScreenPage') * 8;
+		return Items.find({}, {
+			skip: numberToSkip,
+			limit: 8
+		});
 	};
 
 	Template.bigScreenItem.bid = function () {
@@ -226,27 +244,14 @@ if (Meteor.isServer) {
 
 	Meteor.startup(function () {
 		if (Items.find().count() === 0) {
-			Items.insert({
-				name: "Item1",
-				description: "Some description",
-				image: "http://placehold.it/276x155/ff6666/ffffff",
-				bid: 0,
-				order: 1
-			});
-			Items.insert({
-				name: "Item2",
-				description: "Some description again",
-				image: "http://placehold.it/276x155/ff0000/ffffff",
-				bid: 0,
-				order: 2
-			});
-			Items.insert({
-				name: "Item3",
-				description: "Some description further",
-				image: "http://placehold.it/276x155/cc0000/ffffff",
-				bid: 0,
-				order: 3
-			});
+			for (var i = 1; i <= 12; i++) {
+				Items.insert({
+					name: "Item " + i,
+					description: "Some text",
+					image: "http://placehold.it/276x155/ff0000/ffffff",
+					order: i
+				});
+			}
 		}
 
 		if (AuctionDetails.find().count() === 0) {
