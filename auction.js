@@ -80,6 +80,10 @@ if (Meteor.isClient) {
 
 	Meteor.setInterval(calculateAuctionTimeRemaining, 1000);
 
+	Meteor.startup(function () {
+		calculateAuctionTimeRemaining();
+	});
+
 	Template.item.bid = function () {
 		if (Bids.findOne({itemId: this._id}, {sort: {bid: -1}})) {
 			return Bids.findOne({itemId: this._id}, {sort: {bid: -1}}).bid;
