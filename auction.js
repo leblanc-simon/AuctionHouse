@@ -153,7 +153,7 @@ if (Meteor.isClient) {
 	Template.item.events({
 		'click #submitBid' : function (event, template) {
 			var bidderName = Session.get('bidderName');
-			var newBid = parseFloat(template.find('.newBid').value);
+			var newBid = parseInt(template.find('.newBid').value, 10);
 			var item = this;
 			var previousBid = Bids.findOne({itemId: item._id}, {sort: {bid: -1}});
 
@@ -172,7 +172,7 @@ if (Meteor.isClient) {
 				if (bidderName == "" || bidderName == null) {
 					Session.set('bidErrorMessage', "Please set your name at the top of the page.");
 				} else if (newBid <= previousBid.bid) {
-					Session.set('bidErrorMessage', "Your bid is not higher than the current highest bid. Please put in a higher bid.");
+					Session.set('bidErrorMessage', "Your bid is not higher than the current highest bid. Please put in a higher bid. Bids are rounded down to the nearest pound.");
 				} else if (Session.get('auctionHasEnded')) {
 					Session.set('bidErrorMessage', "The auction has ended. You can no longer bid on items.");
 				}
