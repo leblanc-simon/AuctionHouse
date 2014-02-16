@@ -49,6 +49,24 @@
 	{{/if}}
 </template>
 
+<template name="bigScreen">
+  <div class="container-fluid">
+    {{> countdown}}
+    {{#each items}}
+      {{> bigScreenItem}}
+    {{/each}}
+  </div>
+</template>
+
+<template name="bigScreenItem">
+  <div class="col-sm-3">
+    <h2>{{name}}</h2>
+    <img src="{{image}}"/>
+    <h3>Current bid: £ {{bid}}</h3>
+    <h3>Highest bidder: {{highestBidder}}</h3>
+  </div>
+</template>
+
 <template name="admin">
   <div class="container">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">

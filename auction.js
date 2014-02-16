@@ -20,6 +20,10 @@ Router.map(function () {
   this.route('logs', {
     path: '/logs'
   });
+
+  this.route('bigScreen', {
+    path: '/bigscreen'
+  });
 });
 
 if (Meteor.isClient) {
@@ -65,39 +69,55 @@ if (Meteor.isClient) {
     if (Bids.findOne({itemId: this._id}, {sort: {bid: -1}})) {
       return Bids.findOne({itemId: this._id}, {sort: {bid: -1}}).bidder;
     }
-  }
+  };
 
   Template.item.showBidErrorOnItem = function () {
     return this._id == Session.get('bidErrorItem');
-  }
+  };
 
   Template.item.bidErrorMessage = function () {
     return Session.get('bidErrorMessage');
-  }
+  };
 
   Template.main.items = function () {
     return Items.find();
-  }
+  };
 
   Template.countdown.auctionTimeRemaining = function () {
     return Session.get('auctionEndTime');
-  }
+  };
 
   Template.countdown.hasAuctionEnded = function () {
     return Session.get('auctionHasEnded');
-  }
+  };
+
+  Template.bigScreen.items = function () {
+    return Items.find();
+  };
+
+  Template.bigScreenItem.bid = function () {
+    if (Bids.findOne({itemId: this._id}, {sort: {bid: -1}})) {
+      return Bids.findOne({itemId: this._id}, {sort: {bid: -1}}).bid;
+    }
+  };
+
+  Template.bigScreenItem.highestBidder = function () {
+    if (Bids.findOne({itemId: this._id}, {sort: {bid: -1}})) {
+      return Bids.findOne({itemId: this._id}, {sort: {bid: -1}}).bidder;
+    }
+  };
 
   Template.admin.rendered = function () {
     $('.datetimepicker').datetimepicker();
-  }
+  };
 
   Template.logs.logs = function () {
     return Bids.find({}, {sort: {dateTime: -1}});
-  }
+  };
 
   Template.logRow.bidTime = function () {
     return moment(this.dateTime).format('MMMM Do YYYY, h:mm:ss a');
-  }
+  };
 
   Template.main.events({
     'keyup #bidderName' : function (event, template) {
