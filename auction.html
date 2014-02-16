@@ -87,20 +87,26 @@
 <template name="logs">
 	<div class="container">
 		<h1>Logs</h1>
-		<table class="table table-striped">
-			<thead>
-				<th>Bidder</th>
-				<th>Item Name</th>
-				<th>Item Id</th>
-				<th>Bid</th>
-				<th>Bid Time</th>
-			</thead>
-			<tbody>
-				{{#each logs}}
-				  {{> logRow}}
-				{{/each}}
-			</tbody>
-		</table>
+    {{#if currentUser}}
+  		<table class="table table-striped">
+  			<thead>
+  				<th>Bidder</th>
+  				<th>Item Name</th>
+  				<th>Item Id</th>
+  				<th>Bid</th>
+  				<th>Bid Time</th>
+  			</thead>
+  			<tbody>
+  				{{#each logs}}
+  				  {{> logRow}}
+  				{{/each}}
+  			</tbody>
+  		</table>
+    {{else}}
+      <p>Please enter admin password:</p>
+      <input class="form-control adminPassword" placeholder="password"/>
+      <button class="btn btn-default" id="submitAdminPassword" type="Submit">Enter</button>
+    {{/if}}
 	</div>
 </template>
 

@@ -160,6 +160,12 @@ if (Meteor.isClient) {
     }
   });
 
+  Template.logs.events({
+    'click #submitAdminPassword' : function (event, template) {
+      Meteor.loginWithPassword("admin", template.find('.adminPassword').value);
+    }
+  })
+
   Template.logRow.events({
     'click #deleteBid' : function (event, template) {
       var bid = this;
@@ -209,6 +215,13 @@ if (Meteor.isServer) {
     if (AuctionDetails.find().count() === 0) {
       AuctionDetails.insert({
         endDateTime: moment().add('days', 7).toDate()
+      });
+    }
+
+    if (Meteor.users.find().count() === 0) {
+      Accounts.createUser({
+        username: "admin",
+        password: "auct10nadm1n"
       });
     }
   });
