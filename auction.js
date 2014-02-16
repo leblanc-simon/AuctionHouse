@@ -163,6 +163,10 @@ if (Meteor.isClient) {
   Template.logs.events({
     'click #submitAdminPassword' : function (event, template) {
       Meteor.loginWithPassword("admin", template.find('.adminPassword').value);
+    },
+
+    'click #logOut' : function () {
+      Meteor.logout();
     }
   })
 
