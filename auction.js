@@ -35,6 +35,7 @@ if (Meteor.isClient) {
   Session.setDefault('auctionEndTime', "");
   Session.setDefault('bidErrorItem', "");
   Session.setDefault('bidErrorMessage', "");
+  Session.setDefault('bidderName', "");
 
   calculateAuctionTimeRemaining = function () {
     if (AuctionDetails.findOne()) {
@@ -82,6 +83,10 @@ if (Meteor.isClient) {
   Template.main.items = function () {
     return Items.find();
   };
+
+  Template.main.showAuctionItems = function () {
+    return Session.get('bidderName') != "";
+  }
 
   Template.countdown.auctionTimeRemaining = function () {
     return Session.get('auctionEndTime');

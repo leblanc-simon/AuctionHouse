@@ -10,9 +10,11 @@
   		{{> countdown}}
   		<p>Please enter your name:</p>
   		<input class="form-control" id="bidderName" placeholder="name"/>
-  		{{#each items}}
-  			{{> item}}
-  		{{/each}}
+      {{#if showAuctionItems}}
+    		{{#each items}}
+    			{{> item}}
+    		{{/each}}
+      {{/if}}
       {{> version}}
   	</div>
   </div>
