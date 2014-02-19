@@ -202,6 +202,16 @@ if (Meteor.isClient) {
 		}
 	});
 
+	Template.admin.events({
+		'click #submitAdminChanges' : function (event, template) {
+			var newAuctionEndDate = moment(template.find('#auctionDatePicker').value, 'DD/MM/YYYY h:mm a').toDate();
+			if (newAuctionEndDate) {
+				var detailsId = AuctionDetails.findOne()._id;
+				AuctionDetails.update(detailsId, {$set: {endDateTime: newAuctionEndDate}});
+			}
+		}
+	})
+
 	Template.logs.events(okCancelEvents(
 		"#inputAdminPassword",
 		{

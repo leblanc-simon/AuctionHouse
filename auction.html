@@ -73,13 +73,14 @@
 	<div class="container">
 		<div class="col-xs-12 col-sm-10 col-sm-offset-1">
 			<h1>Admin</h1>
-			<label>Auction end date:</label>
+			{{> countdown}}
+			<label>Set new end time:</label>
 				<div class='form-group input-group date datetimepicker'>
-					<input type='text' class="form-control" />
+					<input type='text' class="form-control" id="auctionDatePicker"/>
 					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
 					</span>
 				</div>
-			<button class="btn btn-default" id="submitAdminChanges" type="Submit">Save changes</button>
+			<button class="btn btn-default" id="submitAdminChanges" type="Submit">Submit</button>
 		</div>
 	</div>
 </template>
