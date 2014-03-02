@@ -6,16 +6,19 @@
 <template name="main">
 	<div class="container">
 		<div class="col-xs-12 col-sm-10 col-sm-offset-1">
-			<h1>auction</h1>
-			{{> countdown}}
-			<p>Please enter your name:</p>
-			<input class="form-control" id="bidderName" placeholder="name"/>
-			{{#if showAuctionItems}}
+			<div id="header">
+				<h1>auction</h1>
+			</div>
+			<div id="timeAndName">
+				{{> countdown}}
+				<div class="form-inline" role="form">
+					<label for="bidderName" class="control-label">Enter your name:</label>
+					<input class="form-control" id="bidderName"/>
+				</div>
+			</div>
 				{{#each items}}
 					{{> item}}
 				{{/each}}
-			{{/if}}
-			{{> version}}
 		</div>
 	</div>
 </template>
@@ -28,82 +31,106 @@
 
 <template name="item">
 	<div class="item col-sm-4">
-		<h2>{{name}}</h2>
-		<p class="description">{{description}}</p>
-		<img src="{{image}}"/>
-		{{#if showBidErrorOnItem}}
-			<div class="alert alert-danger">
-				<p><strong>Uh oh!</strong> We were unable to place your bid. {{bidErrorMessage}}</p>
+		<div class="itemImage" style="background-image: url('{{image}}');"/>
+		<h2 class="row{{itemRow}}">{{name}}</h2>
+		<div>
+			<div class="description row{{itemRow}}">
+				{{#if showBidErrorOnItem}}
+					<div class="alert alert-danger">
+						<p><strong>Uh oh!</strong> We were unable to place your bid. {{bidErrorMessage}}</p>
+						<a class="dismissError">Close</a>
+					</div>
+				{{else}}
+				<p class="description row{{itemRow}}">{{description}}</p>
+				<p class="donatedBy">{{donatedBy}}</p>
+				{{/if}}
 			</div>
-		{{/if}}
-		<p>Current bid: £ {{bid}}</p>
-		<p>Highest bidder: {{highestBidder}}</p>
-		<input class="form-control newBid" placeholder="new bid"/>
-		<button class="btn btn-default" id="submitBid" type="Submit">Bid</button>
+			<p class="currentBid">Current bid: £ {{bid}} by {{highestBidder}}</p>
+			<span class="currencySymbol">£</span><input class="form-control newBid" id="newBid"/>
+			<button class="btn btn-success submitBid" id="submitBid" type="Submit">Place Bid</button>
+		</div>
 	</div>
 </template>
 
 <template name="countdown">
 	{{#if hasAuctionEnded}}
-		<h2>The auction is over.</h2>
+		<p>The auction is over.</p>
 	{{else}}
-		<h2>The auction ends in {{auctionTimeRemaining}}</h2>
+		<p>
+			The auction ends in
+			<span class="timeRemaining" id="hoursRemaining">{{auctionHoursRemaining}}</span> <span class="timeRemainingLabel" id="hoursLabel">hours</span><span class="sentence">,</span>
+			<span class="timeRemaining" id="minutesRemaining">{{auctionMinutesRemaining}}</span> <span class="timeRemainingLabel" id="minutesLabel">minutes</span><span class="sentence"> and</span>
+			<span class="timeRemaining" id="secondsRemaining">{{auctionSecondsRemaining}}</span> <span class="timeRemainingLabel" id="secondsLabel">seconds</span>
+		</p>
 	{{/if}}
 </template>
 
 <template name="bigScreen">
-	<div class="container-fluid">
-		{{> countdown}}
-		{{#each items}}
+	<div class="bigScreen">
+		<div class="bsElement bsTitle">
+			<h1>auction</h1>
+		</div>
+		{{#each itemsPartOne}}
+			{{> bigScreenItem}}
+		{{/each}}
+		<div class="bsElement bsCountdown">
+			{{> countdown}}
+		</div>
+		{{#each itemsPartTwo}}
 			{{> bigScreenItem}}
 		{{/each}}
 	</div>
 </template>
 
 <template name="bigScreenItem">
-	<div class="col-sm-3">
-		<h2>{{name}}</h2>
-		<img src="{{image}}"/>
-		<h3>Current bid: £ {{bid}}</h3>
-		<h3>Highest bidder: {{highestBidder}}</h3>
+	<div class="bsElement bsItem">
+		<div class="itemImage" style="background-image: url('{{image}}');"/>
+		<h2 class="name">{{name}}</h2>
+		<h2 class="bid">Current bid £ {{bid}}</h2>
+		<h2 class="bidder">by {{highestBidderTruncated}}</h2>
+	</div>
+</template>
+
+<template name="changeEndTime">
+	<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+		<h1>Admin</h1>
+		{{> countdown}}
+		<label>Set new end time:</label>
+			<div class='form-group input-group date datetimepicker'>
+				<input type='text' class="form-control" id="auctionDatePicker"/>
+				<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+				</span>
+			</div>
+		<button class="btn btn-default" id="submitAdminChanges" type="Submit">Submit</button>
 	</div>
 </template>
 
 <template name="admin">
 	<div class="container">
-		<div class="col-xs-12 col-sm-10 col-sm-offset-1">
-			<h1>Admin</h1>
-			{{> countdown}}
-			<label>Set new end time:</label>
-				<div class='form-group input-group date datetimepicker'>
-					<input type='text' class="form-control" id="auctionDatePicker"/>
-					<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-					</span>
-				</div>
-			<button class="btn btn-default" id="submitAdminChanges" type="Submit">Submit</button>
-		</div>
-	</div>
-</template>
-
-<template name="logs">
-	<div class="container">
-		<h1>Logs</h1>
 		{{#if currentUser}}
 			<p class="text-right"><a id="logOut" href="">Log out</a></p>
-			<table class="table table-striped">
-				<thead>
-					<th>Bidder</th>
-					<th>Item Name</th>
-					<th>Item Id</th>
-					<th>Bid</th>
-					<th>Bid Time</th>
-				</thead>
-				<tbody>
-					{{#each logs}}
-						{{> logRow}}
-					{{/each}}
-				</tbody>
-			</table>
+			{{> changeEndTime}}
+			<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+				<h1>Reload item data</h1>
+				<button class="btn btn-default" id="reloadItemData" type="Submit">Reload item data</button>
+			</div>
+			<div class="col-xs-12 col-sm-10 col-sm-offset-1">
+				<h1>Logs</h1>
+				<table class="table table-striped">
+					<thead>
+						<th>Bidder</th>
+						<th>Item Name</th>
+						<th>Item Id</th>
+						<th>Bid</th>
+						<th>Bid Time</th>
+					</thead>
+					<tbody>
+						{{#each logs}}
+							{{> logRow}}
+						{{/each}}
+					</tbody>
+				</table>
+			</div>
 		{{else}}
 			<p>Please enter admin password:</p>
 			<input class="form-control adminPassword" id="inputAdminPassword" placeholder="password"/>
