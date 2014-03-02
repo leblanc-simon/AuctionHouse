@@ -137,13 +137,13 @@ if (Meteor.isClient) {
 				Session.set('auctionSecondsRemaining', pad(timeLeft.seconds(), 2));
 			}
 		}
-	}
+	};
 
 	function pad(num, size) {
     var s = num + "";
     while (s.length < size) s = "0" + s;
     return s;
-	}
+	};
 
 	var cycleBigScreenItems = function () {
 		if (Items.find()) {
@@ -155,17 +155,17 @@ if (Meteor.isClient) {
 				Session.set('bigScreenPage', 0);
 			}
 		}
-	}
+	};
 
 	var syncServerTime = function () {
 		Meteor.call('getServerTime', function (error, result) {
 			Session.set('clientTimeOffset', moment().diff(result));
 		});
-	}
+	};
 
 	var setDevice = function () {
 		Session.set('isBeingViewedOnMobile', $(window).width() < 768);
-	}
+	};
 
 	var truncateString = function (string, maxLength) {
 		if (string.length > maxLength) {
@@ -173,7 +173,7 @@ if (Meteor.isClient) {
 		}
 
 		return string;
-	}
+	};
 
 	Meteor.setInterval(calculateAuctionTimeRemaining, 1000);
 	Meteor.setInterval(cycleBigScreenItems, 20000);
@@ -293,7 +293,7 @@ if (Meteor.isClient) {
 			ok: function (value) {
 				Session.set('bidderName', value);
 			}
-		}));
+	}));
 
 	Template.item.events({
 		'click #submitBid' : function (event, template) {
@@ -383,7 +383,7 @@ if (Meteor.isClient) {
 					newAuctionEndDate);
 			}
 		}
-	})
+	});
 
 	Template.admin.events(okCancelEvents(
 		"#inputAdminPassword",
@@ -406,7 +406,7 @@ if (Meteor.isClient) {
 		'click #logOut' : function () {
 			Meteor.logout();
 		}
-	})
+	});
 
 	Template.logRow.events({
 		'click #deleteBid' : function (event, template) {
