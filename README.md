@@ -14,9 +14,6 @@ Any of these commands may need to be run as super user, depending on your system
 
 ##### Todos
 
-* Wire up the admin page to save the auction end datetime.
-* Wire up the auction to obey the auction end datetime.
 * Auction list management through the admin page.
 * Admin page security.
-* View bid audit through the admin page.
 * All of the visual polish.
