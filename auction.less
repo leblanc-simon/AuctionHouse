@@ -71,7 +71,7 @@ div#timeAndName {
 	}
 	@media (max-width: @screen-xs-max) {
 		padding: 10px;
-		width: 260px;
+		width: 100%;
 		margin-left: auto;
 		margin-right: auto;
 		p {
@@ -81,33 +81,32 @@ div#timeAndName {
 		span.timeRemaining {
 			font-size: 24px;
 			position: absolute;
-			top: 35px;
-			margin-left: -14px;
 			font-weight: normal;
+			width: 46px;
+			text-align: center;
 		}
 		span.timeRemainingLabel {
 			font-size: 12px;
 			position: absolute;
-			top: 60px;
+			top: 25px;
 			font-weight: normal;
+			width: 46px;
+			text-align: center;
 		}
-		#hoursRemaining {
+		.timeBlock {
+			position: absolute;
+			top: 35px;
+			width: 46px;
+			margin-left: -23px;
+		}
+		#hoursRemainingBlock {
 			left: 30%;
 		}
-		#minutesRemaining {
+		#minutesRemainingBlock {
 			left: 50%;
 		}
-		#secondsRemaining {
+		#secondsRemainingBlock {
 			left: 70%;
-		}
-		#hoursLabel {
-			left: 61px;
-		}
-		#minutesLabel {
-			left: 107px;
-		}
-		#secondsLabel {
-			left: 159px;
 		}
 		.sentence {
 			visibility: hidden;
