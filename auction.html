@@ -32,7 +32,7 @@
 
 <template name="item">
 	<div class="item col-sm-4">
-		<div class="itemImage" style="background-image: url('{{image}}');"/>
+		<div class="itemImage" style="background-image: url('{{image}}');"></div>
 		<h2 class="row{{itemRow}}">{{name}}</h2>
 		<div>
 			<div class="description row{{itemRow}}">
@@ -85,7 +85,7 @@
 
 <template name="bigScreenItem">
 	<div class="bsElement bsItem">
-		<div class="itemImage" style="background-image: url('{{image}}');"/>
+		<div class="itemImage" style="background-image: url('{{image}}');"></div>
 		<h2 class="name">{{name}}</h2>
 		<h2 class="bid">Current bid £ {{bid}}</h2>
 		<h2 class="bidder">by {{highestBidderTruncated}}</h2>
@@ -147,6 +147,6 @@
 		<td>{{itemId}}</td>
 		<td>{{bid}}</td>
 		<td>{{bidTime}}</td>
-		<td><button class="btn btn-danger" id="deleteBid" type="Submit">Delete</button>
+		<td><button class="btn btn-danger" id="deleteBid" type="Submit">Delete</button></td>
 	</tr>
 </template>
