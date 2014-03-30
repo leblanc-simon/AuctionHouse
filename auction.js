@@ -209,10 +209,6 @@ if (Meteor.isClient) {
 		return Math.floor((this.order - 1) / 3);
 	};
 
-	Template.item.preserve({
-		'input[id]': function (node) { return node.id; }
-	});
-
 	Template.main.items = function () {
 		return Items.find();
 	};
