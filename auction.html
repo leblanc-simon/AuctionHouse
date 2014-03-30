@@ -59,9 +59,9 @@
 	{{else}}
 		<p>
 			The auction ends in
-			<span class="timeRemaining" id="hoursRemaining">{{auctionHoursRemaining}}</span> <span class="timeRemainingLabel" id="hoursLabel">hours</span><span class="sentence">,</span>
-			<span class="timeRemaining" id="minutesRemaining">{{auctionMinutesRemaining}}</span> <span class="timeRemainingLabel" id="minutesLabel">minutes</span><span class="sentence"> and</span>
-			<span class="timeRemaining" id="secondsRemaining">{{auctionSecondsRemaining}}</span> <span class="timeRemainingLabel" id="secondsLabel">seconds</span>
+			<span class="timeBlock" id="hoursRemainingBlock"><span class="timeRemaining" id="hoursRemaining">{{auctionHoursRemaining}}</span> <span class="timeRemainingLabel" id="hoursLabel">hours</span><span class="sentence">,</span></span>
+			<span class="timeBlock" id="minutesRemainingBlock"><span class="timeRemaining" id="minutesRemaining">{{auctionMinutesRemaining}}</span> <span class="timeRemainingLabel" id="minutesLabel">minutes</span><span class="sentence"> and</span></span>
+			<span class="timeBlock" id="secondsRemainingBlock"><span class="timeRemaining" id="secondsRemaining">{{auctionSecondsRemaining}}</span> <span class="timeRemainingLabel" id="secondsLabel">seconds</span></span>
 		</p>
 	{{/if}}
 </template>
