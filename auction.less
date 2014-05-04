@@ -9,595 +9,595 @@
 @screen-xxs-max: 400px;
 
 .bottomRight {
-	position: fixed;
-	bottom: 5px;
-	right: 5px;
-	text-align: right;
-	p {
-		margin: 0px;
-	}
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  text-align: right;
+  p {
+    margin: 0px;
+  }
 }
 
 .btn {
-	margin-top: 10px;
+  margin-top: 10px;
 }
 
 .item {
-	img {
-		width: 100%;
-		margin-bottom: 10px;
-	}
+  img {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }
 
 html {
-	min-height: 100%;
+  min-height: 100%;
 }
 
 body {
-	height: 100%;
+  height: 100%;
 }
 
 #header {
-	background-position: left top;
-	background-repeat: no-repeat;
-	height: 136px;
-	h1 {
-		text-align: right;
-		position: relative;
-		right: 0px;	
-		font-weight: 600;
-		@media (max-width: @screen-xxs-max) {
-			top: 15px;
-			font-size: 20px;
-			width: 200px;
-			float: right;
-		}
-		@media (min-width: @screen-xs-min) and (max-width: @screen-xs-max) {
-			font-size: 32px;
-			width: 250px;
-			float: right;
-		}
-		@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-			top: 20px;
-			font-size: 36px;
-		}
-		@media (min-width: @screen-md-min) {
-			top: 10px;
-			font-size: 48px;
-		}
-		@media (min-width: @screen-lg-min) {
-			font-size: 58px;
-		}
-	}
+  background-position: left top;
+  background-repeat: no-repeat;
+  height: 136px;
+  h1 {
+    text-align: right;
+    position: relative;
+    right: 0px; 
+    font-weight: 600;
+    @media (max-width: @screen-xxs-max) {
+      top: 15px;
+      font-size: 20px;
+      width: 200px;
+      float: right;
+    }
+    @media (min-width: @screen-xs-min) and (max-width: @screen-xs-max) {
+      font-size: 32px;
+      width: 250px;
+      float: right;
+    }
+    @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+      top: 20px;
+      font-size: 36px;
+    }
+    @media (min-width: @screen-md-min) {
+      top: 10px;
+      font-size: 48px;
+    }
+    @media (min-width: @screen-lg-min) {
+      font-size: 58px;
+    }
+  }
 }
 
 div#timeAndName {
-	background-color: #317694;
-	.rounded(5px);
-	padding: 20px 60px;
-	position: -webkit-sticky;
+  background-color: #317694;
+  .rounded(5px);
+  padding: 20px 60px;
+  position: -webkit-sticky;
   position: -moz-sticky;
   position: -ms-sticky;
   position: -o-sticky;
   top: -10px;
   z-index: 1;
-	p {
-		color: #FFFFFF;
-	}
-	span.timeRemaining {
-		vertical-align: sub;
-	}
-	label {
-		color: #FFFFFF;
-	}
-	@media (max-width: @screen-xs-max) {
-		padding: 10px;
-		width: 100%;
-		margin-left: auto;
-		margin-right: auto;
-		p {
-			height: 70px;
-			font-weight: bold;
-		}
-		span.timeRemaining {
-			font-size: 24px;
-			position: absolute;
-			font-weight: normal;
-			width: 46px;
-			text-align: center;
-		}
-		span.timeRemainingLabel {
-			font-size: 12px;
-			position: absolute;
-			top: 25px;
-			font-weight: normal;
-			width: 46px;
-			text-align: center;
-		}
-		.timeBlock {
-			position: absolute;
-			top: 35px;
-			width: 46px;
-			margin-left: -23px;
-		}
-		#hoursRemainingBlock {
-			left: 30%;
-		}
-		#minutesRemainingBlock {
-			left: 50%;
-		}
-		#secondsRemainingBlock {
-			left: 70%;
-		}
-		.sentence {
-			visibility: hidden;
-		}
-	}
-	@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-		p {
-			font-size: 24px;
-			font-weight: 200;
-			height: 90px;
-		}
-		span.timeRemaining {
-			font-size: 32px;
-			font-weight: 400;
-			position: absolute;
-			width: 74px;
-			text-align: center;
-		}
-		span.timeRemainingLabel {
-			position: absolute;
-			top: 40px;
-			font-size: 20px;
-			width: 74px;
-			text-align: center;
-		}
-		label {
-			font-size: 24px;
-			font-weight: 200;
-		}
-		input {
-			font-size: 24px;
-			height: 48px;
-			width: 450px;
-		}
-		.timeBlock {
-			position: absolute;
-			top: 50px;
-			width: 74px;
-			margin-left: -37px;
-		}
-		#hoursRemainingBlock {
-			left: 30%;
-		}
-		#minutesRemainingBlock {
-			left: 50%;
-		}
-		#secondsRemainingBlock {
-			left: 70%;
-		}
-		.sentence {
-			visibility: hidden;
-		}
-	}
-	@media (min-width: @screen-md-min) {
-		p {
-			font-size: 22px;
-			font-weight: 200;
-		}
-		span.timeRemaining {
-			font-size: 36px;
-			font-weight: 200;
-			display: inline-block;
-			width: 40px;
-			text-align: center;
-		}
-		label {
-			font-size: 22px;
-			font-weight: 200;
-		}
-		input {
-			font-size: 22px;
-			margin-left: 10px;
-			height: 48px;
-			width: 430px;
-		}
-	}
-	@media (min-width: @screen-lg-min) {
-		p {
-			font-size: 28px;
-			font-weight: 200;
-		}
-		span.timeRemaining {
-			font-size: 48px;
-			font-weight: 200;
-			text-align: center;
-			width: 55px;
-		}
-		label {
-			font-size: 28px;
-			font-weight: 200;
-		}
-		input {
-			font-size: 28px;
-			margin-left: 20px;
-			height: 60px;
-			width: 550px;
-		}
-	}
+  p {
+    color: #FFFFFF;
+  }
+  span.timeRemaining {
+    vertical-align: sub;
+  }
+  label {
+    color: #FFFFFF;
+  }
+  @media (max-width: @screen-xs-max) {
+    padding: 10px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    p {
+      height: 70px;
+      font-weight: bold;
+    }
+    span.timeRemaining {
+      font-size: 24px;
+      position: absolute;
+      font-weight: normal;
+      width: 46px;
+      text-align: center;
+    }
+    span.timeRemainingLabel {
+      font-size: 12px;
+      position: absolute;
+      top: 25px;
+      font-weight: normal;
+      width: 46px;
+      text-align: center;
+    }
+    .timeBlock {
+      position: absolute;
+      top: 35px;
+      width: 46px;
+      margin-left: -23px;
+    }
+    #hoursRemainingBlock {
+      left: 30%;
+    }
+    #minutesRemainingBlock {
+      left: 50%;
+    }
+    #secondsRemainingBlock {
+      left: 70%;
+    }
+    .sentence {
+      visibility: hidden;
+    }
+  }
+  @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+    p {
+      font-size: 24px;
+      font-weight: 200;
+      height: 90px;
+    }
+    span.timeRemaining {
+      font-size: 32px;
+      font-weight: 400;
+      position: absolute;
+      width: 74px;
+      text-align: center;
+    }
+    span.timeRemainingLabel {
+      position: absolute;
+      top: 40px;
+      font-size: 20px;
+      width: 74px;
+      text-align: center;
+    }
+    label {
+      font-size: 24px;
+      font-weight: 200;
+    }
+    input {
+      font-size: 24px;
+      height: 48px;
+      width: 450px;
+    }
+    .timeBlock {
+      position: absolute;
+      top: 50px;
+      width: 74px;
+      margin-left: -37px;
+    }
+    #hoursRemainingBlock {
+      left: 30%;
+    }
+    #minutesRemainingBlock {
+      left: 50%;
+    }
+    #secondsRemainingBlock {
+      left: 70%;
+    }
+    .sentence {
+      visibility: hidden;
+    }
+  }
+  @media (min-width: @screen-md-min) {
+    p {
+      font-size: 22px;
+      font-weight: 200;
+    }
+    span.timeRemaining {
+      font-size: 36px;
+      font-weight: 200;
+      display: inline-block;
+      width: 40px;
+      text-align: center;
+    }
+    label {
+      font-size: 22px;
+      font-weight: 200;
+    }
+    input {
+      font-size: 22px;
+      margin-left: 10px;
+      height: 48px;
+      width: 430px;
+    }
+  }
+  @media (min-width: @screen-lg-min) {
+    p {
+      font-size: 28px;
+      font-weight: 200;
+    }
+    span.timeRemaining {
+      font-size: 48px;
+      font-weight: 200;
+      text-align: center;
+      width: 55px;
+    }
+    label {
+      font-size: 28px;
+      font-weight: 200;
+    }
+    input {
+      font-size: 28px;
+      margin-left: 20px;
+      height: 60px;
+      width: 550px;
+    }
+  }
 }
 
 div.item {
-	margin: 20px 0px;
-	overflow: hidden;
-	h2 {
-		margin-top: 0px;
-		color: #431822;
-		font-weight: 300;
-		font-size: 20px;
-	}
-	img {
-		height: 155px;
-		width: auto;
-		margin-left: auto;
-		margin-right: auto;
-		display: block;
-	}
-	p {
-		color: #3a3a3a;
-	}
-	p.donatedBy {
-		font-style: italic;
-		color: #919191;
-	}
-	p.currentBid {
-		font-weight: bold;
-	}
-	div.description {
-		margin-bottom: 10px;
-	}
-	@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-		h2.row0 {
-			height: 176px;
-		}
-		h2.row1 {
-			height: 176px;
-		}
-		h2.row2 {
-			height: 44px;
-		}
-		h2.row3 {
-			height: 44px;
-		}
-		h2.row4 {
-			height: 66px;
-		}
-		h2.row5 {
-			height: 66px;
-		}
-		div.rowtext.row0 {
-			height: 266px;
-		}
-		div.rowtext.row1 {
-			height: 266px;
-		}
-		div.description {
-			width: 161px;
-		}
-		div.description.row0 {
-			height: 80px;
-		}
-		div.description.row1 {
-			height: 80px;
-		}
-		div.description.row2 {
-			height: 190px;
-		}
-		div.description.row3 {
-			height: 190px;
-		}
-		div.description.row4 {
-			height: 210px;
-		}
-		div.description.row5 {
-			height: 190px;
-		}
-		p.currentBid {
-			height: 60px;
-		}
-	}
-	@media (min-width: @screen-md-min) {
-		h2 {
-			width: 223px;
-		}
-		h2.row0 {
-			height: 110px;
-		}
-		h2.row1 {
-			height: 110px;
-		}
-		h2.row2 {
-			height: 22px;
-		}
-		h2.row3 {
-			height: 22px;
-		}
-		h2.row4 {
-			height: 44px;
-		}
-		h2.row5 {
-			height: 44px;
-		}
-		p.currentBid {
-			height: 40px;
-		}
-		div.rowtext.row0 {
-			height: 192px;
-		}
-		div.rowtext.row1 {
-			height: 192px;
-		}
-		div.description {
-			width: 223px;
-		}
-		div.description.row0 {
-			height: 40px;
-		}
-		div.description.row1 {
-			height: 40px;
-		}
-		div.description.row2 {
-			height: 150px;
-		}
-		div.description.row3 {
-			height: 150px;
-		}
-		div.description.row4 {
-			height: 150px;
-		}
-		div.description.row5 {
-			height: 150px;
-		}
-	}
-	@media (min-width: @screen-lg-min) {
-		h2.row0 {
-			height: 110px;
-		}
-		h2.row1 {
-			height: 110px;
-		}
-		h2.row2 {
-			height: 22px;
-		}
-		h2.row3 {
-			height: 22px;
-		}
-		h2.row4 {
-			height: 44px;
-		}
-		h2.row5 {
-			height: 44px;
-		}
-		div.rowtext.row0 {
-			height: 172px;
-		}
-		div.rowtext.row1 {
-			height: 172px;
-		}
-		div.description {
-			width: 277px;
-		}
-		div.description.row0 {
-			height: 40px;
-		}
-		div.description.row1 {
-			height: 40px;
-		}
-		div.description.row2 {
-			height: 110px;
-		}
-		div.description.row3 {
-			height: 110px;
-		}
-		div.description.row4 {
-			height: 110px;
-		}
-		div.description.row5 {
-			height: 110px;
-		}
-	}
+  margin: 20px 0px;
+  overflow: hidden;
+  h2 {
+    margin-top: 0px;
+    color: #431822;
+    font-weight: 300;
+    font-size: 20px;
+  }
+  img {
+    height: 155px;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  p {
+    color: #3a3a3a;
+  }
+  p.donatedBy {
+    font-style: italic;
+    color: #919191;
+  }
+  p.currentBid {
+    font-weight: bold;
+  }
+  div.description {
+    margin-bottom: 10px;
+  }
+  @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+    h2.row0 {
+      height: 176px;
+    }
+    h2.row1 {
+      height: 176px;
+    }
+    h2.row2 {
+      height: 44px;
+    }
+    h2.row3 {
+      height: 44px;
+    }
+    h2.row4 {
+      height: 66px;
+    }
+    h2.row5 {
+      height: 66px;
+    }
+    div.rowtext.row0 {
+      height: 266px;
+    }
+    div.rowtext.row1 {
+      height: 266px;
+    }
+    div.description {
+      width: 161px;
+    }
+    div.description.row0 {
+      height: 80px;
+    }
+    div.description.row1 {
+      height: 80px;
+    }
+    div.description.row2 {
+      height: 190px;
+    }
+    div.description.row3 {
+      height: 190px;
+    }
+    div.description.row4 {
+      height: 210px;
+    }
+    div.description.row5 {
+      height: 190px;
+    }
+    p.currentBid {
+      height: 60px;
+    }
+  }
+  @media (min-width: @screen-md-min) {
+    h2 {
+      width: 223px;
+    }
+    h2.row0 {
+      height: 110px;
+    }
+    h2.row1 {
+      height: 110px;
+    }
+    h2.row2 {
+      height: 22px;
+    }
+    h2.row3 {
+      height: 22px;
+    }
+    h2.row4 {
+      height: 44px;
+    }
+    h2.row5 {
+      height: 44px;
+    }
+    p.currentBid {
+      height: 40px;
+    }
+    div.rowtext.row0 {
+      height: 192px;
+    }
+    div.rowtext.row1 {
+      height: 192px;
+    }
+    div.description {
+      width: 223px;
+    }
+    div.description.row0 {
+      height: 40px;
+    }
+    div.description.row1 {
+      height: 40px;
+    }
+    div.description.row2 {
+      height: 150px;
+    }
+    div.description.row3 {
+      height: 150px;
+    }
+    div.description.row4 {
+      height: 150px;
+    }
+    div.description.row5 {
+      height: 150px;
+    }
+  }
+  @media (min-width: @screen-lg-min) {
+    h2.row0 {
+      height: 110px;
+    }
+    h2.row1 {
+      height: 110px;
+    }
+    h2.row2 {
+      height: 22px;
+    }
+    h2.row3 {
+      height: 22px;
+    }
+    h2.row4 {
+      height: 44px;
+    }
+    h2.row5 {
+      height: 44px;
+    }
+    div.rowtext.row0 {
+      height: 172px;
+    }
+    div.rowtext.row1 {
+      height: 172px;
+    }
+    div.description {
+      width: 277px;
+    }
+    div.description.row0 {
+      height: 40px;
+    }
+    div.description.row1 {
+      height: 40px;
+    }
+    div.description.row2 {
+      height: 110px;
+    }
+    div.description.row3 {
+      height: 110px;
+    }
+    div.description.row4 {
+      height: 110px;
+    }
+    div.description.row5 {
+      height: 110px;
+    }
+  }
 }
 
 div.form-inline {
-	position: relative;
-	input#bidderName {
-		@media (max-width: @screen-xs-max) {
-			padding-right: 35px;
-		}
-		@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-			padding-right: 45px;
-		}
-		@media (min-width: @screen-md-min) {
-			padding-right: 60px;
-		}
-	}
+  position: relative;
+  input#bidderName {
+    @media (max-width: @screen-xs-max) {
+      padding-right: 35px;
+    }
+    @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+      padding-right: 45px;
+    }
+    @media (min-width: @screen-md-min) {
+      padding-right: 60px;
+    }
+  }
 }
 
 img.clearButton {
-	position: absolute;
-	@media (max-width: @screen-xs-max) {
-		right: 10px;
-		top: 32px;
-	}
-	@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-		right: 15px;
-		top: 48px;
-	}
-	@media (min-width: @screen-md-min) {
-		right: 40px;
-		top: 50%;
-		margin-top: -10px;
-	}
+  position: absolute;
+  @media (max-width: @screen-xs-max) {
+    right: 10px;
+    top: 32px;
+  }
+  @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+    right: 15px;
+    top: 48px;
+  }
+  @media (min-width: @screen-md-min) {
+    right: 40px;
+    top: 50%;
+    margin-top: -10px;
+  }
 }
 
 div.isMobile {
-	display: none;
+  display: none;
 }
 
 div.isSelected {
-	display: inline;
+  display: inline;
 }
 
 div.itemImage {
-	height: 155px;
-	background-position: center center;
+  height: 155px;
+  background-position: center center;
   background-repeat: no-repeat;
   margin-bottom: 10px;
 }
 
 input.newBid {
-	padding-left: 24px;
-	height: 50px;
-	font-size: 20px;
-	background-color: #fafafa;
-	margin-top: -30px;
+  padding-left: 24px;
+  height: 50px;
+  font-size: 20px;
+  background-color: #fafafa;
+  margin-top: -30px;
 }
 
 span.currencySymbol {
-	font-size: 20px;
-	position: relative;
-	left: 10px;
-	top: 9px;
-	color: #9c9c9c;
+  font-size: 20px;
+  position: relative;
+  left: 10px;
+  top: 9px;
+  color: #9c9c9c;
 }
 
 a.dismissError {
-	padding-top: 10px;
-	display: block;
-	color: #757575;
+  padding-top: 10px;
+  display: block;
+  color: #757575;
 }
 
 button.submitBid {
-	width: 100%;
-	height: 50px;
-	font-size: 20px;
-	font-weight: 300;
+  width: 100%;
+  height: 50px;
+  font-size: 20px;
+  font-weight: 300;
 }
 
 @bsElementHeight: 202px;
 @bsElementWidth: 260px;
 
 div.bigScreen {
-	height: 630px;
-	width: 1024px;
-	margin: 45px auto;
+  height: 630px;
+  width: 1024px;
+  margin: 45px auto;
 }
 
 div.bsElement {
-	margin: 0px 8px 7px 8px;
-	height: @bsElementHeight;
-	display: inline-block;
-	.rounded(10px);
-	overflow: hidden;
+  margin: 0px 8px 7px 8px;
+  height: @bsElementHeight;
+  display: inline-block;
+  .rounded(10px);
+  overflow: hidden;
 }
 
 div.bsTitle {
-	width: 550px;
-	background-position: left center;
-	background-repeat: no-repeat;
-	h1 {
-		font-size: 36px;
-		font-weight: 600;
-		float: right;
-		text-align: right;
-		position: relative;
-		top: 40px;
-	}
+  width: 550px;
+  background-position: left center;
+  background-repeat: no-repeat;
+  h1 {
+    font-size: 36px;
+    font-weight: 600;
+    float: right;
+    text-align: right;
+    position: relative;
+    top: 40px;
+  }
 }
 
 div.bsCountdown {
-	width: 420px;
-	background-color: #317694;
-	p {
-		float: left;
-		color: #FFFFFF;
-		position: relative;
-		top: 25px;
-		height: 90px;
-		width: 100%;
-		font-size: 32px;
-		font-weight: 200;
-	}
-	span.countdownTitle {
-		text-align: center;
-		display: block;
-	}
-	span.timeRemaining {
-		font-size: 48px;
-		font-weight: 400;
-		position: absolute;
-		width: 74px;
-		text-align: center;
-	}
-	span.timeRemainingLabel {
-		position: absolute;
-		top: 60px;
-		font-size: 20px;
-		width: 74px;
-		text-align: center;
-	}
-	.timeBlock {
-		position: absolute;
-		top: 50px;
-		width: 74px;
-		margin-left: -37px;
-	}
-	#hoursRemainingBlock {
-		left: 30%;
-	}
-	#minutesRemainingBlock {
-		left: 50%;
-	}
-	#secondsRemainingBlock {
-		left: 70%;
-	}
-	.sentence {
-		visibility: hidden;
-	}
+  width: 420px;
+  background-color: #317694;
+  p {
+    float: left;
+    color: #FFFFFF;
+    position: relative;
+    top: 25px;
+    height: 90px;
+    width: 100%;
+    font-size: 32px;
+    font-weight: 200;
+  }
+  span.countdownTitle {
+    text-align: center;
+    display: block;
+  }
+  span.timeRemaining {
+    font-size: 48px;
+    font-weight: 400;
+    position: absolute;
+    width: 74px;
+    text-align: center;
+  }
+  span.timeRemainingLabel {
+    position: absolute;
+    top: 60px;
+    font-size: 20px;
+    width: 74px;
+    text-align: center;
+  }
+  .timeBlock {
+    position: absolute;
+    top: 50px;
+    width: 74px;
+    margin-left: -37px;
+  }
+  #hoursRemainingBlock {
+    left: 30%;
+  }
+  #minutesRemainingBlock {
+    left: 50%;
+  }
+  #secondsRemainingBlock {
+    left: 70%;
+  }
+  .sentence {
+    visibility: hidden;
+  }
 }
 
 div.bsItem {
-	width: @bsElementWidth;
-	background-color: #1c4154;
-	position: relative;
-	margin: 0px 37px 7px 37px;
-	div.itemImage {
-		height: 98px;
-		background-position: center center;
-	  background-repeat: no-repeat;
-	  margin-bottom: 10px;
-	}
-	h2 {
-		float: left;
-		color: #ffffff;
-		margin: 0px;
-		width: 100%;
-		font-weight: 200;
-		font-size: 14px;
-		text-align: center;
-		padding: 0px 5px;
-	}
-	.bid {
-		position: absolute;
-		bottom: 20px;
-		padding: 5px;
-		font-size: 12px;
-	}
-	.bidder {
-		position: absolute;
-		bottom: 2px;
-		padding: 5px;
-		font-size: 12px;
-	}
+  width: @bsElementWidth;
+  background-color: #1c4154;
+  position: relative;
+  margin: 0px 37px 7px 37px;
+  div.itemImage {
+    height: 98px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin-bottom: 10px;
+  }
+  h2 {
+    float: left;
+    color: #ffffff;
+    margin: 0px;
+    width: 100%;
+    font-weight: 200;
+    font-size: 14px;
+    text-align: center;
+    padding: 0px 5px;
+  }
+  .bid {
+    position: absolute;
+    bottom: 20px;
+    padding: 5px;
+    font-size: 12px;
+  }
+  .bidder {
+    position: absolute;
+    bottom: 2px;
+    padding: 5px;
+    font-size: 12px;
+  }
 }
