@@ -1,9 +1,12 @@
 @import "elements.less";
+@import "retina-1.1.0.less";
 @screen-lg-min: 1200px;
 @screen-md-min: 992px;
 @screen-sm-min: 768px;
 @screen-sm-max: 991px;
 @screen-xs-max: 767px;
+@screen-xs-min: 401px;
+@screen-xxs-max: 400px;
 
 .bottomRight {
 	position: fixed;
@@ -35,23 +38,41 @@ body {
 }
 
 #header {
+	background-position: left top;
+	background-repeat: no-repeat;
+	height: 136px;
 	h1 {
 		text-align: right;
 		position: relative;
 		right: 0px;	
-		font-weight: 300;
-		font-size: 62px;
-	}
-	@media (max-width: @screen-xs-max) {
-		h1 {
-			text-align: left;
-			right: none;
+		font-weight: 600;
+		@media (max-width: @screen-xxs-max) {
+			top: 15px;
+			font-size: 20px;
+			width: 200px;
+			float: right;
+		}
+		@media (min-width: @screen-xs-min) and (max-width: @screen-xs-max) {
+			font-size: 32px;
+			width: 250px;
+			float: right;
+		}
+		@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+			top: 20px;
+			font-size: 36px;
+		}
+		@media (min-width: @screen-md-min) {
+			top: 10px;
+			font-size: 48px;
+		}
+		@media (min-width: @screen-lg-min) {
+			font-size: 58px;
 		}
 	}
 }
 
 div#timeAndName {
-	background-color: #1b4d41;
+	background-color: #317694;
 	.rounded(5px);
 	padding: 20px 60px;
 	position: -webkit-sticky;
@@ -170,6 +191,7 @@ div#timeAndName {
 			font-weight: 200;
 			display: inline-block;
 			width: 40px;
+			text-align: center;
 		}
 		label {
 			font-size: 22px;
@@ -190,6 +212,7 @@ div#timeAndName {
 		span.timeRemaining {
 			font-size: 48px;
 			font-weight: 200;
+			text-align: center;
 			width: 55px;
 		}
 		label {
@@ -236,10 +259,10 @@ div.item {
 	}
 	@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
 		h2.row0 {
-			height: 44px;
+			height: 176px;
 		}
 		h2.row1 {
-			height: 44px;
+			height: 176px;
 		}
 		h2.row2 {
 			height: 44px;
@@ -253,14 +276,20 @@ div.item {
 		h2.row5 {
 			height: 66px;
 		}
+		div.rowtext.row0 {
+			height: 266px;
+		}
+		div.rowtext.row1 {
+			height: 266px;
+		}
 		div.description {
 			width: 161px;
 		}
 		div.description.row0 {
-			height: 190px;
+			height: 80px;
 		}
 		div.description.row1 {
-			height: 190px;
+			height: 80px;
 		}
 		div.description.row2 {
 			height: 190px;
@@ -283,10 +312,10 @@ div.item {
 			width: 223px;
 		}
 		h2.row0 {
-			height: 22px;
+			height: 110px;
 		}
 		h2.row1 {
-			height: 22px;
+			height: 110px;
 		}
 		h2.row2 {
 			height: 22px;
@@ -303,14 +332,20 @@ div.item {
 		p.currentBid {
 			height: 40px;
 		}
+		div.rowtext.row0 {
+			height: 192px;
+		}
+		div.rowtext.row1 {
+			height: 192px;
+		}
 		div.description {
 			width: 223px;
 		}
 		div.description.row0 {
-			height: 150px;
+			height: 40px;
 		}
 		div.description.row1 {
-			height: 150px;
+			height: 40px;
 		}
 		div.description.row2 {
 			height: 150px;
@@ -327,10 +362,10 @@ div.item {
 	}
 	@media (min-width: @screen-lg-min) {
 		h2.row0 {
-			height: 22px;
+			height: 110px;
 		}
 		h2.row1 {
-			height: 22px;
+			height: 110px;
 		}
 		h2.row2 {
 			height: 22px;
@@ -344,14 +379,20 @@ div.item {
 		h2.row5 {
 			height: 44px;
 		}
+		div.rowtext.row0 {
+			height: 172px;
+		}
+		div.rowtext.row1 {
+			height: 172px;
+		}
 		div.description {
 			width: 277px;
 		}
 		div.description.row0 {
-			height: 110px;
+			height: 40px;
 		}
 		div.description.row1 {
-			height: 110px;
+			height: 40px;
 		}
 		div.description.row2 {
 			height: 110px;
@@ -365,6 +406,38 @@ div.item {
 		div.description.row5 {
 			height: 110px;
 		}
+	}
+}
+
+div.form-inline {
+	position: relative;
+	input#bidderName {
+		@media (max-width: @screen-xs-max) {
+			padding-right: 35px;
+		}
+		@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+			padding-right: 45px;
+		}
+		@media (min-width: @screen-md-min) {
+			padding-right: 60px;
+		}
+	}
+}
+
+img.clearButton {
+	position: absolute;
+	@media (max-width: @screen-xs-max) {
+		right: 10px;
+		top: 32px;
+	}
+	@media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+		right: 15px;
+		top: 48px;
+	}
+	@media (min-width: @screen-md-min) {
+		right: 40px;
+		top: 50%;
+		margin-top: -10px;
 	}
 }
 
@@ -413,7 +486,7 @@ button.submitBid {
 }
 
 @bsElementHeight: 202px;
-@bsElementWidth: 126px;
+@bsElementWidth: 260px;
 
 div.bigScreen {
 	height: 630px;
@@ -430,58 +503,64 @@ div.bsElement {
 }
 
 div.bsTitle {
-	width: (@bsElementWidth * 2) + 19;
-	background-size: 271px 110px;
+	width: 550px;
+	background-position: left center;
+	background-repeat: no-repeat;
 	h1 {
-		font-size: 24px;
-		font-weight: 300;
-		float: left;
+		font-size: 36px;
+		font-weight: 600;
+		float: right;
+		text-align: right;
 		position: relative;
-		top: 110px;
+		top: 40px;
 	}
 }
 
 div.bsCountdown {
-	width: (@bsElementWidth * 3) + 39;
-	background-color: #431822;
+	width: 420px;
+	background-color: #317694;
 	p {
 		float: left;
 		color: #FFFFFF;
 		position: relative;
 		top: 25px;
-		left: 76px;
+		height: 90px;
+		width: 100%;
 		font-size: 32px;
 		font-weight: 200;
 	}
+	span.countdownTitle {
+		text-align: center;
+		display: block;
+	}
 	span.timeRemaining {
 		font-size: 48px;
-		position: absolute;
-		top: 50px;
 		font-weight: 400;
+		position: absolute;
+		width: 74px;
+		text-align: center;
 	}
 	span.timeRemainingLabel {
-		font-size: 24px;
 		position: absolute;
-		top: 115px;
-		font-weight: 200;
+		top: 60px;
+		font-size: 20px;
+		width: 74px;
+		text-align: center;
 	}
-	#hoursRemaining {
-		left: 5px;
+	.timeBlock {
+		position: absolute;
+		top: 50px;
+		width: 74px;
+		margin-left: -37px;
 	}
-	#minutesRemaining {
-		left: 105px;
+	#hoursRemainingBlock {
+		left: 30%;
 	}
-	#secondsRemaining {
-		left: 205px;
+	#minutesRemainingBlock {
+		left: 50%;
 	}
-	#hoursLabel {
-		left: -1px;
-	}
-	#minutesLabel {
-		left: 92px;
-	}
-	#secondsLabel {
-		left: 189px;
+	#secondsRemainingBlock {
+		left: 70%;
 	}
 	.sentence {
 		visibility: hidden;
@@ -490,10 +569,11 @@ div.bsCountdown {
 
 div.bsItem {
 	width: @bsElementWidth;
-	background-color: #1e6353;
+	background-color: #1c4154;
 	position: relative;
+	margin: 0px 37px 7px 37px;
 	div.itemImage {
-		height: 76px;
+		height: 98px;
 		background-position: center center;
 	  background-repeat: no-repeat;
 	  margin-bottom: 10px;
@@ -502,6 +582,7 @@ div.bsItem {
 		float: left;
 		color: #ffffff;
 		margin: 0px;
+		width: 100%;
 		font-weight: 200;
 		font-size: 14px;
 		text-align: center;
@@ -510,14 +591,12 @@ div.bsItem {
 	.bid {
 		position: absolute;
 		bottom: 20px;
-		width: 100%;
 		padding: 5px;
 		font-size: 12px;
 	}
 	.bidder {
 		position: absolute;
 		bottom: 2px;
-		width: 100%;
 		padding: 5px;
 		font-size: 12px;
 	}

@@ -56,8 +56,6 @@ Meteor.methods({
       throw new Meteor.Error(403, "You must be logged in");
     }
 
-    console.log(newEndTime);
-
     var detailsId = AuctionDetails.findOne()._id;
 		return AuctionDetails.update(
 			detailsId,
@@ -66,15 +64,15 @@ Meteor.methods({
 
 	upsertAuctionItems: function () {
   	// Put in manual items
-  	for (var i = 1; i <= 12; i++) {
-  			Items.upsert({ order: i }, {
-				name: "Lot " + i,
-				description: "Some sort of description",
-				donatedBy: "Kindly donated by someone",
-				image: "http://lorempixel.com/276/155/abstract/" + i + "/",
-				order: i
-			});
-  	}
+  	for (var i = 1; i <= 6; i++) {
+      Items.upsert({ order: i }, {
+        name: "Lot " + i,
+        description: "Some sort of description",
+        donatedBy: "Kindly donated by someone",
+        image: "http://lorempixel.com/276/155/abstract/" + i + "/",
+        order: i
+      });
+    }
   }
 });
 
@@ -129,12 +127,9 @@ if (Meteor.isClient) {
 				Session.set('auctionHasEnded', true);
 			} else {
 				Session.set('auctionHasEnded', false);
-				var timeLeft = moment.duration(auctionEndTime.subtract(now));
-				var timeRemainingString = timeLeft.hours() + " hours, " + timeLeft.minutes() + " minutes, " + timeLeft.seconds() + " seconds";
-				Session.set('auctionEndTime', timeRemainingString);
-				Session.set('auctionHoursRemaining', pad(timeLeft.hours(), 2));
-				Session.set('auctionMinutesRemaining', pad(timeLeft.minutes(), 2));
-				Session.set('auctionSecondsRemaining', pad(timeLeft.seconds(), 2));
+				Session.set('auctionHoursRemaining', pad(auctionEndTime.diff(moment(), 'hours'), 2));
+				Session.set('auctionMinutesRemaining', pad((auctionEndTime.diff(moment(), 'minutes') % 60), 2));
+				Session.set('auctionSecondsRemaining', pad((auctionEndTime.diff(moment(), 'seconds') % 60), 2));
 			}
 		}
 	};
@@ -217,10 +212,6 @@ if (Meteor.isClient) {
 		return Session.get('bidderName') != "";
 	};
 
-	Template.countdown.auctionTimeRemaining = function () {
-		return Session.get('auctionEndTime');
-	};
-
 	Template.countdown.hasAuctionEnded = function () {
 		return Session.get('auctionHasEnded');
 	};
@@ -239,14 +230,14 @@ if (Meteor.isClient) {
 
 	Template.bigScreen.itemsPartOne = function () {
 		return Items.find({}, {
-			limit: 5
+			limit: 3
 		});
 	};
 
 	Template.bigScreen.itemsPartTwo = function () {
 		return Items.find({}, {
-			skip: 5,
-			limit: 11
+			skip: 3,
+			limit: 3
 		});
 	};
 
@@ -262,7 +253,7 @@ if (Meteor.isClient) {
 		}
 	};
 
-	Template.admin.rendered = function () {
+	Template.changeEndTime.rendered = function () {
 		$('.datetimepicker').datetimepicker();
 	};
 
@@ -280,6 +271,10 @@ if (Meteor.isClient) {
 		},
 		'blur #bidderName' : function (event, template) {
 			Session.set('bidderName', template.find('#bidderName').value);
+		},
+		'click .clearButton' :  function (event, template) {
+			Session.set('bidderName', "");
+			template.find('#bidderName').value = "";
 		}
 	});
 
@@ -289,7 +284,8 @@ if (Meteor.isClient) {
 			ok: function (value) {
 				Session.set('bidderName', value);
 			}
-	}));
+		}
+	));
 
 	Template.item.events({
 		'click #submitBid' : function (event, template) {
@@ -351,7 +347,6 @@ if (Meteor.isClient) {
 						item);
 					Session.set('bidErrorItem', "");
 					Session.set('bidErrorMessage', "");
-					console.log(template);
 					template.target.value = "";
 				} else {
 					Session.set('bidErrorItem', item._id);
@@ -434,7 +429,7 @@ if (Meteor.isServer) {
 
 		if (AuctionDetails.find().count() === 0) {
 			AuctionDetails.insert({
-				endDateTime: moment().add('days', 7).toDate()
+				endDateTime: moment().add('days', 2).toDate()
 			});
 		}
 

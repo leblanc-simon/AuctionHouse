@@ -7,19 +7,19 @@
 	<div class="container">
 		<div class="col-xs-12 col-sm-10 col-sm-offset-1">
 			<div id="header">
-				<h1>auction</h1>
+				<h1>Auction</h1>
 			</div>
 			<div id="timeAndName">
 				{{> countdown}}
 				<div class="form-inline" role="form">
 					<label for="bidderName" class="control-label">Enter your name:</label>
 					<input class="form-control" id="bidderName"/>
+					<img class="clearButton" src="clear.png">
 				</div>
 			</div>
 			{{#each items}}
 				{{> item}}
 			{{/each}}
-			{{> version}}
 		</div>
 	</div>
 </template>
@@ -33,17 +33,19 @@
 <template name="item">
 	<div class="item col-sm-4">
 		<div class="itemImage" style="background-image: url('{{image}}');"></div>
-		<h2 class="row{{itemRow}}">{{name}}</h2>
 		<div>
-			<div class="description row{{itemRow}}">
+			<div class="rowtext row{{itemRow}}">
 				{{#if showBidErrorOnItem}}
 					<div class="alert alert-danger">
 						<p><strong>Uh oh!</strong> We were unable to place your bid. {{bidErrorMessage}}</p>
 						<a class="dismissError">Close</a>
 					</div>
 				{{else}}
-				<p class="description row{{itemRow}}">{{description}}</p>
-				<p class="donatedBy">{{donatedBy}}</p>
+					<h2 class="row{{itemRow}}">{{name}}</h2>
+					<div class="description row{{itemRow}}">
+						<p class="description row{{itemRow}}">{{description}}</p>
+						<p class="donatedBy">{{donatedBy}}</p>
+					</div>
 				{{/if}}
 			</div>
 			<p class="currentBid">Current bid: £ {{bid}} by {{highestBidder}}</p>
@@ -55,10 +57,10 @@
 
 <template name="countdown">
 	{{#if hasAuctionEnded}}
-		<p>The auction is over.</p>
+		<p><span class="countdownTitle">The auction is over</span></p>
 	{{else}}
 		<p>
-			The auction ends in
+			<span class="countdownTitle">The auction ends in</span>
 			<span class="timeBlock" id="hoursRemainingBlock"><span class="timeRemaining" id="hoursRemaining">{{auctionHoursRemaining}}</span> <span class="timeRemainingLabel" id="hoursLabel">hours</span><span class="sentence">,</span></span>
 			<span class="timeBlock" id="minutesRemainingBlock"><span class="timeRemaining" id="minutesRemaining">{{auctionMinutesRemaining}}</span> <span class="timeRemainingLabel" id="minutesLabel">minutes</span><span class="sentence"> and</span></span>
 			<span class="timeBlock" id="secondsRemainingBlock"><span class="timeRemaining" id="secondsRemaining">{{auctionSecondsRemaining}}</span> <span class="timeRemainingLabel" id="secondsLabel">seconds</span></span>
@@ -68,12 +70,12 @@
 
 <template name="bigScreen">
 	<div class="bigScreen">
-		<div class="bsElement bsTitle">
-			<h1>auction</h1>
-		</div>
 		{{#each itemsPartOne}}
 			{{> bigScreenItem}}
 		{{/each}}
+		<div class="bsElement bsTitle">
+			<h1>Auction</h1>
+		</div>
 		<div class="bsElement bsCountdown">
 			{{> countdown}}
 		</div>

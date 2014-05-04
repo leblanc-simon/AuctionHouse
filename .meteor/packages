@@ -7,7 +7,6 @@ standard-app-packages
 bootstrap-3
 iron-router
 moment
-bootstrap3-datetimepicker
 jquery
 less
 accounts-password
