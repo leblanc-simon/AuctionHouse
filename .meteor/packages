@@ -4,9 +4,9 @@
 # but you can also edit it by hand.
 
 standard-app-packages
-bootstrap-3
-iron-router
-moment
+mrt:moment@2.6.0
 jquery
 less
 accounts-password
+mizzao:bootstrap-3
+iron:router
