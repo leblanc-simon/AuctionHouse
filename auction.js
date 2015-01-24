@@ -122,7 +122,7 @@ if (Meteor.isClient) {
   var calculateAuctionTimeRemaining = function () {
     if (AuctionDetails.findOne()) {
       var auctionEndTime = moment(AuctionDetails.findOne().endDateTime);
-      var now = moment().subtract('ms', Session.get('clientTimeOffset'));
+      var now = moment().subtract(Session.get('clientTimeOffset'), 'ms');
       if (now.isAfter(auctionEndTime)) {
         Session.set('auctionHasEnded', true);
       } else {
@@ -178,6 +178,7 @@ if (Meteor.isClient) {
     calculateAuctionTimeRemaining();
     setDevice();
     syncServerTime();
+    moment.locale('en');
   });
 
   Template.item.helpers({
