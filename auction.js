@@ -180,89 +180,93 @@ if (Meteor.isClient) {
     syncServerTime();
   });
 
-  Template.item.bid = function () {
-    if (Bids.findOne({itemId: this._id}, {sort: {bid: -1}})) {
-      return Bids.findOne({itemId: this._id}, {sort: {bid: -1}}).bid;
+  Template.item.helpers({
+    bid: function () {
+      if (Bids.findOne({itemId: this._id}, {sort: {bid: -1}})) {
+        return Bids.findOne({itemId: this._id}, {sort: {bid: -1}}).bid;
+      }
+    },
+    highestBidder: function () {
+      if (Bids.findOne({itemId: this._id}, {sort: {bid: -1}})) {
+        return Bids.findOne({itemId: this._id}, {sort: {bid: -1}}).bidder;
+      }
+    },
+    showBidErrorOnItem: function () {
+      return this._id == Session.get('bidErrorItem');
+    },
+    bidErrorMessage: function () {
+      return Session.get('bidErrorMessage');
+    },
+    itemRow: function () {
+      return Math.floor((this.order - 1) / 3);
     }
-  };
+  });
 
-  Template.item.highestBidder = function () {
-    if (Bids.findOne({itemId: this._id}, {sort: {bid: -1}})) {
-      return Bids.findOne({itemId: this._id}, {sort: {bid: -1}}).bidder;
+  Template.main.helpers({
+    items: function () {
+      return Items.find();
+    },
+    showAuctionItems: function () {
+      return Session.get('bidderName') != "";
     }
-  };
+  });
 
-  Template.item.showBidErrorOnItem = function () {
-    return this._id == Session.get('bidErrorItem');
-  };
-
-  Template.item.bidErrorMessage = function () {
-    return Session.get('bidErrorMessage');
-  };
-
-  Template.item.itemRow = function () {
-    return Math.floor((this.order - 1) / 3);
-  };
-
-  Template.main.items = function () {
-    return Items.find();
-  };
-
-  Template.main.showAuctionItems = function () {
-    return Session.get('bidderName') != "";
-  };
-
-  Template.countdown.hasAuctionEnded = function () {
-    return Session.get('auctionHasEnded');
-  };
-
-  Template.countdown.auctionHoursRemaining = function () {
-    return Session.get('auctionHoursRemaining');
-  };
-
-  Template.countdown.auctionMinutesRemaining = function () {
-    return Session.get('auctionMinutesRemaining');
-  };
-
-  Template.countdown.auctionSecondsRemaining = function () {
-    return Session.get('auctionSecondsRemaining');
-  };
-
-  Template.bigScreen.itemsPartOne = function () {
-    return Items.find({}, {
-      limit: 3
-    });
-  };
-
-  Template.bigScreen.itemsPartTwo = function () {
-    return Items.find({}, {
-      skip: 3,
-      limit: 3
-    });
-  };
-
-  Template.bigScreenItem.bid = function () {
-    if (Bids.findOne({itemId: this._id}, {sort: {bid: -1}})) {
-      return Bids.findOne({itemId: this._id}, {sort: {bid: -1}}).bid;
+  Template.countdown.helpers({
+    hasAuctionEnded: function () {
+      return Session.get('auctionHasEnded');
+    },
+    auctionHoursRemaining: function () {
+      return Session.get('auctionHoursRemaining');
+    },
+    auctionMinutesRemaining: function () {
+      return Session.get('auctionMinutesRemaining');
+    },
+    auctionSecondsRemaining: function () {
+      return Session.get('auctionSecondsRemaining');
     }
-  };
+  });
 
-  Template.bigScreenItem.highestBidderTruncated = function () {
-    if (Bids.findOne({itemId: this._id}, {sort: {bid: -1}})) {
-      return truncateString(Bids.findOne({itemId: this._id}, {sort: {bid: -1}}).bidder, 15);
+  Template.bigScreen.helpers({
+    itemsPartOne: function () {
+      return Items.find({}, {
+        limit: 3
+      });
+    },
+    itemsPartTwo: function () {
+      return Items.find({}, {
+        skip: 3,
+        limit: 3
+      });
     }
-  };
+  });
+
+  Template.bigScreenItem.helpers({
+    bid: function () {
+      if (Bids.findOne({itemId: this._id}, {sort: {bid: -1}})) {
+        return Bids.findOne({itemId: this._id}, {sort: {bid: -1}}).bid;
+      }
+    },
+    highestBidderTruncated: function () {
+      if (Bids.findOne({itemId: this._id}, {sort: {bid: -1}})) {
+        return truncateString(Bids.findOne({itemId: this._id}, {sort: {bid: -1}}).bidder, 15);
+      }
+    }
+  });
+
+  Template.admin.helpers({
+    logs: function () {
+      return Bids.find({}, {sort: {dateTime: -1}});
+    }
+  });
+
+  Template.logRow.helpers({
+    bidTime: function () {
+      return moment(this.dateTime).format('MMMM Do YYYY, h:mm:ss a');
+    }
+  });
 
   Template.changeEndTime.rendered = function () {
     $('.datetimepicker').datetimepicker();
-  };
-
-  Template.admin.logs = function () {
-    return Bids.find({}, {sort: {dateTime: -1}});
-  };
-
-  Template.logRow.bidTime = function () {
-    return moment(this.dateTime).format('MMMM Do YYYY, h:mm:ss a');
   };
 
   Template.main.events({
