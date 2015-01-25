@@ -3,7 +3,19 @@ Bids = new Meteor.Collection("bids");
 AuctionDetails = new Meteor.Collection("auctionDetails");
 
 Router.route('/', function () {
-  this.render('marketingMain');
+  if (Meteor.user()) {
+    this.redirect('/my-auctions');
+  } else {
+    this.render('marketingMain');
+  }
+});
+
+Router.route('/my-auctions', function () {
+  if (!Meteor.user()) {
+    this.redirect('/');
+  } else {
+    this.render('myAuctions');
+  }
 });
 
 Router.map(function () {
@@ -68,6 +80,10 @@ Meteor.methods({
       });
     }
   }
+});
+
+Accounts.config({
+  sendVerificationEmail: true
 });
 
 if (Meteor.isClient) {
@@ -289,6 +305,18 @@ if (Meteor.isClient) {
     },
     'click #logInSwitch': function () {
       Session.set('showLogIn', true);
+    },
+    'click #submitSignUp': function (event, template) {
+      var email = template.find('#inputSignUpEmail').value;
+      var password = template.find('#inputSignUpPassword').value;
+      var confirmPassword = template.find('#inputSignUpConfirmPassword').value;
+
+      if (password == confirmPassword) {
+        Accounts.createUser({
+          email: email,
+          password: password
+        });
+      }
     }
   });
 
