@@ -14,7 +14,11 @@ Router.route('/my-auctions', function () {
   if (!Meteor.user()) {
     this.redirect('/');
   } else {
-    this.render('myAuctions');
+    if (!Meteor.user().emails[0].verified) {
+      this.render('validateEmail');
+    } else {
+      this.render('myAuctions');
+    }
   }
 });
 
@@ -102,6 +106,10 @@ if (Meteor.isClient) {
   Session.setDefault('bidderName', "");
   Session.setDefault('bigScreenPage', 0);
   Session.setDefault('clientTimeOffset', 0);
+
+  Accounts.onEmailVerificationLink(function (token) {
+    Accounts.verifyEmail(token);
+  });
 
   // Returns an event map that handles the "escape" and "return" keys and
   // "blur" events on a text input (given by selector) and interprets them
@@ -317,6 +325,18 @@ if (Meteor.isClient) {
           password: password
         });
       }
+    },
+    'click #submitLogIn': function (event, template) {
+      var email = template.find('#inputLogInEmail').value;
+      var password = template.find('#inputLogInPassword').value;
+
+      Meteor.loginWithPassword(email, password);
+    }
+  });
+
+  Template.validateEmail.events({
+    'click #logOut': function () {
+      Meteor.logout();
     }
   });
 
