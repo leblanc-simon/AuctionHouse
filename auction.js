@@ -340,6 +340,12 @@ if (Meteor.isClient) {
     }
   });
 
+  Template.myAuctions.events({
+    'click #logOut': function () {
+      Meteor.logout();
+    }
+  })
+
   Template.main.events(okCancelEvents(
     "#bidderName",
     {
