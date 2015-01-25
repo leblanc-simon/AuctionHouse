@@ -22,6 +22,14 @@ Router.route('/my-auctions', function () {
   }
 });
 
+Router.route('/my-auctions/new', function () {
+  if (!Meteor.user()) {
+    this.redirect('/');
+  } else {
+    this.render('newAuction');
+  }
+});
+
 Router.map(function () {
   this.route('admin', {
     path: '/admin'
@@ -294,6 +302,10 @@ if (Meteor.isClient) {
     $('.datetimepicker').datetimepicker();
   };
 
+  Template.newAuction.rendered = function () {
+    $('.datetimepicker').datetimepicker();
+  };
+
   Template.main.events({
     'keypress #bidderName' : function (event, template) {
       Session.set('bidderName', template.find('#bidderName').value);
@@ -343,6 +355,9 @@ if (Meteor.isClient) {
   Template.myAuctions.events({
     'click #logOut': function () {
       Meteor.logout();
+    },
+    'click #newAuction': function () {
+      Router.go('/my-auctions/new');
     }
   })
 

@@ -42,6 +42,30 @@
   <div class="container">
     <h1>My Auctions</h1>
     <a href="#" id="logOut">Log out</a>
+    <button class="btn btn-default" id="newAuction" type="Submit">New auction</button>
+  </div>
+</template>
+
+<template name="newAuction">
+  <div class="container">
+    <h1>New auction</h1>
+    <div class="form-inline" role="form">
+      <label for="auctionTitle" class="control-label">Auction title:</label>
+      <input class="form-control" id="auctionTitle"/>
+      <label for="auctionSlug" class="control-label">Auction url name:</label>
+      <input class="form-control" id="auctionSlug"/>
+      <label>Start time:</label>
+      <div class='form-group input-group datetimepicker'>
+        <input type='text' class="form-control" id="auctionStartDatePicker"/>
+        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+      </div>
+      <label>End time:</label>
+      <div class='form-group input-group datetimepicker'>
+        <input type='text' class="form-control" id="auctionEndDatePicker"/>
+        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+      </div>
+      <button class="btn btn-default" id="submitNewAuction" type="Submit">Create auction</button>
+    </div>
   </div>
 </template>
 
