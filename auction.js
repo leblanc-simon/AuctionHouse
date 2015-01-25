@@ -1,6 +1,6 @@
 Items = new Meteor.Collection("items");
 Bids = new Meteor.Collection("bids");
-AuctionDetails = new Meteor.Collection("auctionDetails");
+Auctions = new Meteor.Collection("auctions");
 
 Router.route('/', function () {
   if (Meteor.user()) {
@@ -41,9 +41,30 @@ Router.map(function () {
 });
 
 Meteor.methods({
+  makeAuction: function (title, slug, startDate, endDate) {
+    if (!this.userId) {
+      throw new Meteor.Error(403, "You must be logged in");
+    }
+
+    var titleValid = (title != null && title != "");
+    var slugValid = (slug != null && slug != "" && slug != "my-auctions" && slug != "new");
+    var startDateValid = (startDate != null);
+    var endDateValid = (endDate != null && moment(startDate).isBefore(moment(endDate)));
+
+    if (titleValid && slugValid && startDateValid && endDateValid) {
+      return Auctions.insert({
+        title: title,
+        slug: slug,
+        ownerId: this.userId,
+        startDate: startDate,
+        endDate: endDate
+      });
+    }
+  },
+
   makeBid: function (bidderName, newBid, item) {
     var previousBid = Bids.findOne({itemId: item._id}, {sort: {bid: -1}});
-    var auctionEndTime = moment(AuctionDetails.findOne().endDateTime);
+    var auctionEndTime = moment(Auctions.findOne().endDate);
 
     var bidderNameValid = (bidderName != "" && bidderName != null);
     var newBidValid = (newBid != null && newBid != NaN && newBid > 0);
@@ -74,10 +95,10 @@ Meteor.methods({
       throw new Meteor.Error(403, "You must be logged in");
     }
 
-    var detailsId = AuctionDetails.findOne()._id;
-    return AuctionDetails.update(
+    var detailsId = Auctions.findOne()._id;
+    return Auctions.update(
       detailsId,
-      {$set: {endDateTime: newEndTime}});
+      {$set: {endDate: newEndTime}});
   },
 
   upsertAuctionItems: function () {
@@ -101,7 +122,7 @@ Accounts.config({
 if (Meteor.isClient) {
   Meteor.subscribe("items");
   Meteor.subscribe("bids");
-  Meteor.subscribe("auctionDetails");
+  Meteor.subscribe("auctions");
 
   Session.setDefault('showLogIn', true);
   Session.setDefault('auctionHasEnded', false);
@@ -147,8 +168,8 @@ if (Meteor.isClient) {
   };
 
   var calculateAuctionTimeRemaining = function () {
-    if (AuctionDetails.findOne()) {
-      var auctionEndTime = moment(AuctionDetails.findOne().endDateTime);
+    if (Auctions.findOne()) {
+      var auctionEndTime = moment(Auctions.findOne().endDate);
       var now = moment().subtract(Session.get('clientTimeOffset'), 'ms');
       if (now.isAfter(auctionEndTime)) {
         Session.set('auctionHasEnded', true);
@@ -210,6 +231,12 @@ if (Meteor.isClient) {
   Template.marketingMain.helpers({
     showLogIn: function () {
       return Session.get('showLogIn');
+    }
+  });
+
+  Template.myAuctions.helpers({
+    auctions: function () {
+      return Auctions.find();
     }
   });
 
@@ -359,7 +386,31 @@ if (Meteor.isClient) {
     'click #newAuction': function () {
       Router.go('/my-auctions/new');
     }
-  })
+  });
+
+  Template.newAuction.events({
+    'click #submitNewAuction': function (event, template) {
+      var title = template.find('#auctionTitle').value;
+      var slug = template.find('#auctionSlug').value;
+      var startDate = moment(template.find('#auctionStartDatePicker').value, 'MM/DD/YYYY h:mm a').toDate();
+      var endDate = moment(template.find('#auctionEndDatePicker').value, 'MM/DD/YYYY h:mm a').toDate();
+
+      if (title && slug && startDate && endDate) {
+        Meteor.call(
+          'makeAuction',
+          title,
+          slug,
+          startDate,
+          endDate,
+          function (error, result) {
+            if (!error) {
+              Router.go('/my-auctions');
+            }
+          }
+        )
+      }
+    }
+  });
 
   Template.main.events(okCancelEvents(
     "#bidderName",
@@ -501,19 +552,13 @@ if (Meteor.isServer) {
     return Bids.find();
   });
 
-  Meteor.publish("auctionDetails", function () {
-    return AuctionDetails.find();
+  Meteor.publish("auctions", function () {
+    return Auctions.find();
   });
 
   Meteor.startup(function () {
     if (Items.find().count() === 0) {
       Meteor.call('upsertAuctionItems');
-    }
-
-    if (AuctionDetails.find().count() === 0) {
-      AuctionDetails.insert({
-        endDateTime: moment().add('days', 2).toDate()
-      });
     }
 
     if (Meteor.users.find().count() === 0) {

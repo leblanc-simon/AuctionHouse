@@ -43,7 +43,14 @@
     <h1>My Auctions</h1>
     <a href="#" id="logOut">Log out</a>
     <button class="btn btn-default" id="newAuction" type="Submit">New auction</button>
+    {{#each auctions}}
+      {{> myAuctionsAuction}}
+    {{/each}}
   </div>
+</template>
+
+<template name="myAuctionsAuction">
+  <p>{{title}}</p>
 </template>
 
 <template name="newAuction">
