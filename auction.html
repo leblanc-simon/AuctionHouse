@@ -3,6 +3,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
+<template name="marketingMain">
+  <div class="container">
+    <h1>AuctionHouse</h1>
+    <h2>Make an auction for your event, free!</h2>
+    <div class="login">
+      {{#if showLogIn}}
+        <p>Log in:</p>
+        <div class="form-inline" role="form">
+          <input class="form-control" id="inputLogInEmail" placeholder="email" type="email"/>
+          <input class="form-control" id="inputLogInPassword" placeholder="password" type="password"/>
+          <button class="btn btn-default" id="submitLogIn" type="Submit">Log In</button>
+        </div>
+        <a href="#" id="signUpSwitch">or sign up</a>
+      {{else}}
+        <p>Sign up:</p>
+        <div class="form-inline" role="form">
+          <input class="form-control" id="inputSignUpEmail" placeholder="email" type="email"/>
+          <input class="form-control" id="inputSignUpPassword" placeholder="password" type="password"/>
+          <input class="form-control" id="inputSignUpConfirmPassword" placeholder="confirm password" type="password"/>
+          <button class="btn btn-default" id="submitLogIn" type="Submit">Sign Up</button>
+        </div>
+        <a href="#" id="logInSwitch">or log in</a>
+      {{/if}}
+    </div>
+  </div>
+</template>
+
 <template name="main">
   <div class="container">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">

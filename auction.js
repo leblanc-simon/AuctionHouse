@@ -2,17 +2,11 @@ Items = new Meteor.Collection("items");
 Bids = new Meteor.Collection("bids");
 AuctionDetails = new Meteor.Collection("auctionDetails");
 
-Router.map(function () {
-  /**
-   * The route's name is "home"
-   * The route's template is also "home"
-   * The default action will render the home template
-   */
-  this.route('main', {
-    path: '/',
-    template: 'main'
-  });
+Router.route('/', function () {
+  this.render('marketingMain');
+});
 
+Router.map(function () {
   this.route('admin', {
     path: '/admin'
   });
@@ -81,6 +75,7 @@ if (Meteor.isClient) {
   Meteor.subscribe("bids");
   Meteor.subscribe("auctionDetails");
 
+  Session.setDefault('showLogIn', true);
   Session.setDefault('auctionHasEnded', false);
   Session.setDefault('auctionEndTime', "");
   Session.setDefault('auctionHoursRemaining', "00");
@@ -178,7 +173,12 @@ if (Meteor.isClient) {
     calculateAuctionTimeRemaining();
     setDevice();
     syncServerTime();
-    moment.locale('en');
+  });
+
+  Template.marketingMain.helpers({
+    showLogIn: function () {
+      return Session.get('showLogIn');
+    }
   });
 
   Template.item.helpers({
@@ -280,6 +280,15 @@ if (Meteor.isClient) {
     'click .clearButton' :  function (event, template) {
       Session.set('bidderName', "");
       template.find('#bidderName').value = "";
+    }
+  });
+
+  Template.marketingMain.events({
+    'click #signUpSwitch': function () {
+      Session.set('showLogIn', false);
+    },
+    'click #logInSwitch': function () {
+      Session.set('showLogIn', true);
     }
   });
 
