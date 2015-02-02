@@ -51,27 +51,28 @@
 
 <template name="myAuctionsAuction">
   <p>{{title}}</p>
+  <a href="/my-auctions/{{slug}}" class="btn btn-default">Edit</a>
 </template>
 
-<template name="newAuction">
+<template name="editAuction">
   <div class="container">
-    <h1>New auction</h1>
+    <h1>{{pageTitle}}</h1>
     <div class="form-inline" role="form">
       <label for="auctionTitle" class="control-label">Auction title:</label>
-      <input class="form-control" id="auctionTitle"/>
+      <input class="form-control" id="auctionTitle" value="{{title}}"/>
       <label for="auctionSlug" class="control-label">Auction url name:</label>
-      <input class="form-control" id="auctionSlug"/>
+      <input class="form-control" id="auctionSlug" value="{{slug}}"/>
       <label>Start time:</label>
       <div class='form-group input-group datetimepicker'>
-        <input type='text' class="form-control" id="auctionStartDatePicker"/>
+        <input type='text' class="form-control" id="auctionStartDatePicker" value="{{startDateString}}"/>
         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
       </div>
       <label>End time:</label>
       <div class='form-group input-group datetimepicker'>
-        <input type='text' class="form-control" id="auctionEndDatePicker"/>
+        <input type='text' class="form-control" id="auctionEndDatePicker" value="{{endDateString}}"/>
         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
       </div>
-      <button class="btn btn-default" id="submitNewAuction" type="Submit">Create auction</button>
+      <button class="btn btn-default" id="submitAuction" type="Submit">{{submitButtonLabel}}</button>
     </div>
   </div>
 </template>

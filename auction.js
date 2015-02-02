@@ -26,7 +26,29 @@ Router.route('/my-auctions/new', function () {
   if (!Meteor.user()) {
     this.redirect('/');
   } else {
-    this.render('newAuction');
+    this.render('editAuction', {
+      data: function () {
+        return {
+          _id: null,
+          title: "",
+          slug: "",
+          startDate: "",
+          endDate: ""
+        }
+      }
+    });
+  }
+});
+
+Router.route('/my-auctions/:auctionTitle', function () {
+  if (!Meteor.user()) {
+    this.redirect('/');
+  } else {
+    this.render('editAuction', {
+      data: function () {
+        return Auctions.findOne({slug: this.params.auctionTitle});
+      }
+    });
   }
 });
 
@@ -41,9 +63,14 @@ Router.map(function () {
 });
 
 Meteor.methods({
-  makeAuction: function (title, slug, startDate, endDate) {
+  makeOrEditAuction: function (id, title, slug, startDate, endDate) {
     if (!this.userId) {
       throw new Meteor.Error(403, "You must be logged in");
+    }
+
+    var auction = Auctions.findOne(id);
+    if (auction && auction.ownerId != this.userId) {
+      throw new Meteor.Error(403, "You do not have permissions to change this auction");
     }
 
     var titleValid = (title != null && title != "");
@@ -52,13 +79,16 @@ Meteor.methods({
     var endDateValid = (endDate != null && moment(startDate).isBefore(moment(endDate)));
 
     if (titleValid && slugValid && startDateValid && endDateValid) {
-      return Auctions.insert({
-        title: title,
-        slug: slug,
-        ownerId: this.userId,
-        startDate: startDate,
-        endDate: endDate
-      });
+      return Auctions.upsert(
+        id,
+        {
+          title: title,
+          slug: slug,
+          ownerId: this.userId,
+          startDate: startDate,
+          endDate: endDate
+        }
+      );
     }
   },
 
@@ -240,6 +270,37 @@ if (Meteor.isClient) {
     }
   });
 
+  Template.editAuction.helpers({
+    pageTitle: function () {
+      if (this._id) {
+        return "Edit auction";
+      } else {
+        return "New auction";
+      }
+    },
+    submitButtonLabel: function () {
+      if (this._id) {
+        return "Edit auction";
+      } else {
+        return "Create auction";
+      }
+    },
+    startDateString: function () {
+      if (this.startDate) {
+        return moment(this.startDate).format('MM/DD/YYYY h:mm a');
+      } else {
+        return "";
+      }
+    },
+    endDateString: function () {
+      if (this.endDate) {
+        return moment(this.endDate).format('MM/DD/YYYY h:mm a');
+      } else {
+        return "";
+      }
+    }
+  });
+
   Template.item.helpers({
     bid: function () {
       if (Bids.findOne({itemId: this._id}, {sort: {bid: -1}})) {
@@ -329,7 +390,7 @@ if (Meteor.isClient) {
     $('.datetimepicker').datetimepicker();
   };
 
-  Template.newAuction.rendered = function () {
+  Template.editAuction.rendered = function () {
     $('.datetimepicker').datetimepicker();
   };
 
@@ -388,8 +449,8 @@ if (Meteor.isClient) {
     }
   });
 
-  Template.newAuction.events({
-    'click #submitNewAuction': function (event, template) {
+  Template.editAuction.events({
+    'click #submitAuction': function (event, template) {
       var title = template.find('#auctionTitle').value;
       var slug = template.find('#auctionSlug').value;
       var startDate = moment(template.find('#auctionStartDatePicker').value, 'MM/DD/YYYY h:mm a').toDate();
@@ -397,7 +458,8 @@ if (Meteor.isClient) {
 
       if (title && slug && startDate && endDate) {
         Meteor.call(
-          'makeAuction',
+          'makeOrEditAuction',
+          this._id,
           title,
           slug,
           startDate,
