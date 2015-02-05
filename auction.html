@@ -74,6 +74,28 @@
       </div>
       <button class="btn btn-default" id="submitAuction" type="Submit">{{submitButtonLabel}}</button>
     </div>
+    {{> editItems}}
+  </div>
+</template>
+
+<template name="editItems">
+  <div class="col-sm-6">
+    <h3>List of items</h3>
+    <button class="btn btn-default" id="addItem" type="Submit">Add item</button>
+  </div>
+  <div class="col-sm-6">
+    <h3>Item details</h3>
+    <label for="itemName" class="control-label">Name:</label>
+    <input class="form-control" id="itemName" value="{{name}}"/>
+    <label for="itemDescription" class="control-label">Description:</label>
+    <input class="form-control" id="itemDescription" value="{{description}}"/>
+    <label for="itemDonatedBy" class="control-label">Donated by:</label>
+    <input class="form-control" id="itemDonatedBy" value="{{donatedBy}}"/>
+    <label for="itemDonatedBy" class="control-label">Donated by:</label>
+    <input class="form-control" id="itemDonatedBy" value="{{donatedBy}}"/>
+    <label for="itemImageUrl" class="control-label">Image url:</label>
+    <input class="form-control" id="itemImageUrl" value="{{imageUrl}}"/>
+    <button class="btn btn-default" id="submitSaveItem" type="Submit">Save</button>
   </div>
 </template>
 
