@@ -2,24 +2,14 @@ Items = new Meteor.Collection("items");
 Bids = new Meteor.Collection("bids");
 AuctionDetails = new Meteor.Collection("auctionDetails");
 
-Router.map(function () {
-  /**
-   * The route's name is "home"
-   * The route's template is also "home"
-   * The default action will render the home template
-   */
-  this.route('main', {
-    path: '/',
-    template: 'main'
-  });
+Router.route('/', function () {
+  this.render('main');
+});
 
-  this.route('admin', {
-    path: '/admin'
-  });
+Router.route('/admin');
 
-  this.route('bigScreen', {
-    path: '/bigscreen'
-  });
+Router.route('/bigscreen', function () {
+  this.render('bigScreen');
 });
 
 Meteor.methods({
