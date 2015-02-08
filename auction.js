@@ -4,19 +4,11 @@ AuctionDetails = new Meteor.Collection("auctionDetails");
 AppSettings = new Meteor.Collection("appSettings");
 
 Router.route('/', function () {
-  if (AppSettings.findOne().preSetUp == true) {
-    this.redirect('/admin');
-  } else {
-    this.render('main');
-  }
+  this.render('main');
 });
 
 Router.route('/admin', function () {
-  if (AppSettings.findOne().preSetUp == true) {
-    this.render('newAdmin');
-  } else {
-    this.render('admin');
-  }
+  this.render('admin');
 });
 
 Router.route('/bigscreen', function () {
@@ -281,6 +273,14 @@ if (Meteor.isClient) {
   });
 
   Template.admin.helpers({
+    isPreSetUp: function () {
+      appSettings = AppSettings.findOne();
+      if (appSettings) {
+        return appSettings.preSetUp;
+      } else {
+        return true;
+      }
+    },
     logs: function () {
       return Bids.find({}, {sort: {dateTime: -1}});
     }
