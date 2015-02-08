@@ -1,18 +1,53 @@
 Items = new Meteor.Collection("items");
 Bids = new Meteor.Collection("bids");
 AuctionDetails = new Meteor.Collection("auctionDetails");
+AppSettings = new Meteor.Collection("appSettings");
 
 Router.route('/', function () {
-  this.render('main');
+  if (AppSettings.findOne().preSetUp == true) {
+    this.redirect('/admin');
+  } else {
+    this.render('main');
+  }
 });
 
-Router.route('/admin');
+Router.route('/admin', function () {
+  if (AppSettings.findOne().preSetUp == true) {
+    this.render('newAdmin');
+  } else {
+    this.render('admin');
+  }
+});
 
 Router.route('/bigscreen', function () {
   this.render('bigScreen');
 });
 
 Meteor.methods({
+  makeAdmin: function (password) {
+    if (Meteor.users.find().count() != 0) {
+      throw new Meteor.Error(500, "Admin user already made");
+    }
+
+    if (password == null || password == "") {
+      throw new Meteor.Error(500, "Password must have at least one character");
+    }
+
+    Accounts.createUser({
+      username: "admin",
+      password: password
+    });
+
+    AuctionDetails.insert({
+      endDateTime: moment().add('days', 2).toDate()
+    });
+
+    AppSettings.update(
+      AppSettings.findOne(),
+      {$set: {preSetUp: false}}
+    );
+  },
+
   makeBid: function (bidderName, newBid, item) {
     var previousBid = Bids.findOne({itemId: item._id}, {sort: {bid: -1}});
     var auctionEndTime = moment(AuctionDetails.findOne().endDateTime);
@@ -70,6 +105,7 @@ if (Meteor.isClient) {
   Meteor.subscribe("items");
   Meteor.subscribe("bids");
   Meteor.subscribe("auctionDetails");
+  Meteor.subscribe("appSettings");
 
   Session.setDefault('auctionHasEnded', false);
   Session.setDefault('auctionEndTime', "");
@@ -371,6 +407,16 @@ if (Meteor.isClient) {
     }
   });
 
+  Template.newAdmin.events({
+    'click #submitNewAdminPassword' : function (event, template) {
+      var password = template.find('#inputNewAdminPassword').value;
+      var confirmPassword = template.find('#inputNewConfirmAdminPassword').value;
+      if (password != null && password != "" && password == confirmPassword) {
+        Meteor.call('makeAdmin', password);
+      }
+    }
+  });
+
   Template.admin.events(okCancelEvents(
     "#inputAdminPassword",
     {
@@ -417,23 +463,32 @@ if (Meteor.isServer) {
     return AuctionDetails.find();
   });
 
+  Meteor.publish("appSettings", function () {
+    return AppSettings.find();
+  });
+
   Meteor.startup(function () {
-    if (Items.find().count() === 0) {
-      Meteor.call('upsertAuctionItems');
-    }
-
-    if (AuctionDetails.find().count() === 0) {
-      AuctionDetails.insert({
-        endDateTime: moment().add('days', 2).toDate()
+    if (AppSettings.find().count() === 0) {
+      AppSettings.insert({
+        preSetUp: true
       });
     }
+    // if (Items.find().count() === 0) {
+    //   Meteor.call('upsertAuctionItems');
+    // }
 
-    if (Meteor.users.find().count() === 0) {
-      Accounts.createUser({
-        username: "admin",
-        password: "auct10nadm1n"
-      });
-    }
+    // if (AuctionDetails.find().count() === 0) {
+    //   AuctionDetails.insert({
+    //     endDateTime: moment().add('days', 2).toDate()
+    //   });
+    // }
+
+    // if (Meteor.users.find().count() === 0) {
+    //   Accounts.createUser({
+    //     username: "admin",
+    //     password: "auct10nadm1n"
+    //   });
+    // }
   });
 
   Meteor.methods({
