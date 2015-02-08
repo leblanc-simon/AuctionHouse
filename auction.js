@@ -7,8 +7,18 @@ Router.route('/', function () {
   this.render('main');
 });
 
-Router.route('/admin', function () {
-  this.render('admin');
+Router.route('/admin', {
+  subscriptions: function() {
+    return Meteor.subscribe("appSettings");
+  },
+
+  action: function () {
+    if (this.ready()) {
+      this.render('admin');
+    } else {
+      this.render('loading');
+    }
+  }
 });
 
 Router.route('/bigscreen', function () {
