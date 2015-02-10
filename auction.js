@@ -239,6 +239,9 @@ if (Meteor.isClient) {
   });
 
   Template.main.helpers({
+    title: function () {
+      return AuctionDetails.findOne().title;
+    },
     items: function () {
       return Items.find();
     },
