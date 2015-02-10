@@ -41,7 +41,9 @@ Meteor.methods({
     });
 
     AuctionDetails.insert({
-      endDateTime: moment().add('days', 2).toDate()
+      title: "Auction",
+      startTime: moment().add('days', 1).toDate(),
+      endTime: moment().add('days', 2).toDate()
     });
 
     AppSettings.update(
@@ -52,7 +54,7 @@ Meteor.methods({
 
   makeBid: function (bidderName, newBid, item) {
     var previousBid = Bids.findOne({itemId: item._id}, {sort: {bid: -1}});
-    var auctionEndTime = moment(AuctionDetails.findOne().endDateTime);
+    var auctionEndTime = moment(AuctionDetails.findOne().endTime);
 
     var bidderNameValid = (bidderName != "" && bidderName != null);
     var newBidValid = (newBid != null && newBid != NaN && newBid > 0);
@@ -78,7 +80,7 @@ Meteor.methods({
     return Bids.remove(bidId);
   },
 
-  changeAuctionEndTime: function (newEndTime) {
+  changeAuctionDetails: function (title, startTime, endTime) {
     if (!this.userId) {
       throw new Meteor.Error(403, "You must be logged in");
     }
@@ -86,7 +88,12 @@ Meteor.methods({
     var detailsId = AuctionDetails.findOne()._id;
     return AuctionDetails.update(
       detailsId,
-      {$set: {endDateTime: newEndTime}});
+      {
+        title: title,
+        startTime: startTime,
+        endTime: endTime
+      }
+    );
   },
 
   upsertAuctionItems: function () {
@@ -149,7 +156,7 @@ if (Meteor.isClient) {
 
   var calculateAuctionTimeRemaining = function () {
     if (AuctionDetails.findOne()) {
-      var auctionEndTime = moment(AuctionDetails.findOne().endDateTime);
+      var auctionEndTime = moment(AuctionDetails.findOne().endTime);
       var now = moment().subtract(Session.get('clientTimeOffset'), 'ms');
       if (now.isAfter(auctionEndTime)) {
         Session.set('auctionHasEnded', true);
@@ -296,13 +303,25 @@ if (Meteor.isClient) {
     }
   });
 
+  Template.editAuctionDetails.helpers({
+    title: function () {
+      return AuctionDetails.findOne().title;
+    },
+    startTime: function () {
+      return moment(AuctionDetails.findOne().startTime).format('MM/DD/YYYY h:mm a');
+    },
+    endTime: function () {
+      return moment(AuctionDetails.findOne().endTime).format('MM/DD/YYYY h:mm a');
+    }
+  });
+
   Template.logRow.helpers({
     bidTime: function () {
       return moment(this.dateTime).format('MMMM Do YYYY, h:mm:ss a');
     }
   });
 
-  Template.changeEndTime.rendered = function () {
+  Template.editAuctionDetails.rendered = function () {
     $('.datetimepicker').datetimepicker();
   };
 
@@ -406,13 +425,18 @@ if (Meteor.isClient) {
     }
   ));
 
-  Template.changeEndTime.events({
-    'click #submitAdminChanges' : function (event, template) {
-      var newAuctionEndDate = moment(template.find('#auctionDatePicker').value, 'MM/DD/YYYY h:mm a').toDate();
-      if (newAuctionEndDate) {
+  Template.editAuctionDetails.events({
+    'click #submitAuctionChanges' : function (event, template) {
+      var newAuctionTitle = template.find('#inputAuctionTitle').value;
+      var newAuctionStartDate = moment(template.find('#auctionStartDatePicker').value, 'MM/DD/YYYY h:mm a').toDate();
+      var newAuctionEndDate = moment(template.find('#auctionEndDatePicker').value, 'MM/DD/YYYY h:mm a').toDate();
+      if (newAuctionTitle && newAuctionStartDate && newAuctionEndDate) {
         Meteor.call(
-          'changeAuctionEndTime',
-          newAuctionEndDate);
+          'changeAuctionDetails',
+          newAuctionTitle,
+          newAuctionStartDate,
+          newAuctionEndDate
+        );
       }
     }
   });
@@ -485,12 +509,6 @@ if (Meteor.isServer) {
     }
     // if (Items.find().count() === 0) {
     //   Meteor.call('upsertAuctionItems');
-    // }
-
-    // if (AuctionDetails.find().count() === 0) {
-    //   AuctionDetails.insert({
-    //     endDateTime: moment().add('days', 2).toDate()
-    //   });
     // }
 
     // if (Meteor.users.find().count() === 0) {

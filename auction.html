@@ -94,16 +94,27 @@
   </div>
 </template>
 
-<template name="changeEndTime">
+<template name="editAuctionDetails">
   <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-    <h1>Admin</h1>
-    {{> countdown}}
-    <label>Set new end time:</label>
+    <h1>Edit Auction Details</h1>
+    <div class='form'>
+      <div class='form-group input-group'>
+        <label>Title</label>
+        <input type='text' class="form-control" id="inputAuctionTitle" value="{{title}}"/>
+      </div>
+      {{> countdown}}
       <div class='form-group input-group datetimepicker'>
-        <input type='text' class="form-control" id="auctionDatePicker"/>
+        <label>Start time:</label>
+        <input type='text' class="form-control" id="auctionStartDatePicker" value="{{startTime}}"/>
         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
       </div>
-    <button class="btn btn-default" id="submitAdminChanges" type="Submit">Submit</button>
+      <div class='form-group input-group datetimepicker'>
+        <label>End time:</label>
+        <input type='text' class="form-control" id="auctionEndDatePicker" value="{{endTime}}"/>
+        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+      </div>
+      <button class="btn btn-default" id="submitAuctionChanges" type="Submit">Submit</button>
+    </div>
   </div>
 </template>
 
@@ -114,7 +125,7 @@
     <div class="container">
       {{#if currentUser}}
         <p class="text-right"><a id="logOut" href="">Log out</a></p>
-        {{> changeEndTime}}
+        {{> editAuctionDetails}}
         <div class="col-xs-12 col-sm-10 col-sm-offset-1">
           <h1>Reload item data</h1>
           <button class="btn btn-default" id="reloadItemData" type="Submit">Reload item data</button>
