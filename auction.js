@@ -107,6 +107,23 @@ Meteor.methods({
     });
   },
 
+  updateItem: function (id, name, description, donatedBy, imageUrl) {
+    if (!this.userId) {
+      throw new Meteor.Error(403, "You must be logged in");
+    }
+
+    if (id && name) {
+      Items.update(id,
+        { $set: {
+          name: name,
+          description: description,
+          donatedBy: donatedBy,
+          imageUrl: imageUrl
+        }}
+      );
+    }
+  },
+
   upsertAuctionItems: function () {
     // Put in manual items
     for (var i = 1; i <= 6; i++) {
@@ -522,6 +539,25 @@ if (Meteor.isClient) {
   Template.editItemsRow.events({
     'click .itemRow' : function (event, template) {
       Session.set('adminSelectedItem', template.data._id);
+    }
+  });
+
+  Template.editItemForm.events({
+    'click #submitItemChanges' : function (event, template) {
+      var newName = template.find('#inputItemName').value;
+      var newDescription = template.find('#inputItemDescription').value;
+      var newDonatedBy = template.find('#inputItemDonatedBy').value;
+      var newImageUrl = template.find('#inputItemImageUrl').value;
+
+      if (newName && newName != "") {
+        Meteor.call('updateItem',
+          Session.get('adminSelectedItem'),
+          newName,
+          newDescription,
+          newDonatedBy,
+          newImageUrl
+        );
+      }
     }
   });
 
