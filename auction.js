@@ -124,6 +124,36 @@ Meteor.methods({
     }
   },
 
+  moveItemUp: function (id) {
+    if (!this.userId) {
+      throw new Meteor.Error(403, "You must be logged in");
+    }
+
+    if (id) {
+      var promotedItem = Items.findOne(id);
+      if (promotedItem.order > 1) {
+        var demotedItem = Items.findOne({order: promotedItem.order - 1});
+        Items.update(promotedItem._id, { $inc: { order: -1 } });
+        Items.update(demotedItem._id, { $inc: { order: 1} });
+      }
+    }
+  },
+
+  moveItemDown: function (id) {
+    if (!this.userId) {
+      throw new Meteor.Error(403, "You must be logged in");
+    }
+
+    if (id) {
+      var demotedItem = Items.findOne(id);
+      if (demotedItem.order < Items.find().count()) {
+        var promotedItem = Items.findOne({order: demotedItem.order + 1});
+        Items.update(promotedItem._id, { $inc: { order: -1 } });
+        Items.update(demotedItem._id, { $inc: { order: 1} });
+      }
+    }
+  },
+
   upsertAuctionItems: function () {
     // Put in manual items
     for (var i = 1; i <= 6; i++) {
@@ -539,6 +569,18 @@ if (Meteor.isClient) {
   Template.editItemsRow.events({
     'click .itemRow' : function (event, template) {
       Session.set('adminSelectedItem', template.data._id);
+    },
+
+    'click .moveUp' : function (event, template) {
+      if (template.data.order > 1) {
+        Meteor.call('moveItemUp', template.data._id);
+      }
+    },
+
+    'click .moveDown' : function (event, template) {
+      if (template.data.order < Items.find().count()) {
+        Meteor.call('moveItemDown', template.data._id);
+      }
     }
   });
 
