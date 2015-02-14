@@ -26,10 +26,6 @@ Template.admin.events({
     Meteor.loginWithPassword("admin", template.find('.adminPassword').value);
   },
 
-  'click #reloadItemData' : function () {
-    Meteor.call('upsertAuctionItems');
-  },
-
   'click #logOut' : function () {
     Meteor.logout();
   }
