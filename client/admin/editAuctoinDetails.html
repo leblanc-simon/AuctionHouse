@@ -1,0 +1,23 @@
+<template name="editAuctionDetails">
+  <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+    <h1>Edit Auction Details</h1>
+    <div class='form'>
+      <div class='form-group input-group'>
+        <label>Title</label>
+        <input type='text' class="form-control" id="inputAuctionTitle" value="{{title}}"/>
+      </div>
+      {{> countdown}}
+      <div class='form-group input-group datetimepicker'>
+        <label>Start time:</label>
+        <input type='text' class="form-control" id="auctionStartDatePicker" value="{{startTime}}"/>
+        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+      </div>
+      <div class='form-group input-group datetimepicker'>
+        <label>End time:</label>
+        <input type='text' class="form-control" id="auctionEndDatePicker" value="{{endTime}}"/>
+        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+      </div>
+      <button class="btn btn-default" id="submitAuctionChanges" type="Submit">Submit</button>
+    </div>
+  </div>
+</template>
