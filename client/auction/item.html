@@ -1,17 +1,17 @@
 <template name="item">
   <div class="item col-sm-4">
-    <div class="itemImage" style="background-image: url('{{image}}');"></div>
+    <div class="itemImage" style="background-image: url('{{imageUrl}}');"></div>
     <div>
-      <div class="rowtext row{{itemRow}}">
+      <div class="rowtext">
         {{#if showBidErrorOnItem}}
           <div class="alert alert-danger">
             <p><strong>Uh oh!</strong> We were unable to place your bid. {{bidErrorMessage}}</p>
             <a class="dismissError">Close</a>
           </div>
         {{else}}
-          <h2 class="row{{itemRow}}">{{name}}</h2>
-          <div class="description row{{itemRow}}">
-            <p class="description row{{itemRow}}">{{description}}</p>
+          <h2>{{name}}</h2>
+          <div class="description">
+            <p class="description">{{description}}</p>
             <p class="donatedBy">{{donatedBy}}</p>
           </div>
         {{/if}}
