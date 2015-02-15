@@ -1,0 +1,24 @@
+<template name="item">
+  <div class="item col-sm-4">
+    <div class="itemImage" style="background-image: url('{{imageUrl}}');"></div>
+    <div>
+      <div class="rowtext">
+        {{#if showBidErrorOnItem}}
+          <div class="alert alert-danger">
+            <p><strong>Uh oh!</strong> We were unable to place your bid. {{bidErrorMessage}}</p>
+            <a class="dismissError">Close</a>
+          </div>
+        {{else}}
+          <h2>{{name}}</h2>
+          <div class="description">
+            <p class="description">{{description}}</p>
+            <p class="donatedBy">{{donatedBy}}</p>
+          </div>
+        {{/if}}
+      </div>
+      <p class="currentBid">Current bid: £ {{bid}} by {{highestBidder}}</p>
+      <span class="currencySymbol">£</span><input class="form-control newBid" id="newBid" type="number"/>
+      <button class="btn btn-success submitBid" id="submitBid" type="Submit">Place Bid</button>
+    </div>
+  </div>
+</template>

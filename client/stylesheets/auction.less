@@ -234,7 +234,7 @@ div.item {
   h2 {
     margin-top: 0px;
     color: #431822;
-    font-weight: 300;
+    font-weight: 600;
     font-size: 20px;
   }
   img {
@@ -256,52 +256,18 @@ div.item {
   }
   div.description {
     margin-bottom: 10px;
+    overflow: hidden;
   }
   @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-    h2.row0 {
+    h2 {
       height: 176px;
     }
-    h2.row1 {
-      height: 176px;
-    }
-    h2.row2 {
-      height: 44px;
-    }
-    h2.row3 {
-      height: 44px;
-    }
-    h2.row4 {
-      height: 66px;
-    }
-    h2.row5 {
-      height: 66px;
-    }
-    div.rowtext.row0 {
-      height: 266px;
-    }
-    div.rowtext.row1 {
+    div.rowtext {
       height: 266px;
     }
     div.description {
       width: 161px;
-    }
-    div.description.row0 {
       height: 80px;
-    }
-    div.description.row1 {
-      height: 80px;
-    }
-    div.description.row2 {
-      height: 190px;
-    }
-    div.description.row3 {
-      height: 190px;
-    }
-    div.description.row4 {
-      height: 210px;
-    }
-    div.description.row5 {
-      height: 190px;
     }
     p.currentBid {
       height: 60px;
@@ -310,101 +276,29 @@ div.item {
   @media (min-width: @screen-md-min) {
     h2 {
       width: 223px;
-    }
-    h2.row0 {
       height: 110px;
-    }
-    h2.row1 {
-      height: 110px;
-    }
-    h2.row2 {
-      height: 22px;
-    }
-    h2.row3 {
-      height: 22px;
-    }
-    h2.row4 {
-      height: 44px;
-    }
-    h2.row5 {
-      height: 44px;
     }
     p.currentBid {
       height: 40px;
     }
-    div.rowtext.row0 {
-      height: 192px;
-    }
-    div.rowtext.row1 {
+    div.rowtext {
       height: 192px;
     }
     div.description {
       width: 223px;
-    }
-    div.description.row0 {
       height: 40px;
-    }
-    div.description.row1 {
-      height: 40px;
-    }
-    div.description.row2 {
-      height: 150px;
-    }
-    div.description.row3 {
-      height: 150px;
-    }
-    div.description.row4 {
-      height: 150px;
-    }
-    div.description.row5 {
-      height: 150px;
     }
   }
   @media (min-width: @screen-lg-min) {
-    h2.row0 {
-      height: 110px;
+    h2 {
+      height: 60px;
     }
-    h2.row1 {
-      height: 110px;
-    }
-    h2.row2 {
-      height: 22px;
-    }
-    h2.row3 {
-      height: 22px;
-    }
-    h2.row4 {
-      height: 44px;
-    }
-    h2.row5 {
-      height: 44px;
-    }
-    div.rowtext.row0 {
-      height: 172px;
-    }
-    div.rowtext.row1 {
+    div.rowtext {
       height: 172px;
     }
     div.description {
       width: 277px;
-    }
-    div.description.row0 {
       height: 40px;
-    }
-    div.description.row1 {
-      height: 40px;
-    }
-    div.description.row2 {
-      height: 110px;
-    }
-    div.description.row3 {
-      height: 110px;
-    }
-    div.description.row4 {
-      height: 110px;
-    }
-    div.description.row5 {
-      height: 110px;
     }
   }
 }
@@ -454,6 +348,7 @@ div.itemImage {
   background-position: center center;
   background-repeat: no-repeat;
   margin-bottom: 10px;
+  .rounded(5px);
 }
 
 input.newBid {

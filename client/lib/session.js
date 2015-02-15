@@ -1,0 +1,11 @@
+Session.setDefault('auctionHasEnded', false);
+Session.setDefault('auctionEndTime', "");
+Session.setDefault('auctionHoursRemaining', "00");
+Session.setDefault('auctionMinutesRemaining', "00");
+Session.setDefault('auctionSecondsRemaining', "00");
+Session.setDefault('bidErrorItem', "");
+Session.setDefault('bidErrorMessage', "");
+Session.setDefault('bidderName', "");
+Session.setDefault('bigScreenPage', 0);
+Session.setDefault('clientTimeOffset', 0);
+Session.setDefault('adminSelectedItem', null);
