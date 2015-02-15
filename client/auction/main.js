@@ -10,6 +10,10 @@ Template.main.helpers({
   }
 });
 
+Template.main.rendered = function () {
+  setWaypoints();
+}
+
 Template.main.events({
   'keypress #bidderName' : function (event, template) {
     Session.set('bidderName', template.find('#bidderName').value);
