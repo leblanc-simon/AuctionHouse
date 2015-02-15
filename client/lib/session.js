@@ -1,4 +1,5 @@
 Session.setDefault('auctionHasEnded', false);
+Session.setDefault('auctionHasBegun', true);
 Session.setDefault('auctionEndTime', "");
 Session.setDefault('auctionHoursRemaining', "00");
 Session.setDefault('auctionMinutesRemaining', "00");

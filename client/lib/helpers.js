@@ -27,11 +27,18 @@ okCancelEvents = function (selector, callbacks) {
 
 calculateAuctionTimeRemaining = function () {
   if (AuctionDetails.findOne()) {
-    var auctionEndTime = moment(AuctionDetails.findOne().endTime);
+    var auctionDetails = AuctionDetails.findOne()
+    var auctionStartTime = moment(auctionDetails.startTime);
+    var auctionEndTime = moment(auctionDetails.endTime);
     var now = moment().subtract(Session.get('clientTimeOffset'), 'ms');
-    if (now.isAfter(auctionEndTime)) {
+    if (now.isBefore(auctionStartTime)) {
+      Session.set('auctionHasBegun', false);
+      Session.set('auctionHasEnded', false);
+    } else  if (now.isAfter(auctionEndTime)) {
+      Session.set('auctionHasBegun', true);
       Session.set('auctionHasEnded', true);
     } else {
+      Session.set('auctionHasBegun', true);
       Session.set('auctionHasEnded', false);
       Session.set('auctionHoursRemaining', pad(auctionEndTime.diff(moment(), 'hours'), 2));
       Session.set('auctionMinutesRemaining', pad((auctionEndTime.diff(moment(), 'minutes') % 60), 2));

@@ -1,4 +1,7 @@
 Template.countdown.helpers({
+  hasAuctionBegun: function () {
+    return Session.get('auctionHasBegun');
+  },
   hasAuctionEnded: function () {
     return Session.get('auctionHasEnded');
   },
