@@ -3,7 +3,7 @@ Template.main.helpers({
     return AuctionDetails.findOne().title;
   },
   items: function () {
-    return Items.find();
+    return Items.find({}, {sort: {order: 1}});
   },
   showAuctionItems: function () {
     return Session.get('bidderName') != "";

@@ -1,5 +1,5 @@
 Meteor.publish("items", function () {
-  return Items.find({}, {sort: {order: 1}});
+  return Items.find();
 });
 
 Meteor.publish("bids", function () {
