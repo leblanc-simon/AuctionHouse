@@ -75,12 +75,12 @@ div#timeAndName {
   background-color: #317694;
   .rounded(5px);
   padding: 20px 60px;
-  position: -webkit-sticky;
-  position: -moz-sticky;
-  position: -ms-sticky;
-  position: -o-sticky;
-  top: -10px;
   z-index: 1;
+  position: relative;
+  &.sticky {
+    position: fixed;
+    top: -10px;
+  }
   p {
     color: #FFFFFF;
   }

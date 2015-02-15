@@ -82,3 +82,23 @@ truncateString = function (string, maxLength) {
 
   return string;
 };
+
+setWaypoints = function () {
+  var waypoint = new Waypoint({
+    element: document.getElementById('timeAndName'),
+    handler: function(direction) {
+      var timeAndName = $('#timeAndName');
+      if (direction == 'down') {
+        timeAndName.after('<div id="timeAndNamePlaceholder"></div>');
+        $('#timeAndNamePlaceholder').css('height', timeAndName.css('height')).css('width', timeAndName.css('width'));
+        timeAndName.css('width', timeAndName.css('width'));
+        timeAndName.addClass('sticky');
+      } else {
+        $('#timeAndNamePlaceholder').remove();
+        timeAndName.css('width', 'initial');
+        timeAndName.removeClass('sticky');
+      }
+    },
+    offset: -10
+  });
+};
