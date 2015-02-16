@@ -5,8 +5,11 @@ Template.main.helpers({
   items: function () {
     return Items.find({}, {sort: {order: 1}});
   },
-  showAuctionItems: function () {
+  nameIsSet: function () {
     return Session.get('bidderName') != "";
+  },
+  name: function () {
+    return Session.get('bidderName');
   }
 });
 
@@ -15,15 +18,16 @@ Template.main.rendered = function () {
 }
 
 Template.main.events({
-  'keypress #bidderName' : function (event, template) {
+  'click #submitName' :  function (event, template) {
     Session.set('bidderName', template.find('#bidderName').value);
   },
-  'blur #bidderName' : function (event, template) {
-    Session.set('bidderName', template.find('#bidderName').value);
-  },
-  'click .clearButton' :  function (event, template) {
+  'click #changeName' : function (event, template) {
+    var oldName = Session.get('bidderName');
     Session.set('bidderName', "");
-    template.find('#bidderName').value = "";
+    _.defer(function () {
+      template.find('#bidderName').value = oldName;
+      template.find('#bidderName').focus();
+    });
   }
 });
 

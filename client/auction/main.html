@@ -7,9 +7,14 @@
       <div id="timeAndName">
         {{> countdown}}
         <div class="form-inline" role="form">
-          <label for="bidderName" class="control-label">Enter your name:</label>
-          <input class="form-control" id="bidderName"/>
-          <img class="clearButton" src="clear.png">
+          {{#unless nameIsSet}}
+            <label for="bidderName" class="control-label">Enter your name:</label>
+            <input class="form-control" id="bidderName"/>
+            <button class="btn btn-success" id="submitName" type="Submit">Save</button>
+          {{else}}
+            <label for="bidderName" class="control-label">Your name is {{name}}</label>
+            <button class="btn btn-success" id="changeName" type="Submit">Change name</button>
+          {{/unless}}
         </div>
       </div>
       {{#each items}}
