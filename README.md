@@ -2,6 +2,8 @@
 
 A web app, built using Meteor, to run an auction digitally, primarily designed for non-profit/charity organisations to run fundraisers.
 
+This is a work in progress, and isn't production ready yet.
+
 ##### Set up
 
 1. Install Meteor `$ curl https://install.meteor.com/ | sh`
