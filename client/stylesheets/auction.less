@@ -22,13 +22,6 @@
   margin-top: 10px;
 }
 
-.item {
-  img {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-}
-
 html {
   min-height: 100%;
 }
@@ -240,13 +233,6 @@ div.item {
     font-weight: 600;
     font-size: 20px;
   }
-  img {
-    height: 155px;
-    width: auto;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-  }
   p {
     color: #3a3a3a;
   }
@@ -262,18 +248,41 @@ div.item {
     overflow: hidden;
   }
   @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-    h2 {
-      height: 176px;
-    }
+    margin: 60px 0px;
+    position: relative;
     div.rowtext {
-      height: 266px;
+      min-height: 155px;
+      width: 370px;
     }
-    div.description {
-      width: 161px;
-      height: 80px;
+    div.itemImage {
+      position: absolute;
+      right: 15px;
+      height: calc(~"100% - 70px");
+      width: 276px;
+      margin-bottom: 0;
     }
     p.currentBid {
-      height: 60px;
+      width: 370px;
+      margin-bottom: 80px;
+    }
+    input.newBid {
+      position: absolute;
+      bottom: 0px;
+      width: 370px;
+      margin-top: 0;
+    }
+    span.currencySymbol {
+      position: absolute;
+      bottom: 11px;
+      left: 23px;
+      top: initial;
+      z-index: 10;
+    }
+    button.submitBid {
+      position: absolute;
+      bottom: 0px;
+      right: 15px;
+      width: 276px;
     }
   }
   @media (min-width: @screen-md-min) {
