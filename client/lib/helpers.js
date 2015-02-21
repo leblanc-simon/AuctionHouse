@@ -90,7 +90,7 @@ setWaypoints = function () {
       var header = $('#header');
       if (direction == 'down') {
         header.after('<div id="headerPlaceholder"></div>');
-        $('#headerPlaceholder').css('height', header.height() + 100).css('width', header.css('width'));
+        $('#headerPlaceholder').css('height', header.css('height')).css('width', header.css('width'));
         header.css('width', header.css('width'));
         header.addClass('sticky');
       } else {

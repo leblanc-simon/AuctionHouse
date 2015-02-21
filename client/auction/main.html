@@ -11,8 +11,9 @@
               <input class="form-control" id="bidderName"/>
               <button class="btn btn-success btn-lg" id="submitName" type="Submit">Save</button>
             {{else}}
-              <label for="bidderName" class="control-label">Your name is {{name}}</label>
-              <button class="btn btn-success btn-lg" id="changeName" type="Submit">Change name</button>
+              <label class="control-label">
+                Your name is <span class="bidderName">{{name}}</span>. <a id="changeName">Change name</a>
+              </label>
             {{/unless}}
           </div>
         </div>
