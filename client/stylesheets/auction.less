@@ -89,6 +89,9 @@ body {
   button.btn.btn-success {
     margin: 0;
   }
+  button#scrollToTop {
+    display: none;
+  }
   @media (max-width: @screen-xs-max) {
     padding: 10px;
     width: 100%;
@@ -250,9 +253,97 @@ body {
 
 #fixedHeader .header {
   display: none;
+  background-color: #317694;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
+  top: 0px;
+  height: 60px;
+  padding-top: 12px;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 200;
 
   &.visible {
     display: block;
+  }
+
+  h1 {
+    display: none;
+  }
+
+  button {
+    margin: 0px;
+  }
+
+  .form-inline {
+    width: 50%;
+    text-align: left;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+
+    label {
+      position: absolute;
+      right: 15px;
+      font-weight: normal;
+
+      a {
+        color: rgba(255,255,255,0.5);
+      }
+
+      span.bidderName {
+        font-weight: bold;
+      }
+    }
+
+    #enterYourNameLabel, #bidderName, #submitName {
+      display: none;
+    }
+
+    #scrollToTop {
+      position: absolute;
+      right: 15px;
+      height: 36px;
+      line-height: 16px;
+    }
+  }
+
+  p {
+    width: 50%;
+    height: 36px;
+  }
+  span.timeRemaining {
+    font-size: 24px;
+    position: absolute;
+    font-weight: 600;
+    width: 46px;
+    text-align: center;
+  }
+  span.timeRemainingLabel {
+    font-size: 12px;
+    position: absolute;
+    top: 28px;
+    font-weight: normal;
+    width: 46px;
+    text-align: center;
+  }
+  .timeBlock {
+    position: absolute;
+    top: -5px;
+    width: 46px;
+  }
+  #hoursRemainingBlock {
+    left: 230px;
+  }
+  #minutesRemainingBlock {
+    left: calc(~"230px + 46px + 10px");
+  }
+  #secondsRemainingBlock {
+    left: calc(~"230px + 2*(46px + 10px)");
+  }
+  .sentence {
+    visibility: hidden;
   }
 }
 

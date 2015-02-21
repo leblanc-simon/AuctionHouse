@@ -19,8 +19,13 @@ Template.header.events({
     Session.set('bidderName', "");
     _.defer(function () {
       template.find('#bidderName').value = oldName;
-      template.find('#bidderName').focus();
+      $("html, body").animate({ scrollTop: 0 }, "slow");
+      $("#bidderName").focus();
     });
+  },
+  'click #scrollToTop' : function () {
+    $("html, body").animate({ scrollTop: 0 }, "slow");
+    $("#bidderName").focus();
   }
 });
 
