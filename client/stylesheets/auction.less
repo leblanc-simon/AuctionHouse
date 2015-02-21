@@ -30,7 +30,7 @@ body {
   height: 100%;
 }
 
-#header {
+#largeHeader .header {
   margin-top: 100px;
   background-color: #317694;
   width: 100%;
@@ -66,7 +66,7 @@ body {
   }
 }
 
-div#timeAndName {
+#largeHeader div#timeAndName {
   padding: 20px 60px;
   z-index: 1;
   position: relative;
@@ -245,6 +245,14 @@ div#timeAndName {
     button#submitName {
       margin-left: 20px;
     }
+  }
+}
+
+#fixedHeader .header {
+  display: none;
+
+  &.visible {
+    display: block;
   }
 }
 

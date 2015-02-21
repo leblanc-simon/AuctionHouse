@@ -82,3 +82,17 @@ truncateString = function (string, maxLength) {
 
   return string;
 };
+
+setWaypoints = function () {
+  var waypoint = new Waypoint({
+    element: document.getElementById('main'),
+    handler: function(direction) {
+      var header = $('#fixedHeader .header');
+      if (direction == 'down') {
+        header.addClass('visible');
+      } else {
+        header.removeClass('visible');
+      }
+    }
+  });
+};

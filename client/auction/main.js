@@ -3,3 +3,7 @@ Template.main.helpers({
     return Items.find({}, {sort: {order: 1}});
   }
 });
+
+Template.main.rendered = function () {
+  setWaypoints();
+}
