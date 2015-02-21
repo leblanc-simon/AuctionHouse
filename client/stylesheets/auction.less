@@ -259,9 +259,9 @@ body {
   z-index: 100;
   top: 0px;
   height: 60px;
-  padding-top: 12px;
+  
   color: #ffffff;
-  font-size: 24px;
+  
   font-weight: 200;
 
   &.visible {
@@ -330,20 +330,94 @@ body {
   }
   .timeBlock {
     position: absolute;
-    top: -5px;
     width: 46px;
   }
-  #hoursRemainingBlock {
-    left: 230px;
-  }
-  #minutesRemainingBlock {
-    left: calc(~"230px + 46px + 10px");
-  }
-  #secondsRemainingBlock {
-    left: calc(~"230px + 2*(46px + 10px)");
-  }
+  
   .sentence {
     visibility: hidden;
+  }
+
+  @media (max-width: @screen-xs-max) {
+    font-size: 13px;
+    padding-top: 12px;
+    .timeBlock {
+      top: -5px;
+    }
+    .countdownTitle {
+      display: none;
+    }
+    #hoursRemainingBlock {
+      left: 15px;
+    }
+    #minutesRemainingBlock {
+      left: calc(~"15px + 46px + 10px");
+    }
+    #secondsRemainingBlock {
+      left: calc(~"15px + 2*(46px + 10px)");
+    }
+    .form-inline {
+      #scrollToTop {
+        top: 0px;
+      }
+      label a {
+        display: block;
+        text-align: right;
+      }
+    }
+  }
+  @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
+    font-size: 16px;
+    padding-top: 18px;
+    .timeBlock {
+      top: -11px;
+    }
+    #hoursRemainingBlock {
+      left: 160px;
+    }
+    #minutesRemainingBlock {
+      left: calc(~"160px + 46px + 10px");
+    }
+    #secondsRemainingBlock {
+      left: calc(~"160px + 2*(46px + 10px)");
+    }
+    .form-inline #scrollToTop {
+      top: -6px;
+    }
+  }
+  @media (min-width: @screen-md-min) {
+    font-size: 20px;
+    padding-top: 16px;
+    .timeBlock {
+      top: -9px;
+    }
+    #hoursRemainingBlock {
+      left: 190px;
+    }
+    #minutesRemainingBlock {
+      left: calc(~"190px + 46px + 10px");
+    }
+    #secondsRemainingBlock {
+      left: calc(~"190px + 2*(46px + 10px)");
+    }
+    .form-inline #scrollToTop {
+      top: -4px;
+    }
+  }
+  @media (min-width: @screen-lg-min) {
+    font-size: 24px;
+    padding-top: 12px;
+    .timeBlock {
+      top: -5px;
+    }
+    #hoursRemainingBlock {
+      left: 230px;
+    }
+    #minutesRemainingBlock {
+      left: calc(~"230px + 46px + 10px");
+    }
+    #secondsRemainingBlock {
+      left: calc(~"230px + 2*(46px + 10px)");
+    }
   }
 }
 
