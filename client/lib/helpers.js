@@ -82,22 +82,3 @@ truncateString = function (string, maxLength) {
 
   return string;
 };
-
-setWaypoints = function () {
-  var waypoint = new Waypoint({
-    element: document.getElementById('header'),
-    handler: function(direction) {
-      var header = $('#header');
-      if (direction == 'down') {
-        header.after('<div id="headerPlaceholder"></div>');
-        $('#headerPlaceholder').css('height', header.css('height')).css('width', header.css('width'));
-        header.css('width', header.css('width'));
-        header.addClass('sticky');
-      } else {
-        $('#headerPlaceholder').remove();
-        header.css('width', 'initial');
-        header.removeClass('sticky');
-      }
-    }
-  });
-};
