@@ -31,10 +31,15 @@ body {
 }
 
 #header {
-  background-position: left top;
-  background-repeat: no-repeat;
-  height: 136px;
+  background-color: #317694;
+  margin-top: 100px;
+  &.sticky {
+    position: fixed;
+    z-index: 100;
+    margin-top: 0;
+  }
   h1 {
+    color: #FFFFFF;
     text-align: right;
     position: relative;
     right: 0px; 
@@ -65,15 +70,9 @@ body {
 }
 
 div#timeAndName {
-  background-color: #317694;
-  .rounded(5px);
   padding: 20px 60px;
   z-index: 1;
   position: relative;
-  &.sticky {
-    position: fixed;
-    top: -10px;
-  }
   p {
     color: #FFFFFF;
   }

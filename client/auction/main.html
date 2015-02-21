@@ -1,22 +1,26 @@
 <template name="main">
-  <div class="container">
-    <div class="col-md-10 col-md-offset-1">
-      <div id="header">
+  <div id="header">
+    <div class="container">
+      <div class="col-md-10 col-md-offset-1">
         <h1>{{title}}</h1>
-      </div>
-      <div id="timeAndName">
-        {{> countdown}}
-        <div class="form-inline" role="form">
-          {{#unless nameIsSet}}
-            <label for="bidderName" class="control-label">Enter your name:</label>
-            <input class="form-control" id="bidderName"/>
-            <button class="btn btn-success" id="submitName" type="Submit">Save</button>
-          {{else}}
-            <label for="bidderName" class="control-label">Your name is {{name}}</label>
-            <button class="btn btn-success" id="changeName" type="Submit">Change name</button>
-          {{/unless}}
+        <div id="timeAndName">
+          {{> countdown}}
+          <div class="form-inline" role="form">
+            {{#unless nameIsSet}}
+              <label for="bidderName" class="control-label">Enter your name:</label>
+              <input class="form-control" id="bidderName"/>
+              <button class="btn btn-success" id="submitName" type="Submit">Save</button>
+            {{else}}
+              <label for="bidderName" class="control-label">Your name is {{name}}</label>
+              <button class="btn btn-success" id="changeName" type="Submit">Change name</button>
+            {{/unless}}
+          </div>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="col-md-10 col-md-offset-1">
       {{#each items}}
         {{> item}}
       {{/each}}
