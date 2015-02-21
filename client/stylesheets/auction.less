@@ -41,8 +41,7 @@ body {
   h1 {
     color: #FFFFFF;
     text-align: right;
-    position: relative;
-    right: 0px; 
+    padding: 0 60px;
     font-weight: 600;
     @media (max-width: @screen-xxs-max) {
       top: 15px;
@@ -132,11 +131,11 @@ div#timeAndName {
     p {
       font-size: 24px;
       font-weight: 200;
-      height: 90px;
+      height: 50px;
     }
     span.timeRemaining {
       font-size: 32px;
-      font-weight: 400;
+      font-weight: 600;
       position: absolute;
       width: 74px;
       text-align: center;
@@ -144,33 +143,37 @@ div#timeAndName {
     span.timeRemainingLabel {
       position: absolute;
       top: 40px;
-      font-size: 20px;
+      font-size: 18px;
       width: 74px;
       text-align: center;
     }
     label {
       font-size: 24px;
       font-weight: 200;
+      margin-bottom: 5px;
     }
     input {
       font-size: 24px;
       height: 48px;
-      width: 450px;
+      width: 480px;
+    }
+    button#submitName {
+      margin-left: 12px;
     }
     .timeBlock {
       position: absolute;
-      top: 50px;
+      top: 5px;
       width: 74px;
       margin-left: -37px;
     }
     #hoursRemainingBlock {
-      left: 30%;
+      right: calc(~"55px + 2*(74px + 20px)");
     }
     #minutesRemainingBlock {
-      left: 50%;
+      right: calc(~"55px + 74px + 20px");
     }
     #secondsRemainingBlock {
-      left: 70%;
+      right: 55px;
     }
     .sentence {
       visibility: hidden;
@@ -183,9 +186,9 @@ div#timeAndName {
     }
     span.timeRemaining {
       font-size: 36px;
-      font-weight: 200;
+      font-weight: 600;
       display: inline-block;
-      width: 40px;
+      width: 50px;
       text-align: center;
     }
     label {
@@ -196,7 +199,10 @@ div#timeAndName {
       font-size: 22px;
       margin-left: 10px;
       height: 48px;
-      width: 430px;
+      width: 365px;
+    }
+    button#submitName {
+      margin-left: 10px;
     }
   }
   @media (min-width: @screen-lg-min) {
@@ -206,9 +212,9 @@ div#timeAndName {
     }
     span.timeRemaining {
       font-size: 48px;
-      font-weight: 200;
+      font-weight: 600;
       text-align: center;
-      width: 55px;
+      width: 62px;
     }
     label {
       font-size: 28px;
@@ -218,7 +224,10 @@ div#timeAndName {
       font-size: 28px;
       margin-left: 20px;
       height: 60px;
-      width: 550px;
+      width: 470px;
+    }
+    button#submitName {
+      margin-left: 20px;
     }
   }
 }
