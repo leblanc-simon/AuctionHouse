@@ -1,0 +1,24 @@
+<template name="header">
+  <div class="header">
+    <div class="container">
+      <div class="col-md-10 col-md-offset-1">
+        <h1>{{title}}</h1>
+        <div id="timeAndName">
+          {{> countdown}}
+          <div class="form-inline" role="form">
+            {{#unless nameIsSet}}
+              <label for="bidderName" id="enterYourNameLabel" class="control-label">Enter your name:</label>
+              <input class="form-control" id="bidderName"/>
+              <button class="btn btn-success btn-lg" id="submitName" type="Submit">Save</button>
+              <button class="btn btn-success btn-lg" id="scrollToTop" type="Submit">Enter your name</button>
+            {{else}}
+              <label class="control-label">
+                Your name is <span class="bidderName">{{name}}</span>. <a id="changeName">Change name</a>
+              </label>
+            {{/unless}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

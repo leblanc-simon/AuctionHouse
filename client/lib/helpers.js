@@ -85,20 +85,14 @@ truncateString = function (string, maxLength) {
 
 setWaypoints = function () {
   var waypoint = new Waypoint({
-    element: document.getElementById('timeAndName'),
+    element: document.getElementById('main'),
     handler: function(direction) {
-      var timeAndName = $('#timeAndName');
+      var header = $('#fixedHeader .header');
       if (direction == 'down') {
-        timeAndName.after('<div id="timeAndNamePlaceholder"></div>');
-        $('#timeAndNamePlaceholder').css('height', timeAndName.css('height')).css('width', timeAndName.css('width'));
-        timeAndName.css('width', timeAndName.css('width'));
-        timeAndName.addClass('sticky');
+        header.addClass('visible');
       } else {
-        $('#timeAndNamePlaceholder').remove();
-        timeAndName.css('width', 'initial');
-        timeAndName.removeClass('sticky');
+        header.removeClass('visible');
       }
-    },
-    offset: -10
+    }
   });
 };
