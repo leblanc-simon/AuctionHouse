@@ -410,6 +410,28 @@ body {
     .form-inline #scrollToTop {
       top: -6px;
     }
+    .form-inline {
+      label {
+        text-align: right;
+        top: -8px;
+
+        .bidderNameSurround {
+          display: none;
+        }
+
+        .bidderName {
+          display: inline-block;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          width: 100%;
+        }
+
+        a {
+          display: block;
+        }
+      }
+    }
   }
   @media (min-width: @screen-md-min) {
     font-size: 20px;
