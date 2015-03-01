@@ -13,7 +13,9 @@
               <button class="btn btn-success btn-lg" id="scrollToTop" type="Submit">Enter your name</button>
             {{else}}
               <label class="control-label">
-                Your name is <span class="bidderName">{{name}}</span>. <a id="changeName">Change name</a>
+                <span class="bidderNameSurround">Your name is</span>
+                <span class="bidderName">{{name}}</span>
+                <a id="changeName">Change name</a>
               </label>
             {{/unless}}
           </div>

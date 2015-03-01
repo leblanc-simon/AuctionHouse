@@ -317,7 +317,6 @@ body {
   }
 
   p {
-    width: 50%;
     height: 36px;
   }
   span.timeRemaining {
@@ -363,12 +362,33 @@ body {
       left: calc(~"15px + 2*(46px + 10px)");
     }
     .form-inline {
+      text-align: right;
+      width: calc(~"100% - (15px + 3*(46px + 10px) + 20px)");
+
       #scrollToTop {
         top: 0px;
+        font-size: 12px;
+        padding-left: 2px;
+        padding-right: 2px;
       }
-      label a {
-        display: block;
-        text-align: right;
+      label {
+        width: 100%;
+
+        .bidderNameSurround {
+          display: none;
+        }
+
+        .bidderName {
+          display: inline-block;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          width: 100%;
+        }
+
+        a {
+          display: block;
+        }
       }
     }
   }
