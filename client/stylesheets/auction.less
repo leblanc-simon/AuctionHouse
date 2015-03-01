@@ -44,16 +44,16 @@ body {
     padding: 0 60px;
     font-weight: 600;
     @media (max-width: @screen-xxs-max) {
+      text-align: left;
       top: 15px;
       font-size: 20px;
-      width: 200px;
-      float: right;
+      width: 100%;
       padding: 0 10px;
     }
     @media (min-width: @screen-xs-min) and (max-width: @screen-xs-max) {
+      text-align: left;
       font-size: 32px;
-      width: 250px;
-      float: right;
+      width: 100%;
       padding: 0 10px;
     }
     @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
@@ -102,7 +102,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     p {
-      width: 50%;
+      width: 100%;
       height: 60px;
     }
     span.timeRemaining {
@@ -138,13 +138,16 @@ body {
       display: block;
     }
     input {
-      width: 80%;
+      width: 78%;
       display: inline-block;
     }
     button.btn.btn-success {
       line-height: 12px;
       margin-top: -2px;
       width: 19%;
+      padding-left: 2px;
+      padding-right: 2px;
+      font-size: 12px;
     }
     .sentence {
       visibility: hidden;
@@ -512,21 +515,6 @@ div.item {
     div.description {
       width: 277px;
       height: 40px;
-    }
-  }
-}
-
-div.form-inline {
-  position: relative;
-  input#bidderName {
-    @media (max-width: @screen-xs-max) {
-      padding-right: 35px;
-    }
-    @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-      padding-right: 45px;
-    }
-    @media (min-width: @screen-md-min) {
-      padding-right: 60px;
     }
   }
 }
