@@ -31,25 +31,27 @@ body {
 }
 
 #largeHeader .header {
-  margin-top: 100px;
   background-color: #317694;
   width: 100%;
+
+  @media (min-width: @screen-md-min) {
+    margin-top: 100px;
+  }
+
   h1 {
     color: #FFFFFF;
-    text-align: right;
+    text-align: left;
     padding: 0 60px;
     font-weight: 600;
     @media (max-width: @screen-xxs-max) {
       top: 15px;
       font-size: 20px;
-      width: 200px;
-      float: right;
+      width: 100%;
       padding: 0 10px;
     }
-    @media (min-width: @screen-xs-min) and (max-width: @screen-xs-max) {
+    @media (min-width: @screen-xs-min) and (max-width: @screen-xs-max) {  
       font-size: 32px;
-      width: 250px;
-      float: right;
+      width: 100%;
       padding: 0 10px;
     }
     @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
@@ -57,6 +59,7 @@ body {
       font-size: 36px;
     }
     @media (min-width: @screen-md-min) {
+      text-align: right;
       top: 10px;
       font-size: 48px;
     }
@@ -98,7 +101,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     p {
-      width: 50%;
+      width: 100%;
       height: 60px;
     }
     span.timeRemaining {
@@ -134,13 +137,16 @@ body {
       display: block;
     }
     input {
-      width: 80%;
+      width: 78%;
       display: inline-block;
     }
     button.btn.btn-success {
       line-height: 12px;
       margin-top: -2px;
       width: 19%;
+      padding-left: 2px;
+      padding-right: 2px;
+      font-size: 12px;
     }
     .sentence {
       visibility: hidden;
@@ -186,13 +192,13 @@ body {
       margin-left: -37px;
     }
     #hoursRemainingBlock {
-      right: calc(~"55px + 2*(74px + 20px)");
+      left: 300px;
     }
     #minutesRemainingBlock {
-      right: calc(~"55px + 74px + 20px");
+      left: calc(~"300px + 74px");
     }
     #secondsRemainingBlock {
-      right: 55px;
+      left: calc(~"300px + (2 * 74px)");
     }
     .sentence {
       visibility: hidden;
@@ -310,7 +316,6 @@ body {
   }
 
   p {
-    width: 50%;
     height: 36px;
   }
   span.timeRemaining {
@@ -356,12 +361,33 @@ body {
       left: calc(~"15px + 2*(46px + 10px)");
     }
     .form-inline {
+      text-align: right;
+      width: calc(~"100% - (15px + 3*(46px + 10px) + 20px)");
+
       #scrollToTop {
         top: 0px;
+        font-size: 12px;
+        padding-left: 2px;
+        padding-right: 2px;
       }
-      label a {
-        display: block;
-        text-align: right;
+      label {
+        width: 100%;
+
+        .bidderNameSurround {
+          display: none;
+        }
+
+        .bidderName {
+          display: inline-block;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          width: 100%;
+        }
+
+        a {
+          display: block;
+        }
       }
     }
   }
@@ -382,6 +408,28 @@ body {
     }
     .form-inline #scrollToTop {
       top: -6px;
+    }
+    .form-inline {
+      label {
+        text-align: right;
+        top: -8px;
+
+        .bidderNameSurround {
+          display: none;
+        }
+
+        .bidderName {
+          display: inline-block;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          width: 100%;
+        }
+
+        a {
+          display: block;
+        }
+      }
     }
   }
   @media (min-width: @screen-md-min) {
@@ -508,21 +556,6 @@ div.item {
     div.description {
       width: 277px;
       height: 40px;
-    }
-  }
-}
-
-div.form-inline {
-  position: relative;
-  input#bidderName {
-    @media (max-width: @screen-xs-max) {
-      padding-right: 35px;
-    }
-    @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
-      padding-right: 45px;
-    }
-    @media (min-width: @screen-md-min) {
-      padding-right: 60px;
     }
   }
 }
