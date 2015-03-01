@@ -40,18 +40,16 @@ body {
 
   h1 {
     color: #FFFFFF;
-    text-align: right;
+    text-align: left;
     padding: 0 60px;
     font-weight: 600;
     @media (max-width: @screen-xxs-max) {
-      text-align: left;
       top: 15px;
       font-size: 20px;
       width: 100%;
       padding: 0 10px;
     }
-    @media (min-width: @screen-xs-min) and (max-width: @screen-xs-max) {
-      text-align: left;
+    @media (min-width: @screen-xs-min) and (max-width: @screen-xs-max) {  
       font-size: 32px;
       width: 100%;
       padding: 0 10px;
@@ -61,6 +59,7 @@ body {
       font-size: 36px;
     }
     @media (min-width: @screen-md-min) {
+      text-align: right;
       top: 10px;
       font-size: 48px;
     }
@@ -193,13 +192,13 @@ body {
       margin-left: -37px;
     }
     #hoursRemainingBlock {
-      right: calc(~"55px + 2*(74px + 20px)");
+      left: 300px;
     }
     #minutesRemainingBlock {
-      right: calc(~"55px + 74px + 20px");
+      left: calc(~"300px + 74px");
     }
     #secondsRemainingBlock {
-      right: 55px;
+      left: calc(~"300px + (2 * 74px)");
     }
     .sentence {
       visibility: hidden;
