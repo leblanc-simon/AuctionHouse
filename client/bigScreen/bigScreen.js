@@ -9,5 +9,8 @@ Template.bigScreen.helpers({
       skip: 3,
       limit: 3
     });
+  },
+  title: function () {
+    return AuctionDetails.findOne().title;
   }
 });
