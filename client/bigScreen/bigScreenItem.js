@@ -13,3 +13,21 @@ Template.bigScreenItem.helpers({
     return LightenDarkenColor(AuctionDetails.findOne().colour, -70);
   }
 });
+
+Template.bigScreenItem.rendered = function () {
+  this.autorun(function (){
+    Bids.findOne({itemId: Template.instance().data._id}, {sort: {bid: -1}});
+    var item = Template.instance().$(".bsItem");
+    var auctionColour = AuctionDetails.findOne().colour;
+    var initialColour = LightenDarkenColor(auctionColour, -70);
+    var highlightColour = auctionColour;
+    item.css("background-color", LightenDarkenColor(initialColour, 50));  
+    _.defer(function () {
+      item.addClass("highlighted");
+      item.css("background-color", initialColour);
+    });
+    _.delay(function () {
+      item.removeClass("highlighted");
+    }, 2000);
+  });
+};
