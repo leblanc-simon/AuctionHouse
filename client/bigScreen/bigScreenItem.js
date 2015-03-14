@@ -20,8 +20,8 @@ Template.bigScreenItem.rendered = function () {
     var item = Template.instance().$(".bsItem");
     var auctionColour = AuctionDetails.findOne().colour;
     var initialColour = LightenDarkenColor(auctionColour, -70);
-    var highlightColour = auctionColour;
-    item.css("background-color", LightenDarkenColor(initialColour, 50));  
+    var highlightColour = LightenDarkenColor(auctionColour, 50);
+    item.css("background-color", highlightColour);  
     _.defer(function () {
       item.addClass("highlighted");
       item.css("background-color", initialColour);

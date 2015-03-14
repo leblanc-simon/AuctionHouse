@@ -73,3 +73,21 @@ Template.item.events(okCancelEvents(
     }
   }
 ));
+
+Template.item.rendered = function () {
+  this.autorun(function (){
+    Bids.findOne({itemId: Template.instance().data._id}, {sort: {bid: -1}});
+    var item = Template.instance().$(".currentBid");
+    var auctionColour = AuctionDetails.findOne().colour;
+    var initialColour = "#000000";
+    var highlightColour = LightenDarkenColor(auctionColour, 50);
+    item.css("color", highlightColour);  
+    _.defer(function () {
+      item.addClass("highlighted");
+      item.css("color", initialColour);
+    });
+    _.delay(function () {
+      item.removeClass("highlighted");
+    }, 2000);
+  });
+};
