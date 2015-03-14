@@ -14,5 +14,8 @@ Template.bigScreen.helpers({
   },
   title: function () {
     return AuctionDetails.findOne().title;
+  },
+  primaryColour: function () {
+    return AuctionDetails.findOne().colour;
   }
 });

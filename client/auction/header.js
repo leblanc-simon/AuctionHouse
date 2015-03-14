@@ -2,6 +2,9 @@ Template.header.helpers({
   title: function () {
     return AuctionDetails.findOne().title;
   },
+  primaryColour: function () {
+    return AuctionDetails.findOne().colour;
+  },
   nameIsSet: function () {
     return Session.get('bidderName') != "";
   },
