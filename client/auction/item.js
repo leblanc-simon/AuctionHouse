@@ -66,7 +66,6 @@ Template.item.events(okCancelEvents(
   "#newBid",
   {
     ok: function (value, template) {
-      console.log(template);
       clientSubmitBid(parseInt(value, 10), this, template.target);
     },
     cancel: function () {
