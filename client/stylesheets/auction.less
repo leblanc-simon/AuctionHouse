@@ -350,6 +350,11 @@ body {
     }
     .countdownTitle {
       display: none;
+
+      &.countdownInfo {
+        display: block;
+        padding-top: 8px;
+      }
     }
     #hoursRemainingBlock {
       left: 15px;
@@ -478,6 +483,15 @@ div.item {
     font-weight: 600;
     font-size: 20px;
   }
+  div.itemImage {
+    height: 155px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin-bottom: 10px;
+    background-size: contain;
+    background-color: rgba(242,244,245,1);
+    .rounded(5px);
+  }
   p {
     color: #3a3a3a;
   }
@@ -487,6 +501,9 @@ div.item {
   }
   p.currentBid {
     font-weight: bold;
+    &.highlighted {
+      transition: color 2s linear;
+    }
   }
   div.description {
     margin-bottom: 10px;
@@ -585,14 +602,6 @@ div.isSelected {
   display: inline;
 }
 
-div.itemImage {
-  height: 155px;
-  background-position: center center;
-  background-repeat: no-repeat;
-  margin-bottom: 10px;
-  .rounded(5px);
-}
-
 input.newBid {
   padding-left: 24px;
   height: 50px;
@@ -640,7 +649,8 @@ div.bsElement {
 }
 
 div.bsTitle {
-  width: 550px;
+  margin-left: 37px;
+  width: 519px;
   background-position: left center;
   background-repeat: no-repeat;
   h1 {
@@ -649,12 +659,13 @@ div.bsTitle {
     float: right;
     text-align: right;
     position: relative;
-    top: 40px;
+    top: 60px;
   }
 }
 
 div.bsCountdown {
-  width: 420px;
+  margin-right: 37px;
+  width: 397px;
   background-color: #317694;
   p {
     float: left;
@@ -709,10 +720,15 @@ div.bsItem {
   background-color: #1c4154;
   position: relative;
   margin: 0px 37px 7px 37px;
+  &.highlighted {
+    transition: background 2s linear;
+  }
   div.itemImage {
     height: 98px;
+    background-color: rgba(242,244,245,1);
     background-position: center center;
     background-repeat: no-repeat;
+    background-size: contain;
     margin-bottom: 10px;
   }
   h2 {

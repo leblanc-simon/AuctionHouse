@@ -29,5 +29,10 @@ Template.editItemForm.events({
         newImageUrl
       );
     }
+  },
+
+  'click #deleteItem' : function () {
+    Meteor.call('deleteItem', Session.get('adminSelectedItem'));
+    Session.set('adminSelectedItem', null);
   }
 });
