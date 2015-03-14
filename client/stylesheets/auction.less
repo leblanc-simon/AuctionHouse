@@ -483,6 +483,15 @@ div.item {
     font-weight: 600;
     font-size: 20px;
   }
+  div.itemImage {
+    height: 155px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin-bottom: 10px;
+    background-size: contain;
+    background-color: rgba(242,244,245,1);
+    .rounded(5px);
+  }
   p {
     color: #3a3a3a;
   }
@@ -588,14 +597,6 @@ div.isMobile {
 
 div.isSelected {
   display: inline;
-}
-
-div.itemImage {
-  height: 155px;
-  background-position: center center;
-  background-repeat: no-repeat;
-  margin-bottom: 10px;
-  .rounded(5px);
 }
 
 input.newBid {
@@ -716,8 +717,10 @@ div.bsItem {
   margin: 0px 37px 7px 37px;
   div.itemImage {
     height: 98px;
+    background-color: rgba(242,244,245,1);
     background-position: center center;
     background-repeat: no-repeat;
+    background-size: contain;
     margin-bottom: 10px;
   }
   h2 {
