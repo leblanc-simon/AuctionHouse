@@ -75,14 +75,6 @@ setDevice = function () {
   Session.set('isBeingViewedOnMobile', $(window).width() < 768);
 };
 
-truncateString = function (string, maxLength) {
-  if (string.length > maxLength) {
-    return string.substring(0,maxLength) + "...";
-  }
-
-  return string;
-};
-
 setWaypoints = function () {
   var waypoint = new Waypoint({
     element: document.getElementById('main'),

@@ -659,7 +659,7 @@ div.bsCountdown {
     display: block;
     &#countdownNotStarted {
       position: relative;
-      top: 30px;
+      top: 50px;
     }
     &#countdownEnded {
       position: relative;
@@ -736,6 +736,11 @@ div.bsItem {
     font-size: 12px;
   }
   .bidder {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
     position: absolute;
     bottom: 2px;
     padding: 5px;

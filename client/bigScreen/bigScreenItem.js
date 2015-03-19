@@ -6,7 +6,7 @@ Template.bigScreenItem.helpers({
   },
   highestBidderTruncated: function () {
     if (Bids.findOne({itemId: this._id}, {sort: {bid: -1}})) {
-      return truncateString(Bids.findOne({itemId: this._id}, {sort: {bid: -1}}).bidder, 15);
+      return Bids.findOne({itemId: this._id}, {sort: {bid: -1}}).bidder;
     }
   },
   secondaryColour: function () {
