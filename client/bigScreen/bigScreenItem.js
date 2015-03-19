@@ -2,11 +2,20 @@ Template.bigScreenItem.helpers({
   bid: function () {
     if (Bids.findOne({itemId: this._id}, {sort: {bid: -1}})) {
       return Bids.findOne({itemId: this._id}, {sort: {bid: -1}}).bid;
+    } else {
+      return "-";
     }
   },
-  highestBidderTruncated: function () {
+  highestBidder: function () {
     if (Bids.findOne({itemId: this._id}, {sort: {bid: -1}})) {
       return Bids.findOne({itemId: this._id}, {sort: {bid: -1}}).bidder;
+    }
+  },
+  hideBidder: function () {
+    if (Bids.findOne({itemId: this._id}, {sort: {bid: -1}})) {
+      return "";
+    } else {
+      return "hideBidder";
     }
   },
   secondaryColour: function () {

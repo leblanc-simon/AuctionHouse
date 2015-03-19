@@ -16,7 +16,7 @@
           </div>
         {{/if}}
       </div>
-      <p class="currentBid">Current bid: £ {{bid}} by {{highestBidder}}</p>
+      <p class="currentBid">Current bid: £ {{bid}} <span class="{{hideBidder}}">by {{highestBidder}}</span></p>
       <span class="currencySymbol">£</span><input class="form-control newBid" id="newBid" type="number"/>
       <button class="btn btn-success submitBid" id="submitBid" type="Submit">Place Bid</button>
     </div>
