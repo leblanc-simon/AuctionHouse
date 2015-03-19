@@ -1,6 +1,6 @@
 <template name="countdown">
   {{#unless hasAuctionBegun}}
-    <p><span class="countdownTitle countdownInfo" id="countdownNotStarted">The auction has not yet started</span></p>
+    <p><span class="countdownTitle countdownInfo" id="countdownNotStarted">The auction has not started</span></p>
   {{else}}
     {{#if hasAuctionEnded}}
       <p><span class="countdownTitle countdownInfo" id="countdownEnded">The auction is over</span></p>
