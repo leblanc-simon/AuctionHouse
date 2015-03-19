@@ -284,7 +284,7 @@ body {
 
   .form-inline {
     width: 50%;
-    text-align: left;
+    text-align: right;
     position: absolute;
     right: 0px;
     top: 0px;
@@ -293,6 +293,11 @@ body {
       position: absolute;
       right: 15px;
       font-weight: normal;
+      width: 100%;
+
+      .bidderNameSurround {
+        display: none;
+      }
 
       a {
         color: rgba(255,255,255,0.5);
@@ -312,6 +317,18 @@ body {
       right: 15px;
       height: 36px;
       line-height: 16px;
+    }
+
+    .bidderName {
+      display: inline-block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 100%;
+    }
+
+    a {
+      display: block;
     }
   }
 
@@ -366,7 +383,6 @@ body {
       left: calc(~"15px + 2*(46px + 10px)");
     }
     .form-inline {
-      text-align: right;
       width: calc(~"100% - (15px + 3*(46px + 10px) + 20px)");
 
       #scrollToTop {
@@ -374,25 +390,6 @@ body {
         font-size: 12px;
         padding-left: 2px;
         padding-right: 2px;
-      }
-      label {
-        width: 100%;
-
-        .bidderNameSurround {
-          display: none;
-        }
-
-        .bidderName {
-          display: inline-block;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          width: 100%;
-        }
-
-        a {
-          display: block;
-        }
       }
     }
   }
@@ -414,27 +411,8 @@ body {
     .form-inline #scrollToTop {
       top: -6px;
     }
-    .form-inline {
-      label {
-        text-align: right;
-        top: -8px;
-
-        .bidderNameSurround {
-          display: none;
-        }
-
-        .bidderName {
-          display: inline-block;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          width: 100%;
-        }
-
-        a {
-          display: block;
-        }
-      }
+    .form-inline label {
+      top: -8px;
     }
   }
   @media (min-width: @screen-md-min) {
@@ -452,8 +430,13 @@ body {
     #secondsRemainingBlock {
       left: calc(~"190px + 2*(46px + 10px)");
     }
-    .form-inline #scrollToTop {
-      top: -4px;
+    .form-inline {
+      #scrollToTop {
+        top: -4px;
+      }
+      label {
+        top: -14px;
+      }
     }
   }
   @media (min-width: @screen-lg-min) {
@@ -470,6 +453,15 @@ body {
     }
     #secondsRemainingBlock {
       left: calc(~"230px + 2*(46px + 10px)");
+    }
+    .form-inline {
+      #scrollToTop {
+        top: 0px;
+      }
+      label {
+        top: -12px;
+        font-size: 20px;
+      }
     }
   }
 }
@@ -503,6 +495,9 @@ div.item {
     font-weight: bold;
     &.highlighted {
       transition: color 2s linear;
+    }
+    span.hideBidder {
+      display: none;
     }
   }
   div.description {
@@ -665,6 +660,14 @@ div.bsCountdown {
   span.countdownTitle {
     text-align: center;
     display: block;
+    &#countdownNotStarted {
+      position: relative;
+      top: 50px;
+    }
+    &#countdownEnded {
+      position: relative;
+      top: 50px;
+    }
   }
   span.timeRemaining {
     font-size: 48px;
@@ -721,10 +724,13 @@ div.bsItem {
     color: #ffffff;
     margin: 0px;
     width: 100%;
-    font-weight: 200;
-    font-size: 14px;
+    font-weight: 400;
+    font-size: 18px;
     text-align: center;
     padding: 0px 5px;
+  }
+  &.name {
+    font-weight: 600;
   }
   .bid {
     position: absolute;
@@ -733,10 +739,18 @@ div.bsItem {
     font-size: 12px;
   }
   .bidder {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
     position: absolute;
     bottom: 2px;
     padding: 5px;
     font-size: 12px;
+    &.hideBidder {
+      display: none;
+    }
   }
 }
 

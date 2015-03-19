@@ -40,9 +40,9 @@ calculateAuctionTimeRemaining = function () {
     } else {
       Session.set('auctionHasBegun', true);
       Session.set('auctionHasEnded', false);
-      Session.set('auctionHoursRemaining', pad(auctionEndTime.diff(moment(), 'hours'), 2));
-      Session.set('auctionMinutesRemaining', pad((auctionEndTime.diff(moment(), 'minutes') % 60), 2));
-      Session.set('auctionSecondsRemaining', pad((auctionEndTime.diff(moment(), 'seconds') % 60), 2));
+      Session.set('auctionHoursRemaining', pad(Math.max(auctionEndTime.diff(moment(), 'hours'), 0), 2));
+      Session.set('auctionMinutesRemaining', pad(Math.max((auctionEndTime.diff(moment(), 'minutes') % 60), 0), 2));
+      Session.set('auctionSecondsRemaining', pad(Math.max((auctionEndTime.diff(moment(), 'seconds') % 60), 0), 2));
     }
   }
 };
@@ -73,14 +73,6 @@ syncServerTime = function () {
 
 setDevice = function () {
   Session.set('isBeingViewedOnMobile', $(window).width() < 768);
-};
-
-truncateString = function (string, maxLength) {
-  if (string.length > maxLength) {
-    return string.substring(0,maxLength) + "...";
-  }
-
-  return string;
 };
 
 setWaypoints = function () {

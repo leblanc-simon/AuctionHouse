@@ -34,11 +34,20 @@ Template.item.helpers({
   bid: function () {
     if (Bids.findOne({itemId: this._id}, {sort: {bid: -1}})) {
       return Bids.findOne({itemId: this._id}, {sort: {bid: -1}}).bid;
+    } else {
+      return "-";
     }
   },
   highestBidder: function () {
     if (Bids.findOne({itemId: this._id}, {sort: {bid: -1}})) {
       return Bids.findOne({itemId: this._id}, {sort: {bid: -1}}).bidder;
+    }
+  },
+  hideBidder: function () {
+    if (Bids.findOne({itemId: this._id}, {sort: {bid: -1}})) {
+      return "";
+    } else {
+      return "hideBidder";
     }
   },
   showBidErrorOnItem: function () {
