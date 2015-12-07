@@ -12,6 +12,6 @@ This is a work in progress, and isn't production ready yet.
 
 Any of these commands may need to be run as super user, depending on your system.
 
-##### Todos
+##### Things to improve
 
-* Lots of things.
+* See the [issues](https://github.com/simonpfry/AuctionHouse/issues).
