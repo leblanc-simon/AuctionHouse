@@ -1,21 +1,23 @@
 <template name="editAuctionDetails">
   <div class="col-xs-12 col-sm-10 col-sm-offset-1">
     <h1>Edit Auction Details</h1>
-    <div class='form'>
-      <div class='form-group input-group'>
-        <label>Title</label>
-        <input type='text' class="form-control" id="inputAuctionTitle" value="{{title}}"/>
-        <label>Primary Colour</label>
-        <input type='text' class="form-control" id="inputAuctionPrimaryColour" value="{{colour}}"/>
+    <div class='form admin-form'>
+      <div class='input-group'>
+        <span class="input-group-addon" id="input-auction-title">Title</span>
+        <input type="text" class="form-control" id="inputAuctionTitle" placeholder="My auction name" aria-describedby="input-auction-title" value="{{title}}">
+      </div>
+      <div class='input-group'>
+        <span class="input-group-addon" id="input-auction-primary-colour">Primary Colour</span>
+        <input type="text" class="form-control" id="inputAuctionPrimaryColour" placeholder="aaaaaa" aria-describedby="input-auction-primary-colour" value="{{colour}}">
       </div>
       {{> countdown}}
+      <label>Start time:</label>
       <div class='form-group input-group datetimepicker'>
-        <label>Start time:</label>
         <input type='text' class="form-control" id="auctionStartDatePicker" value="{{startTime}}"/>
         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
       </div>
+      <label>End time:</label>
       <div class='form-group input-group datetimepicker'>
-        <label>End time:</label>
         <input type='text' class="form-control" id="auctionEndDatePicker" value="{{endTime}}"/>
         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
       </div>
