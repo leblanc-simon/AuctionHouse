@@ -12,3 +12,4 @@ iron:router
 momentjs:moment
 underscore
 meteorhacks:kadira
+standard-minifiers
