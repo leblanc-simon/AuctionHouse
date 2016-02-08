@@ -19,13 +19,13 @@ var clientSubmitBid = function (newBid, item, inputField) {
   } else {
     Session.set('bidErrorItem', item._id);
     if (bidderName == "" || bidderName == null) {
-      Session.set('bidErrorMessage', "Please set your name at the top of the page.");
+      Session.set('bidErrorMessage', "Veuillez entrer votre nom en haut de la page");
     } else if (newBid <= previousBid.bid) {
-      Session.set('bidErrorMessage', "Your bid is not higher than the current highest bid. Please put in a higher bid. Bids are rounded down to the nearest pound.");
+      Session.set('bidErrorMessage', "Votre enchère n'est pas plus élevée que celle actuelle. Veuillez faire une enchère plus élevée.");
     } else if (Session.get('auctionHasEnded')) {
-      Session.set('bidErrorMessage', "The auction has ended. You can no longer bid on items.");
+      Session.set('bidErrorMessage', "L'enchère est terminée. Vous ne pouvez plus enchérir");
     } else if (!Session.get('auctionHasBegun')) {
-      Session.set('bidErrorMessage', "The auction has not started. You can't bid on items yet.");
+      Session.set('bidErrorMessage', "L'enchère n'est pas encore démarrée.");
     }
   }
 };
