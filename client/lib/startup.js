@@ -7,4 +7,5 @@ Meteor.startup(function () {
   setDevice();
   syncServerTime();
   moment.locale('en');
+  i18n.setDefaultLanguage('en');
 });

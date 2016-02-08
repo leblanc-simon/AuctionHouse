@@ -19,13 +19,13 @@ var clientSubmitBid = function (newBid, item, inputField) {
   } else {
     Session.set('bidErrorItem', item._id);
     if (bidderName == "" || bidderName == null) {
-      Session.set('bidErrorMessage', "Veuillez entrer votre nom en haut de la page");
+      Session.set('bidErrorMessage', i18n('bidErrorMessageName'));
     } else if (newBid <= previousBid.bid) {
-      Session.set('bidErrorMessage', "Votre enchère n'est pas plus élevée que celle actuelle. Veuillez faire une enchère plus élevée.");
+      Session.set('bidErrorMessage', i18n('bidErrorMessageHigher'));
     } else if (Session.get('auctionHasEnded')) {
-      Session.set('bidErrorMessage', "L'enchère est terminée. Vous ne pouvez plus enchérir");
+      Session.set('bidErrorMessage', i18n('bidErrorMessageEnded'));
     } else if (!Session.get('auctionHasBegun')) {
-      Session.set('bidErrorMessage', "L'enchère n'est pas encore démarrée.");
+      Session.set('bidErrorMessage', i18n('bidErrorMessageBegun'));
     }
   }
 };
