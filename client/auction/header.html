@@ -7,15 +7,15 @@
           {{> countdown}}
           <div class="form-inline" role="form">
             {{#unless nameIsSet}}
-              <label for="bidderName" id="enterYourNameLabel" class="control-label">Enter your name:</label>
+              <label for="bidderName" id="enterYourNameLabel" class="control-label">Entrez votre nom:</label>
               <input class="form-control" id="bidderName"/>
-              <button class="btn btn-success btn-lg" id="submitName" type="Submit">Save</button>
-              <button class="btn btn-success btn-lg" id="scrollToTop" type="Submit">Enter your name</button>
+              <button class="btn btn-success btn-lg" id="submitName" type="Submit">Enregistrer</button>
+              <button class="btn btn-success btn-lg" id="scrollToTop" type="Submit">Entrez votre nom</button>
             {{else}}
               <label class="control-label">
-                <span class="bidderNameSurround">Your name is</span>
+                <span class="bidderNameSurround">Votre nom est</span>
                 <span class="bidderName">{{name}}</span>
-                <a id="changeName">Change name</a>
+                <a id="changeName">Modifier votre nom</a>
               </label>
             {{/unless}}
           </div>

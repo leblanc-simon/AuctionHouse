@@ -1,7 +1,7 @@
 <template name="editItemForm">
   <div class='form admin-form'>
     <div class='input-group'>
-      <span class="input-group-addon" id="inputItemNameLabel">Name</span>
+      <span class="input-group-addon" id="inputItemNameLabel">Nom</span>
       <input type="text" class="form-control" id="inputItemName" aria-describedby="inputItemNameLabel" value="{{name}}">
     </div>
     <div class='input-group'>
@@ -9,14 +9,14 @@
       <input type="text" class="form-control" id="inputItemDescription" aria-describedby="inputItemDescriptionLabel" value="{{description}}">
     </div>
     <div class='input-group'>
-      <span class="input-group-addon" id="inputItemDonatedByLabel">Donated By</span>
+      <span class="input-group-addon" id="inputItemDonatedByLabel">Mise à prix par</span>
       <input type="text" class="form-control" id="inputItemDonatedBy" aria-describedby="inputItemDonatedByLabel" value="{{donatedBy}}">
     </div>
     <div class='input-group'>
-      <span class="input-group-addon" id="inputItemImageUrlLabel">Image Url</span>
+      <span class="input-group-addon" id="inputItemImageUrlLabel">URL de l'image</span>
       <input type="text" class="form-control" id="inputItemImageUrl" aria-describedby="inputItemImageUrlLabel" value="{{imageUrl}}">
     </div>
-    <button class="btn btn-default" id="submitItemChanges" type="Submit">Submit</button>
-    <button class="btn btn-danger" id="deleteItem" type="Submit">Delete</button>
+    <button class="btn btn-default" id="submitItemChanges" type="Submit">Valider</button>
+    <button class="btn btn-danger" id="deleteItem" type="Submit">Supprimer</button>
   </div>
 </template>

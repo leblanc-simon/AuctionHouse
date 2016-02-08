@@ -1,15 +1,15 @@
 <template name="countdown">
   {{#unless hasAuctionBegun}}
-    <p><span class="countdownTitle countdownInfo" id="countdownNotStarted">The auction has not started</span></p>
+    <p><span class="countdownTitle countdownInfo" id="countdownNotStarted">L'enchère n'a pas encore démarrée</span></p>
   {{else}}
     {{#if hasAuctionEnded}}
-      <p><span class="countdownTitle countdownInfo" id="countdownEnded">The auction is over</span></p>
+      <p><span class="countdownTitle countdownInfo" id="countdownEnded">L'enchère est finie</span></p>
     {{else}}
       <p>
-        <span class="countdownTitle">The auction ends in</span>
-        <span class="timeBlock" id="hoursRemainingBlock"><span class="timeRemaining" id="hoursRemaining">{{auctionHoursRemaining}}</span> <span class="timeRemainingLabel" id="hoursLabel">hours</span><span class="sentence">,</span></span>
-        <span class="timeBlock" id="minutesRemainingBlock"><span class="timeRemaining" id="minutesRemaining">{{auctionMinutesRemaining}}</span> <span class="timeRemainingLabel" id="minutesLabel">minutes</span><span class="sentence"> and</span></span>
-        <span class="timeBlock" id="secondsRemainingBlock"><span class="timeRemaining" id="secondsRemaining">{{auctionSecondsRemaining}}</span> <span class="timeRemainingLabel" id="secondsLabel">seconds</span></span>
+        <span class="countdownTitle">Fin de l'enchère dans</span>
+        <span class="timeBlock" id="hoursRemainingBlock"><span class="timeRemaining" id="hoursRemaining">{{auctionHoursRemaining}}</span> <span class="timeRemainingLabel" id="hoursLabel">heures</span><span class="sentence">,</span></span>
+        <span class="timeBlock" id="minutesRemainingBlock"><span class="timeRemaining" id="minutesRemaining">{{auctionMinutesRemaining}}</span> <span class="timeRemainingLabel" id="minutesLabel">minutes</span><span class="sentence"> et</span></span>
+        <span class="timeBlock" id="secondsRemainingBlock"><span class="timeRemaining" id="secondsRemaining">{{auctionSecondsRemaining}}</span> <span class="timeRemainingLabel" id="secondsLabel">secondes</span></span>
       </p>
     {{/if}}
   {{/unless}}
