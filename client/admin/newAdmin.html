@@ -1,9 +1,9 @@
 <template name="newAdmin">
   <div class="container">
-    <p>Oh hé toi ! Il semblerai que tu sois un nouveau.</p>
-    <p>Met un mot de passe administrateur et ne l'oublie pas !</p>
+    <p>{{i18n 'newAdminDescription'}}</p>
+    <p>{{i18n 'newAdminSetPassword'}}</p>
     <input class="form-control adminPassword" id="inputNewAdminPassword" type="password"/>
     <input class="form-control adminPassword" id="inputNewConfirmAdminPassword" type="password"/>
-    <button class="btn btn-default" id="submitNewAdminPassword" type="Submit">Valider</button>
+    <button class="btn btn-default" id="submitNewAdminPassword" type="Submit">{{i18n 'submitNewAdminPassword'}}</button>
   </div>
 </template>

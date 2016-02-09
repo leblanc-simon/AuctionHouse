@@ -1,27 +1,27 @@
 <template name="editAuctionDetails">
   <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-    <h1>Modifier les détails de l'enchère</h1>
+    <h1>{{i18n 'editAuctionDetails'}}</h1>
     <div class='form admin-form'>
       <div class='input-group'>
-        <span class="input-group-addon" id="inputAuctionTitleLabel">Titre</span>
-        <input type="text" class="form-control" id="inputAuctionTitle" placeholder="Mon nom d'enchère" aria-describedby="inputAuctionTitleLabel" value="{{title}}">
+        <span class="input-group-addon" id="inputAuctionTitleLabel">{{i18n 'inputAuctionTitleLabel'}}</span>
+        <input type="text" class="form-control" id="inputAuctionTitle" placeholder="{{i18n 'inputAuctionTitle'}}" aria-describedby="inputAuctionTitleLabel" value="{{title}}">
       </div>
       <div class='input-group'>
-        <span class="input-group-addon" id="inputAuctionPrimaryColourLabel">Couleur principale</span>
+        <span class="input-group-addon" id="inputAuctionPrimaryColourLabel">{{i18n 'inputAuctionPrimaryColourLabel'}}</span>
         <input type="text" class="form-control" id="inputAuctionPrimaryColour" placeholder="aaaaaa" aria-describedby="inputAuctionPrimaryColourLabel" value="{{colour}}">
       </div>
       {{> countdown}}
-      <label>Date de début:</label>
+      <label>{{i18n 'auctionStartDatePicker'}}</label>
       <div class='form-group input-group datetimepicker'>
         <input type='text' class="form-control" id="auctionStartDatePicker" value="{{startTime}}"/>
         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
       </div>
-      <label>Date de fin:</label>
+      <label>{{i18n 'auctionEndDatePicker'}}</label>
       <div class='form-group input-group datetimepicker'>
         <input type='text' class="form-control" id="auctionEndDatePicker" value="{{endTime}}"/>
         <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
       </div>
-      <button class="btn btn-default" id="submitAuctionChanges" type="Submit">Valider</button>
+      <button class="btn btn-default" id="submitAuctionChanges" type="Submit">{{i18n 'submitAuctionChanges'}}</button>
     </div>
   </div>
 </template>

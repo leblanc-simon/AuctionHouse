@@ -1,4 +1,56 @@
 i18n.map('fr', {
+    // client/admin/admin.html
+    logOut: "Déconnexion",
+    logs: "Journaux",
+    bidder: "Enchérisseur",
+    itemName: "Nom de l'élément",
+    itemId: "Identifiant de l'élément",
+    bid: "Enchère",
+    bidTime: "Heure de l'enchère",
+    enterAdminPassword: "Veuillez entrer le mot de passe administrateur :",
+    inputAdminPassword: "Mot de passe",
+    submitAdminPassword: "Valider",
+
+    // client/admin/editAuctionDetails.html
+    editAuctionDetails: "Modifier les détails de l'enchère",
+    inputAuctionTitleLabel: "Titre",
+    inputAuctionTitle: "Mon nom d'enchère",
+    inputAuctionPrimaryColourLabel: "Couleur principale",
+    auctionStartDatePicker: "Date de début :",
+    auctionEndDatePicker: "Date de fin:",
+    submitAuctionChanges: "Valider",
+
+    // client/admin/editAuctionDetails.js
+    inputDateFormat: "DD/MM/YYYY HH:mm",
+
+    // client/admin/editItemForm.html
+    inputItemNameLabel: "Nom",
+    inputItemDescriptionLabel: "Description",
+    inputItemDonatedByLabel: "Mis en vente par",
+    inputItemImageUrlLabel: "URL de l'image",
+    submitItemChanges: "Valider",
+    deleteItem: "Supprimer",
+
+    // client/admin/editItems.html
+    editItems: "Éléments",
+    editItemName: "Nom",
+    addNewItem: "Ajouter un élément",
+
+    // client/admin/editItemsRow.html
+    moveUp: "Monter",
+    moveDown: "Descendre",
+
+    // client/admin/logRow.html
+    deleteBid: "Supprimer",
+
+    // client/admin/logRow.js
+    logRowDateFormat: "Do MMMM YYYY, HH:mm:ss",
+
+    // client/admin/newAdmin.html
+    newAdminDescription: "Oh hé toi ! Il semblerai que tu sois un nouveau. Allons nous mettre cette enchère sur la route (web ?) Réellement ?",
+    newAdminSetPassword: "Met un mot de passe administrateur et ne l'oublie pas !",
+    submitNewAdminPassword: "Valider",
+
     // client/auction/header.html
     enterYourNameLabel: "Entrez votre nom :",
     submitName: "Enregistrer",
@@ -32,5 +84,5 @@ i18n.map('fr', {
     andLabel: "et",
 
     // client/common/loading.html
-    loading: "Chargement",
+    loading: "Chargement"
 });

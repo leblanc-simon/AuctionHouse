@@ -6,6 +6,13 @@ Meteor.startup(function () {
   calculateAuctionTimeRemaining();
   setDevice();
   syncServerTime();
-  moment.locale('en');
-  i18n.setDefaultLanguage('en');
+
+  var localeFromBrowser = window.navigator.userLanguage || window.navigator.language;
+  var locale = 'en';
+  if (localeFromBrowser.match(/fr/)) {
+    locale = 'fr';
+  }
+  i18n.setLanguage(locale);
+
+  moment.locale(locale);
 });

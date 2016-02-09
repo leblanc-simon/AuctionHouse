@@ -1,6 +1,6 @@
 Template.logRow.helpers({
   bidTime: function () {
-    return moment(this.dateTime).format('MMMM Do YYYY, h:mm:ss a');
+    return moment(this.dateTime).format(i18n('logRowDateFormat'));
   }
 });
 
