@@ -94,6 +94,14 @@ body {
   span.countdownTitle {
     display: block;
   }
+  @media (max-width: @screen-xxs-max) {
+    .sentence-and {
+      display: none;
+    }
+    .hide-xxs {
+      display: none;
+    }
+  }
   @media (max-width: @screen-xs-max) {
     padding: 10px;
     width: 100%;
@@ -111,7 +119,6 @@ body {
     }
     span.timeRemainingLabel {
       font-size: 12px;
-      top: 28px;
       font-weight: normal;
       width: 46px;
       text-align: center;
@@ -145,28 +152,24 @@ body {
       font-size: 12px;
     }
     .sentence {
-      visibility: hidden;
+      font-size: 12px;
+      font-weight: normal;
     }
   }
   @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
     p {
       font-size: 24px;
       font-weight: 200;
-      height: 50px;
     }
     span.timeRemaining {
-      font-size: 32px;
+      font-size: 36px;
       font-weight: 600;
-      position: absolute;
-      width: 74px;
+      display: inline-block;
+      width: 50px;
       text-align: center;
-    }
-    span.timeRemainingLabel {
-      position: absolute;
-      top: 40px;
-      font-size: 18px;
-      width: 74px;
-      text-align: center;
+      &#daysRemaining {
+        width: initial;
+      }
     }
     label {
       font-size: 24px;
@@ -181,24 +184,6 @@ body {
     button#submitName {
       margin-left: 12px;
     }
-    .timeBlock {
-      position: absolute;
-      top: 5px;
-      width: 74px;
-      margin-left: -37px;
-    }
-    #hoursRemainingBlock {
-      left: 300px;
-    }
-    #minutesRemainingBlock {
-      left: calc(~"300px + 74px");
-    }
-    #secondsRemainingBlock {
-      left: calc(~"300px + (2 * 74px)");
-    }
-    .sentence {
-      visibility: hidden;
-    }
   }
   @media (min-width: @screen-md-min) {
     p {
@@ -211,6 +196,9 @@ body {
       display: inline-block;
       width: 50px;
       text-align: center;
+      &#daysRemaining {
+        width: initial;
+      }
     }
     label {
       font-size: 22px;
@@ -236,6 +224,9 @@ body {
       font-weight: 600;
       text-align: center;
       width: 62px;
+      &#daysRemaining {
+        width: initial;
+      }
     }
     label {
       font-size: 28px;

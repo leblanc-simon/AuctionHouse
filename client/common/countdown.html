@@ -7,10 +7,10 @@
     {{else}}
       <p>
         <span class="countdownTitle">{{i18n 'countdownTitle'}}</span>
-        <span class="timeBlock{{auctionDaysRemainingHide}}" id="daysRemainingBlock"><span class="timeRemaining" id="daysRemaining">{{auctionDaysRemaining}}</span> <span class="timeRemainingLabel" id="daysLabel">{{i18n 'daysLabel'}}</span><span class="sentence">,</span></span>
+        <span class="timeBlock {{auctionDaysRemainingHide}}" id="daysRemainingBlock"><span class="timeRemaining" id="daysRemaining">{{auctionDaysRemaining}}</span> <span class="timeRemainingLabel" id="daysLabel">{{i18n 'daysLabel'}}</span><span class="sentence">,</span></span>
         <span class="timeBlock" id="hoursRemainingBlock"><span class="timeRemaining" id="hoursRemaining">{{auctionHoursRemaining}}</span> <span class="timeRemainingLabel" id="hoursLabel">{{i18n 'hoursLabel'}}</span><span class="sentence">,</span></span>
-        <span class="timeBlock" id="minutesRemainingBlock"><span class="timeRemaining" id="minutesRemaining">{{auctionMinutesRemaining}}</span> <span class="timeRemainingLabel" id="minutesLabel">{{i18n 'minutesLabel'}}</span><span class="sentence"> {{i18n 'andLabel'}}</span></span>
-        <span class="timeBlock" id="secondsRemainingBlock"><span class="timeRemaining" id="secondsRemaining">{{auctionSecondsRemaining}}</span> <span class="timeRemainingLabel" id="secondsLabel">{{i18n 'secondsLabel'}}</span></span>
+        <span class="timeBlock" id="minutesRemainingBlock"><span class="timeRemaining" id="minutesRemaining">{{auctionMinutesRemaining}}</span> <span class="timeRemainingLabel" id="minutesLabel">{{i18n 'minutesLabel'}}</span><span class="sentence sentence-and"> {{i18n 'andLabel'}}</span></span>
+        <span class="timeBlock {{auctionSecondsRemainingHide}}" id="secondsRemainingBlock"><span class="timeRemaining" id="secondsRemaining">{{auctionSecondsRemaining}}</span> <span class="timeRemainingLabel" id="secondsLabel">{{i18n 'secondsLabel'}}</span></span>
       </p>
     {{/if}}
   {{/unless}}
