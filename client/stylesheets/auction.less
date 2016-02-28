@@ -773,14 +773,33 @@ div.bsCountdown {
     width: 74px;
     margin-left: -37px;
   }
-  #hoursRemainingBlock {
-    left: 30%;
+  .show-days {
+    #daysRemainingBlock {
+      left: 20%;
+    }
+    #hoursRemainingBlock {
+      left: 40%;
+    }
+    #minutesRemainingBlock {
+      left: 60%;
+    }
+    #secondsRemainingBlock {
+      left: 80%;
+    }
   }
-  #minutesRemainingBlock {
-    left: 50%;
-  }
-  #secondsRemainingBlock {
-    left: 70%;
+  .show-seconds {
+    #daysRemainingBlock {
+      display: none;
+    }
+    #hoursRemainingBlock {
+      left: 30%;
+    }
+    #minutesRemainingBlock {
+      left: 50%;
+    }
+    #secondsRemainingBlock {
+      left: 70%;
+    }
   }
   .sentence {
     visibility: hidden;
