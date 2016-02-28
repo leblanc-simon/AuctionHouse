@@ -1,10 +1,10 @@
 <template name="editItems">
   <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-    <h1>Items</h1>
+    <h1>{{i18n 'editItems'}}</h1>
     <div class="col-sm-6">
       <table class="table table-striped">
         <thead>
-          <th>Name</th>
+          <th>{{i18n 'editItemName'}}</th>
           <th></th>
           <th></th>
         </thead>
@@ -14,7 +14,7 @@
           {{/each}}
         </tbody>
       </table>
-      <button class="btn btn-default" id="addNewItem">Add item</button>
+      <button class="btn btn-default" id="addNewItem">{{i18n 'addNewItem'}}</button>
     </div>
     <div class="col-sm-6">
       {{#if showItemForm}}

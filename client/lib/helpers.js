@@ -40,9 +40,19 @@ calculateAuctionTimeRemaining = function () {
     } else {
       Session.set('auctionHasBegun', true);
       Session.set('auctionHasEnded', false);
-      Session.set('auctionHoursRemaining', pad(Math.max(auctionEndTime.diff(moment(), 'hours'), 0), 2));
-      Session.set('auctionMinutesRemaining', pad(Math.max((auctionEndTime.diff(moment(), 'minutes') % 60), 0), 2));
-      Session.set('auctionSecondsRemaining', pad(Math.max((auctionEndTime.diff(moment(), 'seconds') % 60), 0), 2));
+      if (auctionEndTime.diff(moment(), 'hours') > 23) {
+        Session.set('auctionDaysRemainingHide', false);
+        Session.set('auctionDaysRemaining', Math.max(auctionEndTime.diff(moment(), 'days'), 0));
+        Session.set('auctionHoursRemaining', pad(Math.max((auctionEndTime.diff(moment(), 'hours') % 24), 0), 2));
+        Session.set('auctionMinutesRemaining', pad(Math.max((auctionEndTime.diff(moment(), 'minutes') % 60), 0), 2));
+        Session.set('auctionSecondsRemaining', pad(Math.max((auctionEndTime.diff(moment(), 'seconds') % 60), 0), 2));
+      } else {
+        Session.set('auctionDaysRemainingHide', true);
+        Session.set('auctionDaysRemaining', '');
+        Session.set('auctionHoursRemaining', pad(Math.max(auctionEndTime.diff(moment(), 'hours'), 0), 2));
+        Session.set('auctionMinutesRemaining', pad(Math.max((auctionEndTime.diff(moment(), 'minutes') % 60), 0), 2));
+        Session.set('auctionSecondsRemaining', pad(Math.max((auctionEndTime.diff(moment(), 'seconds') % 60), 0), 2));
+      }
     }
   }
 };

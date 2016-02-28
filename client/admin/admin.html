@@ -4,18 +4,18 @@
   {{else}}
     <div class="container">
       {{#if currentUser}}
-        <p class="text-right"><a id="logOut" href="">Log out</a></p>
+        <p class="text-right"><a id="logOut" href="">{{i18n 'logOut'}}</a></p>
         {{> editAuctionDetails}}
         {{> editItems}}
         <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-          <h1>Logs</h1>
+          <h1>{{i18n 'logs'}}</h1>
           <table class="table table-striped">
             <thead>
-              <th>Bidder</th>
-              <th>Item Name</th>
-              <th>Item Id</th>
-              <th>Bid</th>
-              <th>Bid Time</th>
+              <th>{{i18n 'bidder'}}</th>
+              <th>{{i18n 'itemName'}}</th>
+              <th>{{i18n 'itemId'}}</th>
+              <th>{{i18n 'bid'}}</th>
+              <th>{{i18n 'bidTime'}}</th>
             </thead>
             <tbody>
               {{#each logs}}
@@ -25,9 +25,9 @@
           </table>
         </div>
       {{else}}
-        <p>Please enter admin password:</p>
-        <input class="form-control adminPassword" id="inputAdminPassword" placeholder="password" type="password"/>
-        <button class="btn btn-default" id="submitAdminPassword" type="Submit">Enter</button>
+        <p>{{i18n 'enterAdminPassword'}}</p>
+        <input class="form-control adminPassword" id="inputAdminPassword" placeholder="{{i18n 'inputAdminPassword'}}" type="password"/>
+        <button class="btn btn-default" id="submitAdminPassword" type="Submit">{{i18n 'submitAdminPassword'}}</button>
       {{/if}}
     </div>
   {{/if}}

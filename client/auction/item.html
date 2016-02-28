@@ -5,8 +5,8 @@
       <div class="rowtext">
         {{#if showBidErrorOnItem}}
           <div class="alert alert-danger">
-            <p><strong>Uh oh!</strong> We were unable to place your bid. {{bidErrorMessage}}</p>
-            <a class="dismissError">Close</a>
+            <p><strong>{{i18n 'cry'}}</strong> {{i18n 'bidErrorOnItem'}} {{bidErrorMessage}}</p>
+            <a class="dismissError">{{i18n 'close'}}</a>
           </div>
         {{else}}
           <h2>{{name}}</h2>
@@ -16,9 +16,9 @@
           </div>
         {{/if}}
       </div>
-      <p class="currentBid">Current bid: £ {{bid}} <span class="{{hideBidder}}">by {{highestBidder}}</span></p>
-      <span class="currencySymbol">£</span><input class="form-control newBid" id="newBid" type="number"/>
-      <button class="btn btn-success submitBid" id="submitBid" type="Submit">Place Bid</button>
+      <p class="currentBid">{{i18n 'currentBid' bid}} <span class="{{hideBidder}}">{{i18n 'highestBidder' highestBidder}}</span></p>
+      <span class="currencySymbol">{{i18n 'currencySymbol'}}</span><input class="form-control newBid" id="newBid" type="number"/>
+      <button class="btn btn-success submitBid" id="submitBid" type="Submit">{{i18n 'submitBid'}}</button>
     </div>
   </div>
 </template>

@@ -5,6 +5,12 @@ Template.countdown.helpers({
   hasAuctionEnded: function () {
     return Session.get('auctionHasEnded');
   },
+  auctionDaysRemainingHide: function () {
+    return Session.get('auctionDaysRemainingHide') ? ' hide' : '';
+  },
+  auctionDaysRemaining: function () {
+    return Session.get('auctionDaysRemaining');
+  },
   auctionHoursRemaining: function () {
     return Session.get('auctionHoursRemaining');
   },

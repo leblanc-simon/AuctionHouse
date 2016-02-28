@@ -19,13 +19,13 @@ var clientSubmitBid = function (newBid, item, inputField) {
   } else {
     Session.set('bidErrorItem', item._id);
     if (bidderName == "" || bidderName == null) {
-      Session.set('bidErrorMessage', "Please set your name at the top of the page.");
+      Session.set('bidErrorMessage', i18n('bidErrorMessageName'));
     } else if (newBid <= previousBid.bid) {
-      Session.set('bidErrorMessage', "Your bid is not higher than the current highest bid. Please put in a higher bid. Bids are rounded down to the nearest pound.");
+      Session.set('bidErrorMessage', i18n('bidErrorMessageHigher'));
     } else if (Session.get('auctionHasEnded')) {
-      Session.set('bidErrorMessage', "The auction has ended. You can no longer bid on items.");
+      Session.set('bidErrorMessage', i18n('bidErrorMessageEnded'));
     } else if (!Session.get('auctionHasBegun')) {
-      Session.set('bidErrorMessage', "The auction has not started. You can't bid on items yet.");
+      Session.set('bidErrorMessage', i18n('bidErrorMessageBegun'));
     }
   }
 };

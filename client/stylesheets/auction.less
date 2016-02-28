@@ -34,10 +34,6 @@ body {
   background-color: #317694;
   width: 100%;
 
-  @media (min-width: @screen-md-min) {
-    margin-top: 100px;
-  }
-
   h1 {
     color: #FFFFFF;
     text-align: left;
@@ -95,6 +91,9 @@ body {
   button#scrollToTop {
     display: none;
   }
+  span.countdownTitle {
+    display: block;
+  }
   @media (max-width: @screen-xs-max) {
     padding: 10px;
     width: 100%;
@@ -106,21 +105,18 @@ body {
     }
     span.timeRemaining {
       font-size: 24px;
-      position: absolute;
       font-weight: 600;
       width: 46px;
       text-align: center;
     }
     span.timeRemainingLabel {
       font-size: 12px;
-      position: absolute;
       top: 28px;
       font-weight: normal;
       width: 46px;
       text-align: center;
     }
     .timeBlock {
-      position: absolute;
       top: 30px;
       width: 46px;
     }
@@ -334,6 +330,9 @@ body {
 
   p {
     height: 36px;
+  }
+  span.countdownTitle {
+    display: block;
   }
   span.timeRemaining {
     font-size: 24px;
