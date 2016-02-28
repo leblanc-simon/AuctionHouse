@@ -5,11 +5,8 @@ Template.countdown.helpers({
   hasAuctionEnded: function () {
     return Session.get('auctionHasEnded');
   },
-  auctionDaysRemainingHide: function () {
-    return Session.get('auctionDaysRemainingHide') ? 'hide' : '';
-  },
-  auctionSecondsRemainingHide: function () {
-    return Session.get('auctionDaysRemainingHide') ? '' : 'hide-xxs';
+  auctionShowDaysOrSeconds: function () {
+    return Session.get('auctionDaysRemainingHide') ? 'show-seconds' : 'show-days';
   },
   auctionDaysRemaining: function () {
     return Session.get('auctionDaysRemaining');
