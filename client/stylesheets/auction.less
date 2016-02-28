@@ -94,6 +94,22 @@ body {
   span.countdownTitle {
     display: block;
   }
+  .show-seconds {
+    #daysRemainingBlock {
+      display: none;
+    }
+  }
+  @media (max-width: @screen-xxs-max) {
+    .sentence-and {
+      display: none;
+    }
+    .show-days #secondsRemainingBlock {
+      display: none;
+    }
+    .show-seconds #daysRemainingBlock {
+      display: none;
+    }
+  }
   @media (max-width: @screen-xs-max) {
     padding: 10px;
     width: 100%;
@@ -111,7 +127,6 @@ body {
     }
     span.timeRemainingLabel {
       font-size: 12px;
-      top: 28px;
       font-weight: normal;
       width: 46px;
       text-align: center;
@@ -145,28 +160,24 @@ body {
       font-size: 12px;
     }
     .sentence {
-      visibility: hidden;
+      font-size: 12px;
+      font-weight: normal;
     }
   }
   @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) {
     p {
       font-size: 24px;
       font-weight: 200;
-      height: 50px;
     }
     span.timeRemaining {
-      font-size: 32px;
+      font-size: 36px;
       font-weight: 600;
-      position: absolute;
-      width: 74px;
+      display: inline-block;
+      width: 50px;
       text-align: center;
-    }
-    span.timeRemainingLabel {
-      position: absolute;
-      top: 40px;
-      font-size: 18px;
-      width: 74px;
-      text-align: center;
+      &#daysRemaining {
+        width: initial;
+      }
     }
     label {
       font-size: 24px;
@@ -181,24 +192,6 @@ body {
     button#submitName {
       margin-left: 12px;
     }
-    .timeBlock {
-      position: absolute;
-      top: 5px;
-      width: 74px;
-      margin-left: -37px;
-    }
-    #hoursRemainingBlock {
-      left: 300px;
-    }
-    #minutesRemainingBlock {
-      left: calc(~"300px + 74px");
-    }
-    #secondsRemainingBlock {
-      left: calc(~"300px + (2 * 74px)");
-    }
-    .sentence {
-      visibility: hidden;
-    }
   }
   @media (min-width: @screen-md-min) {
     p {
@@ -211,6 +204,9 @@ body {
       display: inline-block;
       width: 50px;
       text-align: center;
+      &#daysRemaining {
+        width: initial;
+      }
     }
     label {
       font-size: 22px;
@@ -236,6 +232,9 @@ body {
       font-weight: 600;
       text-align: center;
       width: 62px;
+      &#daysRemaining {
+        width: initial;
+      }
     }
     label {
       font-size: 28px;
@@ -358,13 +357,22 @@ body {
     visibility: hidden;
   }
 
+  @media (max-width: @screen-xxs-max) {
+    .show-days #secondsRemainingBlock {
+      display: none;
+    }
+    .show-seconds #daysRemainingBlock {
+      display: none;
+    }
+  }
+
   @media (max-width: @screen-xs-max) {
     font-size: 13px;
     padding-top: 12px;
     .timeBlock {
       top: -5px;
     }
-    .countdownTitle {
+    span.countdownTitle {
       display: none;
 
       &.countdownInfo {
@@ -372,15 +380,35 @@ body {
         padding-top: 8px;
       }
     }
-    #hoursRemainingBlock {
-      left: 15px;
+    .show-days {
+      #daysRemainingBlock {
+        left: 15px;
+      }
+      #hoursRemainingBlock {
+        left: calc(~"15px + 46px + 10px");
+      }
+      #minutesRemainingBlock {
+        left: calc(~"15px + 2*(46px + 10px)");
+      }
+      #secondsRemainingBlock {
+        left: calc(~"15px + 3*(46px + 10px)");
+      }
     }
-    #minutesRemainingBlock {
-      left: calc(~"15px + 46px + 10px");
+    .show-seconds {
+      #daysRemainingBlock {
+        display: none;
+      }
+      #hoursRemainingBlock {
+        left: 15px;
+      }
+      #minutesRemainingBlock {
+        left: calc(~"15px + 1*(46px + 10px)");
+      }
+      #secondsRemainingBlock {
+        left: calc(~"15px + 2*(46px + 10px)");
+      }
     }
-    #secondsRemainingBlock {
-      left: calc(~"15px + 2*(46px + 10px)");
-    }
+    
     .form-inline {
       width: calc(~"100% - (15px + 3*(46px + 10px) + 20px)");
 
@@ -398,14 +426,33 @@ body {
     .timeBlock {
       top: -11px;
     }
-    #hoursRemainingBlock {
-      left: 160px;
+    .show-days{
+      #daysRemainingBlock {
+        left: 160px;
+      }
+      #hoursRemainingBlock {
+        left: calc(~"160px + 46px + 10px");
+      }
+      #minutesRemainingBlock {
+        left: calc(~"160px + 2*(46px + 10px)");
+      }
+      #secondsRemainingBlock {
+        left: calc(~"160px + 3*(46px + 10px)");
+      }
     }
-    #minutesRemainingBlock {
-      left: calc(~"160px + 46px + 10px");
-    }
-    #secondsRemainingBlock {
-      left: calc(~"160px + 2*(46px + 10px)");
+    .show-seconds {
+      #daysRemainingBlock {
+        display: none;
+      }
+      #hoursRemainingBlock {
+        left: 160px;
+      }
+      #minutesRemainingBlock {
+        left: calc(~"160px + 1*(46px + 10px)");
+      }
+      #secondsRemainingBlock {
+        left: calc(~"160px + 2*(46px + 10px)");
+      }
     }
     .form-inline #scrollToTop {
       top: -6px;
@@ -420,14 +467,33 @@ body {
     .timeBlock {
       top: -9px;
     }
-    #hoursRemainingBlock {
-      left: 190px;
+    .show-days {
+      #daysRemainingBlock {
+        left: 190px;
+      }
+      #hoursRemainingBlock {
+        left: calc(~"190px + 46px + 10px");
+      }
+      #minutesRemainingBlock {
+        left: calc(~"190px + 2*(46px + 10px)");
+      }
+      #secondsRemainingBlock {
+        left: calc(~"190px + 3*(46px + 10px)");
+      }
     }
-    #minutesRemainingBlock {
-      left: calc(~"190px + 46px + 10px");
-    }
-    #secondsRemainingBlock {
-      left: calc(~"190px + 2*(46px + 10px)");
+    .show-seconds {
+      #daysRemainingBlock {
+        display: none;
+      }
+      #hoursRemainingBlock {
+        left: 190px;
+      }
+      #minutesRemainingBlock {
+        left: calc(~"190px + 1*(46px + 10px)");
+      }
+      #secondsRemainingBlock {
+        left: calc(~"190px + 2*(46px + 10px)");
+      }
     }
     .form-inline {
       #scrollToTop {
@@ -444,14 +510,33 @@ body {
     .timeBlock {
       top: -5px;
     }
-    #hoursRemainingBlock {
-      left: 230px;
+    .show-days {
+      #daysRemainingBlock {
+        left: 230px;
+      }
+      #hoursRemainingBlock {
+        left: calc(~"230px + 46px + 10px");
+      }
+      #minutesRemainingBlock {
+        left: calc(~"230px + 2*(46px + 10px)");
+      }
+      #secondsRemainingBlock {
+        left: calc(~"230px + 3*(46px + 10px)");
+      }
     }
-    #minutesRemainingBlock {
-      left: calc(~"230px + 46px + 10px");
-    }
-    #secondsRemainingBlock {
-      left: calc(~"230px + 2*(46px + 10px)");
+    .show-seconds {
+      #daysRemainingBlock {
+        display: none;
+      }
+      #hoursRemainingBlock {
+        left: 230px;
+      }
+      #minutesRemainingBlock {
+        left: calc(~"230px + 1*(46px + 10px)");
+      }
+      #secondsRemainingBlock {
+        left: calc(~"230px + 2*(46px + 10px)");
+      }
     }
     .form-inline {
       #scrollToTop {
@@ -688,14 +773,33 @@ div.bsCountdown {
     width: 74px;
     margin-left: -37px;
   }
-  #hoursRemainingBlock {
-    left: 30%;
+  .show-days {
+    #daysRemainingBlock {
+      left: 20%;
+    }
+    #hoursRemainingBlock {
+      left: 40%;
+    }
+    #minutesRemainingBlock {
+      left: 60%;
+    }
+    #secondsRemainingBlock {
+      left: 80%;
+    }
   }
-  #minutesRemainingBlock {
-    left: 50%;
-  }
-  #secondsRemainingBlock {
-    left: 70%;
+  .show-seconds {
+    #daysRemainingBlock {
+      display: none;
+    }
+    #hoursRemainingBlock {
+      left: 30%;
+    }
+    #minutesRemainingBlock {
+      left: 50%;
+    }
+    #secondsRemainingBlock {
+      left: 70%;
+    }
   }
   .sentence {
     visibility: hidden;
