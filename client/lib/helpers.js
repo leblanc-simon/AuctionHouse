@@ -99,6 +99,10 @@ setWaypoints = function () {
   });
 };
 
+setBaguetteBox = function () {
+  baguetteBox.run('.baguette-box');
+};
+
 LightenDarkenColor = function (col, amt) {
   var usePound = false;
 

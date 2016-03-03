@@ -6,4 +6,5 @@ Template.main.helpers({
 
 Template.main.rendered = function () {
   setWaypoints();
-}
+  setBaguetteBox();
+};

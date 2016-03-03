@@ -98,6 +98,5 @@ Template.item.rendered = function () {
     _.delay(function () {
       item.removeClass("highlighted");
     }, 2000);
-    baguetteBox.run('.itemImage');
   });
 };
